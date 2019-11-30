@@ -1,6 +1,63 @@
 <resources>
     <string name="app_name">MADE_Submission_2</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="str_movie_title">Movie Title</string>
+    <string name="str_movie_background">Movie Background</string>
+    <string name="str_movie_poster">Movie Poster</string>
+    <string name="str_tv_shows">Tv Shows</string>
+    <string name="str_movies">Movies</string>
+    <string name="str_tmdb">TMDb</string>
+    <string name="str_star">Star</string>
+
+    <array name="item_movie_poster">
+        <item>@drawable/movie_poster_3022</item>
+        <item>@drawable/movie_poster_angelhasfallen</item>
+        <item>@drawable/movie_poster_cars</item>
+        <item>@drawable/movie_poster_frozen</item>
+        <item>@drawable/movie_poster_frozen2</item>
+        <item>@drawable/movie_poster_guardianofthegalaxy2</item>
+        <item>@drawable/movie_poster_hustlers</item>
+        <item>@drawable/movie_poster_lionking</item>
+        <item>@drawable/movie_poster_spiderman</item>
+        <item>@drawable/movie_poster_theirishman</item>
+    </array>
+
+    <string-array name="item_movie_title">
+        <item>3022</item>
+        <item>Angel has Fallen</item>
+        <item>Cars</item>
+        <item>Frozen</item>
+        <item>Frozen II</item>
+        <item>Guardian of the Galaxy vol.2</item>
+        <item>Hustlers</item>
+        <item>Lion King</item>
+        <item>Spider-Man: Far From Home</item>
+        <item>The Irish Man</item>
+    </string-array>
+
+    <string-array name="item_movie_release">
+        <item>November 22, 2019</item>
+        <item>August 21, 2019</item>
+        <item>June 8, 2006</item>
+        <item>November 27, 2013</item>
+        <item>November 20, 2019</item>
+        <item>April 19, 2017</item>
+        <item>September 12, 2019</item>
+        <item>July 12, 2019</item>
+        <item>June 28, 2019</item>
+        <item>November 1, 2019</item>
+    </string-array>
+
+    <string-array name="item_movie_score">
+        <item>4.5/10</item>
+        <item>6.5/10</item>
+        <item>7.1/10</item>
+        <item>7.5/10</item>
+        <item>7.3/10</item>
+        <item>7.6/10</item>
+        <item>6.5/10</item>
+        <item>7.0/10</item>
+        <item>7.6/10</item>
+        <item>8.5/10</item>
+    </string-array>
+
 </resources>
