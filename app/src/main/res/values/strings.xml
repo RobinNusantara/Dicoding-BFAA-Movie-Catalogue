@@ -7,7 +7,10 @@
     <string name="str_movies">Movies</string>
     <string name="str_tmdb">TMDb</string>
     <string name="str_star">Star</string>
+    <string name="str_tv_shows_poster">Tv Shows Poster</string>
+    <string name="str_tv_shows_background">Tv Shows Background</string>
 
+    <!-- TODO MOVIE ITEM -->
     <array name="item_movie_poster">
         <item>@drawable/movie_poster_3022</item>
         <item>@drawable/movie_poster_angelhasfallen</item>
@@ -58,6 +61,59 @@
         <item>7.0/10</item>
         <item>7.6/10</item>
         <item>8.5/10</item>
+    </string-array>
+
+    <!-- TODO TV SHOWS ITEM -->
+    <array name="item_tv_shows_poster">
+        <item>@drawable/tv_shows_poster_familyguy</item>
+        <item>@drawable/tv_shows_poster_got</item>
+        <item>@drawable/tv_shows_poster_hisdarkmaterials</item>
+        <item>@drawable/tv_shows_poster_outlander</item>
+        <item>@drawable/tv_shows_poster_rickandmorty</item>
+        <item>@drawable/tv_shows_poster_sealteam</item>
+        <item>@drawable/tv_shows_poster_sherlock</item>
+        <item>@drawable/tv_shows_poster_smallville</item>
+        <item>@drawable/tv_shows_poster_southpark</item>
+        <item>@drawable/tv_shows_poster_thewalkingdead</item>
+    </array>
+
+    <string-array name="item_tv_shows_title">
+        <item>Family Guy</item>
+        <item>Game of Thrones</item>
+        <item>His Dark Materials</item>
+        <item>Outlander</item>
+        <item>Rick and Morty</item>
+        <item>Seal Team</item>
+        <item>Sherlock</item>
+        <item>Smallville</item>
+        <item>South Park</item>
+        <item>Fear The Walking Dead</item>
+    </string-array>
+
+    <string-array name="item_tv_shows_release">
+        <item>January 31, 1999</item>
+        <item>April 17, 2011</item>
+        <item>November 3, 2019</item>
+        <item>August 9, 2014</item>
+        <item>December 2, 2013</item>
+        <item>September 27, 2017</item>
+        <item>July 25, 2010</item>
+        <item>October 16, 2001</item>
+        <item>August 13, 1997</item>
+        <item>August 23, 2015</item>
+    </string-array>
+
+    <string-array name="item_tv_shows_score">
+        <item>8.1/10</item>
+        <item>9.4/10</item>
+        <item>8.3/10</item>
+        <item>8.4/10</item>
+        <item>9.3/10</item>
+        <item>7.4/10</item>
+        <item>9.1/10</item>
+        <item>7.4/10</item>
+        <item>8.7/10</item>
+        <item>6.9/10</item>
     </string-array>
 
 </resources>

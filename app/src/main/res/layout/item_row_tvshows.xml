@@ -11,7 +11,7 @@
 
     <RelativeLayout
         android:id="@+id/container"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -23,7 +23,7 @@
             android:layout_height="150dp"
             android:layout_centerVertical="true"
             android:background="@drawable/item_row_container"
-            android:contentDescription="@string/str_movie_background" />
+            android:contentDescription="@string/str_tv_shows_background" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/card_poster"
@@ -32,41 +32,41 @@
             app:cardCornerRadius="16dp">
 
             <ImageView
-                android:id="@+id/img_movie_poster"
-                android:layout_width="match_parent"
+                android:id="@+id/img_tv_shows_poster"
+                android:layout_width="140dp"
                 android:layout_height="170dp"
-                android:contentDescription="@string/str_movie_poster"
+                android:contentDescription="@string/str_tv_shows_poster"
                 android:scaleType="fitXY"
-                tools:src="@drawable/item_row_container" />
+                tools:background="@drawable/item_row_container" />
 
         </androidx.cardview.widget.CardView>
 
         <TextView
-            android:id="@+id/txt_movie_title"
+            android:id="@+id/txt_tv_shows_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:layout_toEndOf="@+id/card_poster"
+            android:layout_toEndOf="@id/card_poster"
             android:textColor="@color/colorPrimary"
             android:textStyle="bold"
-            tools:text="@string/str_movie_title" />
+            tools:text="Tv Shows Title" />
 
         <TextView
-            android:id="@+id/txt_movie_release_date"
+            android:id="@+id/txt_tv_shows_release_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/txt_movie_title"
+            android:layout_below="@id/txt_tv_shows_title"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_toEndOf="@id/card_poster"
-            tools:text="@tools:sample/date/ddmmyy" />
+            tools:text="@tools:sample/date/mmddyy" />
 
         <ImageView
             android:id="@+id/img_star"
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:layout_below="@id/txt_movie_release_date"
+            android:layout_below="@id/txt_tv_shows_release_date"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_toEndOf="@id/card_poster"
@@ -74,10 +74,10 @@
             android:contentDescription="@string/str_star" />
 
         <TextView
-            android:id="@+id/txt_movie_score"
+            android:id="@+id/txt_tv_shows_score"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/txt_movie_release_date"
+            android:layout_below="@id/txt_tv_shows_release_date"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_toEndOf="@id/img_star"
@@ -86,10 +86,10 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/txt_movie_release_date"
+            android:layout_below="@id/txt_tv_shows_release_date"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:layout_toEndOf="@id/txt_movie_score"
+            android:layout_toEndOf="@id/txt_tv_shows_score"
             android:text="@string/str_tmdb" />
 
     </RelativeLayout>

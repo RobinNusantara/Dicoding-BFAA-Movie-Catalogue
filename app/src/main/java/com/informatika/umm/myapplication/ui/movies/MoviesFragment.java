@@ -29,7 +29,6 @@ public class MoviesFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_movies, container, false);
         RecyclerView recyclerViewMovies;
-        setHasOptionsMenu(true);
         moviesAdapter = new MoviesAdapter(getActivity());
         recyclerViewMovies = view.findViewById(R.id.rv_movies_list);
         recyclerViewMovies.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -60,5 +59,4 @@ public class MoviesFragment extends Fragment {
         }
         moviesAdapter.setMovies(listMovies);
     }
-
 }

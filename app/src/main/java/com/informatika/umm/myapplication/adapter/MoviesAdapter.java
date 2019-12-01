@@ -4,7 +4,9 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -45,6 +47,8 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MoviesView
 
     @Override
     public void onBindViewHolder(@NonNull MoviesViewHolder holder, int position) {
+        holder.container.setAnimation(AnimationUtils.loadAnimation(context, R.anim.fade_scale_animation));
+
         final Movies movies = listMovies.get(position);
         Glide.with(holder.itemView.getContext())
                 .load(movies.getMoviePoster())
@@ -66,9 +70,11 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MoviesView
 
         ImageView imgMoviePoster;
         TextView txtMovieTitle, txtMovieScore, txtMovieRelease;
+        RelativeLayout container;
 
         MoviesViewHolder(@NonNull View itemView) {
             super(itemView);
+            container = itemView.findViewById(R.id.container);
             imgMoviePoster = itemView.findViewById(R.id.img_movie_poster);
             txtMovieTitle = itemView.findViewById(R.id.txt_movie_title);
             txtMovieRelease = itemView.findViewById(R.id.txt_movie_release_date);
