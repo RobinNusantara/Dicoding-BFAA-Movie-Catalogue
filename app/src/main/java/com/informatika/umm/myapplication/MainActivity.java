@@ -1,6 +1,10 @@
 package com.informatika.umm.myapplication;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.provider.Settings;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -46,4 +50,22 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.actionbar, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.btn_account) {
+            Intent intent = new Intent(MainActivity.this, AccountActivity.class);
+            startActivity(intent);
+        } else if (item.getItemId() == R.id.btn_language) {
+            Intent intent = new Intent(Settings.ACTION_LOCALE_SETTINGS);
+            startActivity(intent);
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }

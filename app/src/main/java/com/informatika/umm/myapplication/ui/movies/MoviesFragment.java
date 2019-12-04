@@ -49,8 +49,8 @@ public class MoviesFragment extends Fragment {
         dataMovieBackdrop = getResources().obtainTypedArray(R.array.item_movie_backdrop);
         dataMovieRelease = getResources().getStringArray(R.array.item_movie_release);
         dataMovieScore = getResources().getStringArray(R.array.item_movie_score);
-        //dataMovieOverview = getResources().getStringArray(R.array.item_movie_)
         dataMovieRuntime = getResources().getStringArray(R.array.item_movie_runtime);
+        dataMovieOverview = getResources().getStringArray(R.array.item_movie_overview);
     }
 
     private void addItem() {
@@ -63,6 +63,7 @@ public class MoviesFragment extends Fragment {
             dataMovies.setMovieRelease(dataMovieRelease[position]);
             dataMovies.setMovieScore(dataMovieScore[position]);
             dataMovies.setMovieRuntime(dataMovieRuntime[position]);
+            dataMovies.setMovieOverview(dataMovieOverview[position]);
             listMovies.add(dataMovies);
         }
         moviesAdapter.setMovies(listMovies);

@@ -23,7 +23,7 @@ public class MoviesDetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ImageView imgMovieBackdrop, imgMoviePoster;
-        TextView txtMovieTitle, txtMovieRelease, txtMovieScore, txtMovieRuntime;
+        TextView txtMovieTitle, txtMovieRelease, txtMovieScore, txtMovieRuntime, txtMovieOverview;
         Movies movies = getIntent().getParcelableExtra(EXTRA_MOVIE);
 
         setContentView(R.layout.activity_movies_detail);
@@ -42,6 +42,7 @@ public class MoviesDetailActivity extends AppCompatActivity {
         txtMovieRelease = findViewById(R.id.txt_movie_release_date);
         txtMovieScore = findViewById(R.id.txt_movie_score);
         txtMovieRuntime = findViewById(R.id.txt_movie_runtime);
+        txtMovieOverview = findViewById(R.id.txt_movie_overview);
 
         if (movies != null) {
 
@@ -60,6 +61,7 @@ public class MoviesDetailActivity extends AppCompatActivity {
             txtMovieRelease.setText(movies.getMovieRelease());
             txtMovieScore.setText(movies.getMovieScore());
             txtMovieRuntime.setText(movies.getMovieRuntime());
+            txtMovieOverview.setText(movies.getMovieOverview());
 
         }
     }

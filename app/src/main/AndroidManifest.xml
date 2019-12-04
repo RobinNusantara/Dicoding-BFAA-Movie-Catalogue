@@ -11,11 +11,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".AccountActivity"></activity>
         <activity
             android:name=".SplashScreenActivity"
             android:theme="@style/SplashScreenStyle">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -23,8 +25,7 @@
             android:name=".MoviesDetailActivity"
             android:label="@string/title_activity_movie_detail"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".MainActivity">
-        </activity>
+        <activity android:name=".MainActivity"></activity>
     </application>
 
 </manifest>

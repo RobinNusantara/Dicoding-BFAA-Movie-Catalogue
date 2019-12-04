@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Movie Catalogue 2</string>
+    <string name="app_name">Submission2</string>
     <string name="str_movie_title">Movie Title</string>
     <string name="str_movie_background">Movie Background</string>
     <string name="str_movie_poster">Movie Poster</string>
@@ -11,8 +11,16 @@
     <string name="str_tv_shows_background">Tv Shows Background</string>
     <string name="title_activity_movie_detail">MovieDetailActivity</string>
     <string name="str_movie_backdrop">Movie Backdrop</string>
-    <string name="str_overview">Overview</string>
     <string name="str_lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
+    <string name="str_button_language">Button Language</string>
+    <string name="str_account">Account</string>
+    <string name="str_profile_picture">Profile Picture</string>
+    <string name="str_profile_icon">Profile Icon</string>
+    <string name="str_profile_name">Robin Nusantara</string>
+    <string name="str_profile_email">robinnusantara127@gmail.com</string>
+    <string name="str_email_icon">Email Icon</string>
+    <string name="str_location_icon">Location Icon</string>
+    <string name="str_profile_location">Kota Batu, Jawa Timur</string>
 
     <!-- TODO MOVIE ITEM -->
     <array name="item_movie_poster">
@@ -49,7 +57,7 @@
         <item>Frozen II</item>
         <item>Guardian of the Galaxy vol.2</item>
         <item>Hustlers</item>
-        <item>Lion King</item>
+        <item>The Lion King</item>
         <item>Spider-Man: Far From Home</item>
         <item>The Irish Man</item>
     </string-array>
@@ -91,6 +99,19 @@
         <item>1h 58m</item>
         <item>2h 9m</item>
         <item>3h 29m</item>
+    </string-array>
+
+    <string-array name="item_movie_overview">
+        <item>Once home to the most advanced civilization on Earth, Atlantis is now an underwater kingdom ruled by the power-hungry King Orm. With a vast army at his disposal, Orm plans to conquer the remaining oceanic people and then the surface world. Standing in his way is Arthur Curry, Orm\'s half-human, half-Atlantean brother and true heir to the throne.</item>
+        <item>After the events in the previous film, Secret Service agent Mike Banning finds himself framed for an assassination attempt on the President. Pursued by his own agency and the FBI, Banning races to clear his name and uncover the real terrorist threat which has set its sights on Air Force One.</item>
+        <item>Lightning McQueen, a hotshot rookie race car driven to succeed, discovers that life is about the journey, not the finish line, when he finds himself unexpectedly detoured in the sleepy Route 66 town of Radiator Springs. On route across the country to the big Piston Cup Championship in California to compete against two seasoned pros, McQueen gets to know the town\'s offbeat characters.</item>
+        <item>Young princess Anna of Arendelle dreams about finding true love at her sister Elsa’s coronation. Fate takes her on a dangerous journey in an attempt to end the eternal winter that has fallen over the kingdom. She\'s accompanied by ice delivery man Kristoff, his reindeer Sven, and snowman Olaf. On an adventure where she will find out what friendship, courage, family, and true love really means.</item>
+        <item>Elsa, Anna, Kristoff and Olaf head far into the forest to learn the truth about an ancient mystery of their kingdom.</item>
+        <item>The Guardians must fight to keep their newfound family together as they unravel the mysteries of Peter Quill\'s true parentage.</item>
+        <item>A crew of savvy former strip club employees band together to turn the tables on their Wall Street clients.</item>
+        <item>Simba idolizes his father, King Mufasa, and takes to heart his own royal destiny. But not everyone in the kingdom celebrates the new cub\'s arrival. Scar, Mufasa\'s brother—and former heir to the throne—has plans of his own. The battle for Pride Rock is ravaged with betrayal, tragedy and drama, ultimately resulting in Simba\'s exile. With help from a curious pair of newfound friends, Simba will have to figure out how to grow up and take back what is rightfully his.</item>
+        <item>Peter Parker and his friends go on a summer trip to Europe. However, they will hardly be able to rest - Peter will have to agree to help Nick Fury uncover the mystery of creatures that cause natural disasters and destruction throughout the continent.</item>
+        <item>Pennsylvania, 1956. Frank Sheeran, a war veteran of Irish origin who works as a truck driver, accidentally meets mobster Russell Bufalino. Once Frank becomes his trusted man, Bufalino sends him to Chicago with the task of helping Jimmy Hoffa, a powerful union leader related to organized crime, with whom Frank will maintain a close friendship for nearly twenty years.</item>
     </string-array>
 
     <!-- TODO TV SHOWS ITEM -->
