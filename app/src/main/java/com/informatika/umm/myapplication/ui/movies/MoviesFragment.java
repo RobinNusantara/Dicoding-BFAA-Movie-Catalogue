@@ -22,7 +22,10 @@ public class MoviesFragment extends Fragment {
     private String[] dataMovieTitle;
     private String[] dataMovieRelease;
     private String[] dataMovieScore;
+    private String[] dataMovieOverview;
+    private String[] dataMovieRuntime;
     private TypedArray dataMoviePoster;
+    private TypedArray dataMovieBackdrop;
     private MoviesAdapter moviesAdapter;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -43,8 +46,11 @@ public class MoviesFragment extends Fragment {
     private void prepare() {
         dataMovieTitle = getResources().getStringArray(R.array.item_movie_title);
         dataMoviePoster = getResources().obtainTypedArray(R.array.item_movie_poster);
+        dataMovieBackdrop = getResources().obtainTypedArray(R.array.item_movie_backdrop);
         dataMovieRelease = getResources().getStringArray(R.array.item_movie_release);
         dataMovieScore = getResources().getStringArray(R.array.item_movie_score);
+        //dataMovieOverview = getResources().getStringArray(R.array.item_movie_)
+        dataMovieRuntime = getResources().getStringArray(R.array.item_movie_runtime);
     }
 
     private void addItem() {
@@ -52,9 +58,11 @@ public class MoviesFragment extends Fragment {
         for (int position = 0; position < dataMovieTitle.length; position++) {
             Movies dataMovies = new Movies();
             dataMovies.setMoviePoster(dataMoviePoster.getResourceId(position, -1));
+            dataMovies.setMovieBackdrop(dataMovieBackdrop.getResourceId(position, -1));
             dataMovies.setMovieTitle(dataMovieTitle[position]);
             dataMovies.setMovieRelease(dataMovieRelease[position]);
             dataMovies.setMovieScore(dataMovieScore[position]);
+            dataMovies.setMovieRuntime(dataMovieRuntime[position]);
             listMovies.add(dataMovies);
         }
         moviesAdapter.setMovies(listMovies);

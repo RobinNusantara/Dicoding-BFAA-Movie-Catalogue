@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MADE_Submission_2</string>
+    <string name="app_name">Movie Catalogue 2</string>
     <string name="str_movie_title">Movie Title</string>
     <string name="str_movie_background">Movie Background</string>
     <string name="str_movie_poster">Movie Poster</string>
@@ -9,10 +9,14 @@
     <string name="str_star">Star</string>
     <string name="str_tv_shows_poster">Tv Shows Poster</string>
     <string name="str_tv_shows_background">Tv Shows Background</string>
+    <string name="title_activity_movie_detail">MovieDetailActivity</string>
+    <string name="str_movie_backdrop">Movie Backdrop</string>
+    <string name="str_overview">Overview</string>
+    <string name="str_lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
 
     <!-- TODO MOVIE ITEM -->
     <array name="item_movie_poster">
-        <item>@drawable/movie_poster_3022</item>
+        <item>@drawable/movie_poster_aquaman</item>
         <item>@drawable/movie_poster_angelhasfallen</item>
         <item>@drawable/movie_poster_cars</item>
         <item>@drawable/movie_poster_frozen</item>
@@ -24,8 +28,21 @@
         <item>@drawable/movie_poster_theirishman</item>
     </array>
 
+    <array name="item_movie_backdrop">
+        <item>@drawable/movie_backdrop_aquaman</item>
+        <item>@drawable/movie_backdrop_angelhasfallen</item>
+        <item>@drawable/movie_backdrop_cars</item>
+        <item>@drawable/movie_backdrop_frozen</item>
+        <item>@drawable/movie_backdrop_frozen2</item>
+        <item>@drawable/movie_backdrop_guardianofthegalaxy2</item>
+        <item>@drawable/movie_backdrop_hustlers</item>
+        <item>@drawable/movie_backdrop_lionking</item>
+        <item>@drawable/movie_backdrop_spiderman</item>
+        <item>@drawable/movie_backdrop_theirishman</item>
+    </array>
+
     <string-array name="item_movie_title">
-        <item>3022</item>
+        <item>Aquaman</item>
         <item>Angel has Fallen</item>
         <item>Cars</item>
         <item>Frozen</item>
@@ -38,7 +55,7 @@
     </string-array>
 
     <string-array name="item_movie_release">
-        <item>November 22, 2019</item>
+        <item>December 7, 2018</item>
         <item>August 21, 2019</item>
         <item>June 8, 2006</item>
         <item>November 27, 2013</item>
@@ -51,7 +68,7 @@
     </string-array>
 
     <string-array name="item_movie_score">
-        <item>4.5/10</item>
+        <item>7.0/10</item>
         <item>6.5/10</item>
         <item>7.1/10</item>
         <item>7.5/10</item>
@@ -61,6 +78,19 @@
         <item>7.0/10</item>
         <item>7.6/10</item>
         <item>8.5/10</item>
+    </string-array>
+
+    <string-array name="item_movie_runtime">
+        <item>2h 24m</item>
+        <item>2h 1m</item>
+        <item>1h 57m</item>
+        <item>1h 42m</item>
+        <item>1h 44m</item>
+        <item>2h 17m</item>
+        <item>1h 47m</item>
+        <item>1h 58m</item>
+        <item>2h 9m</item>
+        <item>3h 29m</item>
     </string-array>
 
     <!-- TODO TV SHOWS ITEM -->

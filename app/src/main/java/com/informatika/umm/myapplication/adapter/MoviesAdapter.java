@@ -1,10 +1,10 @@
 package com.informatika.umm.myapplication.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -13,7 +13,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
+import com.informatika.umm.myapplication.MoviesDetailActivity;
 import com.informatika.umm.myapplication.R;
 import com.informatika.umm.myapplication.model.Movies;
 
@@ -46,18 +48,29 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MoviesView
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MoviesViewHolder holder, int position) {
-        holder.container.setAnimation(AnimationUtils.loadAnimation(context, R.anim.fade_scale_animation));
+    public void onBindViewHolder(@NonNull final MoviesViewHolder holder, int position) {
 
         final Movies movies = listMovies.get(position);
         Glide.with(holder.itemView.getContext())
                 .load(movies.getMoviePoster())
                 .apply(new RequestOptions().override(350, 550))
+                .transform(new RoundedCorners(32))
                 .into(holder.imgMoviePoster);
 
         holder.txtMovieTitle.setText(movies.getMovieTitle());
         holder.txtMovieRelease.setText(movies.getMovieRelease());
         holder.txtMovieScore.setText(movies.getMovieScore());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent;
+                intent = new Intent(context, MoviesDetailActivity.class);
+                intent.putExtra(MoviesDetailActivity.EXTRA_MOVIE, movies);
+                context.startActivity(intent);
+            }
+        });
+
         holder.getAdapterPosition();
     }
 

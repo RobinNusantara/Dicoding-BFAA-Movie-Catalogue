@@ -4,7 +4,6 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -13,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.informatika.umm.myapplication.R;
 import com.informatika.umm.myapplication.model.TvShows;
@@ -46,12 +46,12 @@ public class TvShowsAdapter extends RecyclerView.Adapter<TvShowsAdapter.TvShowsV
 
     @Override
     public void onBindViewHolder(@NonNull TvShowsViewHolder holder, int position) {
-        holder.container.setAnimation(AnimationUtils.loadAnimation(context, R.anim.fade_scale_animation));
 
         final TvShows tvShows = listTvShows.get(position);
         Glide.with(holder.itemView.getContext())
                 .load(tvShows.getTvshowsPoster())
                 .apply(new RequestOptions().override(350, 550))
+                .transform(new RoundedCorners(32))
                 .into(holder.imgTvShowsPoster);
 
         holder.txtTvShowsTitle.setText(tvShows.getTvshowsTitles());
