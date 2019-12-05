@@ -11,6 +11,11 @@ android {
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
+        buildConfigField("String", "API_KEY", "\"622786ce6f1d1c91c600132ec904c52d\"")
+        buildConfigField("String", "MOVIE_URL", "\"https://api.themoviedb.org/3/discover/movie?api_key=\"")
+        buildConfigField("String", "TV_URL", "\"https://api.themoviedb.org/3/discover/tv?api_key=\"")
+        buildConfigField("String", "LANGUAGE", "\"&language=en-US\"")
+        buildConfigField("String", "IMAGE_URL", "\"https://image.tmdb.org/t/p/w780\"")
     }
     buildTypes {
         release {
@@ -35,6 +40,10 @@ dependencies {
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'de.hdodenhof:circleimageview:3.0.0'
-    implementation 'com.github.bumptech.glide:glide:4.9.0'
+    implementation 'com.github.bumptech.glide:glide:4.10.0'
+    implementation 'io.supercharge:shimmerlayout:2.1.0'
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0-rc02'
+    annotationProcessor 'androidx.lifecycle:lifecycle-compiler:2.2.0-rc02'
+    implementation 'com.loopj.android:android-async-http:1.4.10'
 
 }

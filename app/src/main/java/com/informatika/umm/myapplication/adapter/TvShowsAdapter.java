@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
-import com.informatika.umm.myapplication.ui.tvshows.DetailTvShowsActivity;
+import com.informatika.umm.myapplication.ui.tvshows.TvShowsDetailActivity;
 import com.informatika.umm.myapplication.R;
 import com.informatika.umm.myapplication.model.TvShows;
 
@@ -64,8 +64,8 @@ public class TvShowsAdapter extends RecyclerView.Adapter<TvShowsAdapter.TvShowsV
             @Override
             public void onClick(View view) {
                 Intent intent;
-                intent = new Intent(context, DetailTvShowsActivity.class);
-                intent.putExtra(DetailTvShowsActivity.EXTRA_TVSHOWS, tvShows);
+                intent = new Intent(context, TvShowsDetailActivity.class);
+                intent.putExtra(TvShowsDetailActivity.EXTRA_TVSHOWS, tvShows);
                 context.startActivity(intent);
             }
         });

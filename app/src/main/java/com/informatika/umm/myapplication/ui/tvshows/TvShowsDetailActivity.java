@@ -15,7 +15,7 @@ import com.informatika.umm.myapplication.R;
 import com.informatika.umm.myapplication.model.TvShows;
 
 
-public class DetailTvShowsActivity extends AppCompatActivity {
+public class TvShowsDetailActivity extends AppCompatActivity {
 
     public static final String EXTRA_TVSHOWS = "extra_tvshows";
 

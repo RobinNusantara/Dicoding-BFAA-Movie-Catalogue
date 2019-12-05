@@ -3,6 +3,10 @@ package com.informatika.umm.myapplication.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import org.json.JSONObject;
+
+import java.util.Objects;
+
 /**
  * MADE_Submission_2
  * created by : Robin Nusantara on 11/30/2019 11 2019
@@ -10,19 +14,19 @@ import android.os.Parcelable;
  **/
 public class Movies implements Parcelable {
 
-    private int moviePoster;
-    private int movieBackdrop;
+    private String moviePoster;
+    private String movieBackdrop;
     private String movieTitle;
-    private String movieScore;
+    private Double movieScore;
     private String movieRelease;
     private String movieOverview;
     private String movieRuntime;
 
-    public int getMoviePoster() {
+    public String getMoviePoster() {
         return moviePoster;
     }
 
-    public void setMoviePoster(int moviePoster) {
+    public void setMoviePoster(String moviePoster) {
         this.moviePoster = moviePoster;
     }
 
@@ -34,11 +38,11 @@ public class Movies implements Parcelable {
         this.movieTitle = movieTitle;
     }
 
-    public String getMovieScore() {
+    public Double getMovieScore() {
         return movieScore;
     }
 
-    public void setMovieScore(String movieScore) {
+    public void setMovieScore(Double movieScore) {
         this.movieScore = movieScore;
     }
 
@@ -50,11 +54,11 @@ public class Movies implements Parcelable {
         this.movieRelease = movieRelease;
     }
 
-    public int getMovieBackdrop() {
+    public String getMovieBackdrop() {
         return movieBackdrop;
     }
 
-    public void setMovieBackdrop(int movieBackdrop) {
+    public void setMovieBackdrop(String movieBackdrop) {
         this.movieBackdrop = movieBackdrop;
     }
 
@@ -84,23 +88,21 @@ public class Movies implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(this.moviePoster);
-        dest.writeInt(this.movieBackdrop);
+        dest.writeString(this.moviePoster);
+        dest.writeString(this.movieBackdrop);
         dest.writeString(this.movieTitle);
-        dest.writeString(this.movieScore);
+        dest.writeDouble(this.movieScore);
         dest.writeString(this.movieRelease);
         dest.writeString(this.movieOverview);
-        dest.writeString(this.movieRuntime);
     }
 
     protected Movies(Parcel in) {
-        this.moviePoster = in.readInt();
-        this.movieBackdrop = in.readInt();
+        this.moviePoster = in.readString();
+        this.movieBackdrop = in.readString();
         this.movieTitle = in.readString();
-        this.movieScore = in.readString();
+        this.movieScore = in.readDouble();
         this.movieRelease = in.readString();
         this.movieOverview = in.readString();
-        this.movieRuntime = in.readString();
     }
 
     public static final Creator<Movies> CREATOR = new Creator<Movies>() {
@@ -114,4 +116,25 @@ public class Movies implements Parcelable {
             return new Movies[size];
         }
     };
+
+    public Movies(JSONObject object) {
+        try {
+            String moviePoster = object.getString("poster_path");
+            String movieBackdrop = object.getString("backdrop_path");
+            String movieTitle = object.getString("title");
+            Double movieScore = object.getDouble("vote_average");
+            String movieRelease = object.getString("release_date");
+            String movieOverview = object.getString("overview");
+
+            this.moviePoster = moviePoster;
+            this.movieBackdrop = movieBackdrop;
+            this.movieTitle = movieTitle;
+            this.movieScore = movieScore;
+            this.movieRelease = movieRelease;
+            this.movieOverview = movieOverview;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

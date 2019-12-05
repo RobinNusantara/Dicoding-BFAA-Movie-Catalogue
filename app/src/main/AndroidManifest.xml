@@ -12,7 +12,7 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
-            android:name=".ui.tvshows.DetailTvShowsActivity"
+            android:name=".ui.tvshows.TvShowsDetailActivity"
             android:label="@string/title_activity_detail_tv_shows"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity android:name=".ui.profile.ProfileActivity" />
@@ -26,7 +26,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.movies.DetailMoviesActivity"
+            android:name=".ui.movies.MoviesDetailActivity"
             android:label="@string/title_activity_movie_detail"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".MainActivity" />
