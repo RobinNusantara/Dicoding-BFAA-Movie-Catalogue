@@ -1,4 +1,4 @@
-package com.informatika.umm.myapplication;
+package com.informatika.umm.myapplication.ui.profile;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -6,7 +6,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 
-public class AccountActivity extends AppCompatActivity {
+import com.informatika.umm.myapplication.R;
+
+public class ProfileActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

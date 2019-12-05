@@ -1,4 +1,4 @@
-package com.informatika.umm.myapplication;
+package com.informatika.umm.myapplication.ui.movies;
 
 import android.os.Bundle;
 
@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.informatika.umm.myapplication.R;
 import com.informatika.umm.myapplication.model.Movies;
 
 public class DetailMoviesActivity extends AppCompatActivity {

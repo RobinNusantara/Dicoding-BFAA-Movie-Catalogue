@@ -9,6 +9,7 @@ import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.informatika.umm.myapplication.ui.movies.MoviesFragment;
+import com.informatika.umm.myapplication.ui.profile.ProfileActivity;
 import com.informatika.umm.myapplication.ui.tvshows.TvShowsFragment;
 
 import androidx.annotation.NonNull;
@@ -60,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.btn_account) {
-            Intent intent = new Intent(MainActivity.this, AccountActivity.class);
+            Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
             startActivity(intent);
         } else if (item.getItemId() == R.id.btn_language) {
             Intent intent = new Intent(Settings.ACTION_LOCALE_SETTINGS);
