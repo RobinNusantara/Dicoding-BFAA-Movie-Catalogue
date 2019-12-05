@@ -37,35 +37,6 @@ public class MoviesFragment extends Fragment {
         recyclerViewMovies.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerViewMovies.setAdapter(moviesAdapter);
 
-        prepare();
-        addItem();
-
         return view;
-    }
-
-    private void prepare() {
-        dataMovieTitle = getResources().getStringArray(R.array.item_movies_title);
-        dataMoviePoster = getResources().obtainTypedArray(R.array.item_movies_poster);
-        dataMovieBackdrop = getResources().obtainTypedArray(R.array.item_movies_backdrop);
-        dataMovieRelease = getResources().getStringArray(R.array.item_movies_release);
-        dataMovieScore = getResources().getStringArray(R.array.item_movies_score);
-        dataMovieRuntime = getResources().getStringArray(R.array.item_movies_runtime);
-        dataMovieOverview = getResources().getStringArray(R.array.item_movies_overview);
-    }
-
-    private void addItem() {
-        ArrayList<Movies> listMovies = new ArrayList<>();
-        for (int position = 0; position < dataMovieTitle.length; position++) {
-            Movies dataMovies = new Movies();
-            dataMovies.setMoviePoster(dataMoviePoster.getResourceId(position, -1));
-            dataMovies.setMovieBackdrop(dataMovieBackdrop.getResourceId(position, -1));
-            dataMovies.setMovieTitle(dataMovieTitle[position]);
-            dataMovies.setMovieRelease(dataMovieRelease[position]);
-            dataMovies.setMovieScore(dataMovieScore[position]);
-            dataMovies.setMovieRuntime(dataMovieRuntime[position]);
-            dataMovies.setMovieOverview(dataMovieOverview[position]);
-            listMovies.add(dataMovies);
-        }
-        moviesAdapter.setMovies(listMovies);
     }
 }
