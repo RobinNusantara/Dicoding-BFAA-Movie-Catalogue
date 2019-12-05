@@ -14,7 +14,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.informatika.umm.myapplication.model.Movies;
 
-public class MoviesDetailActivity extends AppCompatActivity {
+public class DetailMoviesActivity extends AppCompatActivity {
 
     public static final String EXTRA_MOVIE = "extra_movie";
 
@@ -26,7 +26,14 @@ public class MoviesDetailActivity extends AppCompatActivity {
         TextView txtMovieTitle, txtMovieRelease, txtMovieScore, txtMovieRuntime, txtMovieOverview;
         Movies movies = getIntent().getParcelableExtra(EXTRA_MOVIE);
 
-        setContentView(R.layout.activity_movies_detail);
+        setContentView(R.layout.activity_detail_movies);
+        imgMoviePoster = findViewById(R.id.img_movie_poster);
+        imgMovieBackdrop = findViewById(R.id.img_movie_backdrop);
+        txtMovieTitle = findViewById(R.id.txt_movie_title);
+        txtMovieRelease = findViewById(R.id.txt_movie_release_date);
+        txtMovieScore = findViewById(R.id.txt_movie_score);
+        txtMovieRuntime = findViewById(R.id.txt_movie_runtime);
+        txtMovieOverview = findViewById(R.id.txt_movie_overview);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -35,14 +42,6 @@ public class MoviesDetailActivity extends AppCompatActivity {
             getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_navigate_before_black_24dp);
             getSupportActionBar().setTitle("");
         }
-
-        imgMoviePoster = findViewById(R.id.img_movie_poster);
-        imgMovieBackdrop = findViewById(R.id.img_movie_backdrop);
-        txtMovieTitle = findViewById(R.id.txt_movie_title);
-        txtMovieRelease = findViewById(R.id.txt_movie_release_date);
-        txtMovieScore = findViewById(R.id.txt_movie_score);
-        txtMovieRuntime = findViewById(R.id.txt_movie_runtime);
-        txtMovieOverview = findViewById(R.id.txt_movie_overview);
 
         if (movies != null) {
 

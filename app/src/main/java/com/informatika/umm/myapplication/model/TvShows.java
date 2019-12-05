@@ -10,42 +10,71 @@ import android.os.Parcelable;
  **/
 public class TvShows implements Parcelable {
 
-    private int tvshowsPoster;
-    private String tvshowsTitles;
-    private String tvshowsScore;
-    private String tvshowsRelease;
+    private int tvShowsPoster;
+    private int tvShowsBackdrop;
+    private String tvShowsTitle;
+    private String tvShowsScore;
+    private String tvShowsRelease;
+    private String tvShowsRuntime;
+    private String tvShowsOverview;
 
-
-    public int getTvshowsPoster() {
-        return tvshowsPoster;
+    public int getTvShowsPoster() {
+        return tvShowsPoster;
     }
 
-    public void setTvshowsPoster(int tvshowsPoster) {
-        this.tvshowsPoster = tvshowsPoster;
+    public void setTvShowsPoster(int tvShowsPoster) {
+        this.tvShowsPoster = tvShowsPoster;
     }
 
     public String getTvshowsTitles() {
-        return tvshowsTitles;
+        return tvShowsTitle;
     }
 
     public void setTvshowsTitles(String tvshowsTitles) {
-        this.tvshowsTitles = tvshowsTitles;
+        this.tvShowsTitle = tvshowsTitles;
     }
 
-    public String getTvshowsScore() {
-        return tvshowsScore;
+    public String getTvShowsScore() {
+        return tvShowsScore;
     }
 
-    public void setTvshowsScore(String tvshowsScore) {
-        this.tvshowsScore = tvshowsScore;
+    public void setTvShowsScore(String tvShowsScore) {
+        this.tvShowsScore = tvShowsScore;
     }
 
-    public String getTvshowsRelease() {
-        return tvshowsRelease;
+    public String getTvShowsRelease() {
+        return tvShowsRelease;
     }
 
-    public void setTvshowsRelease(String tvshowsRelease) {
-        this.tvshowsRelease = tvshowsRelease;
+    public void setTvShowsRelease(String tvShowsRelease) {
+        this.tvShowsRelease = tvShowsRelease;
+    }
+
+    public int getTvShowsBackdrop() {
+        return tvShowsBackdrop;
+    }
+
+    public void setTvShowsBackdrop(int tvShowsBackdrop) {
+        this.tvShowsBackdrop = tvShowsBackdrop;
+    }
+
+    public String getTvShowsRuntime() {
+        return tvShowsRuntime;
+    }
+
+    public void setTvShowsRuntime(String tvShowsRuntime) {
+        this.tvShowsRuntime = tvShowsRuntime;
+    }
+
+    public String getTvShowsOverview() {
+        return tvShowsOverview;
+    }
+
+    public void setTvShowsOverview(String tvShowsOverview) {
+        this.tvShowsOverview = tvShowsOverview;
+    }
+
+    public TvShows() {
     }
 
     @Override
@@ -55,23 +84,26 @@ public class TvShows implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(this.tvshowsPoster);
-        dest.writeString(this.tvshowsTitles);
-        dest.writeString(this.tvshowsScore);
-        dest.writeString(this.tvshowsRelease);
-    }
-
-    public TvShows() {
+        dest.writeInt(this.tvShowsPoster);
+        dest.writeInt(this.tvShowsBackdrop);
+        dest.writeString(this.tvShowsTitle);
+        dest.writeString(this.tvShowsScore);
+        dest.writeString(this.tvShowsRelease);
+        dest.writeString(this.tvShowsRuntime);
+        dest.writeString(this.tvShowsOverview);
     }
 
     protected TvShows(Parcel in) {
-        this.tvshowsPoster = in.readInt();
-        this.tvshowsTitles = in.readString();
-        this.tvshowsScore = in.readString();
-        this.tvshowsRelease = in.readString();
+        this.tvShowsPoster = in.readInt();
+        this.tvShowsBackdrop = in.readInt();
+        this.tvShowsTitle = in.readString();
+        this.tvShowsScore = in.readString();
+        this.tvShowsRelease = in.readString();
+        this.tvShowsRuntime = in.readString();
+        this.tvShowsOverview = in.readString();
     }
 
-    public static final Parcelable.Creator<TvShows> CREATOR = new Parcelable.Creator<TvShows>() {
+    public static final Creator<TvShows> CREATOR = new Creator<TvShows>() {
         @Override
         public TvShows createFromParcel(Parcel source) {
             return new TvShows(source);

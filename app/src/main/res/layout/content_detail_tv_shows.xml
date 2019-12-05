@@ -5,10 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".MoviesDetailActivity"
-    tools:showIn="@layout/activity_movies_detail">
+    tools:context=".DetailTvShowsActivity"
+    tools:showIn="@layout/activity_detail_tv_shows">
 
-    <include
-        layout="@layout/detailed_movies_info"/>
+    <include layout="@layout/detail_tv_shows_info"/>
 
 </androidx.core.widget.NestedScrollView>

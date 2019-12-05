@@ -3,8 +3,8 @@
     <string name="str_movie_title">Movie Title</string>
     <string name="str_movie_background">Movie Background</string>
     <string name="str_movie_poster">Movie Poster</string>
-    <string name="str_tv_shows">Tv Shows</string>
-    <string name="str_movies">Movies</string>
+    <string name="str_tv_shows">Serial Tv</string>
+    <string name="str_movies">Film</string>
     <string name="str_tmdb">TMDb</string>
     <string name="str_star">Star</string>
     <string name="str_tv_shows_poster">Tv Shows Poster</string>
@@ -66,15 +66,15 @@
     </string-array>
 
     <string-array name="item_movies_release">
-        <item>December 7, 2018</item>
-        <item>August 21, 2019</item>
-        <item>June 8, 2006</item>
+        <item>Desember 7, 2018</item>
+        <item>Agustus 21, 2019</item>
+        <item>Juni 8, 2006</item>
         <item>November 27, 2013</item>
         <item>November 20, 2019</item>
         <item>April 19, 2017</item>
         <item>September 12, 2019</item>
-        <item>July 12, 2019</item>
-        <item>June 28, 2019</item>
+        <item>Juli 12, 2019</item>
+        <item>Juni 28, 2019</item>
         <item>November 1, 2019</item>
     </string-array>
 
@@ -92,16 +92,16 @@
     </string-array>
 
     <string-array name="item_movies_runtime">
-        <item>2h 24m</item>
-        <item>2h 1m</item>
-        <item>1h 57m</item>
-        <item>1h 42m</item>
-        <item>1h 44m</item>
-        <item>2h 17m</item>
-        <item>1h 47m</item>
-        <item>1h 58m</item>
-        <item>2h 9m</item>
-        <item>3h 29m</item>
+        <item>2j 24m</item>
+        <item>2j 1m</item>
+        <item>1j 57m</item>
+        <item>1j 42m</item>
+        <item>1j 44m</item>
+        <item>2j 17m</item>
+        <item>1j 47m</item>
+        <item>1j 58m</item>
+        <item>2j 9m</item>
+        <item>3j 29m</item>
     </string-array>
 
     <string-array name="item_movies_overview">
@@ -158,16 +158,16 @@
     </string-array>
 
     <string-array name="item_tv_shows_release">
-        <item>January 31, 1999</item>
+        <item>Januari 31, 1999</item>
         <item>April 17, 2011</item>
         <item>November 3, 2019</item>
-        <item>August 9, 2014</item>
-        <item>December 2, 2013</item>
+        <item>Augustus 9, 2014</item>
+        <item>Desember 2, 2013</item>
         <item>September 27, 2017</item>
-        <item>July 25, 2010</item>
-        <item>October 16, 2001</item>
-        <item>August 13, 1997</item>
-        <item>August 23, 2015</item>
+        <item>Juli 25, 2010</item>
+        <item>Oktober 16, 2001</item>
+        <item>Agustus 13, 1997</item>
+        <item>Agustus 23, 2015</item>
     </string-array>
 
     <string-array name="item_tv_shows_score">

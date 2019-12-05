@@ -11,7 +11,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".AccountActivity"></activity>
+        <activity
+            android:name=".DetailTvShowsActivity"
+            android:label="@string/title_activity_detail_tv_shows"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".AccountActivity" />
         <activity
             android:name=".SplashScreenActivity"
             android:theme="@style/SplashScreenStyle">
@@ -22,10 +26,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MoviesDetailActivity"
+            android:name=".DetailMoviesActivity"
             android:label="@string/title_activity_movie_detail"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MainActivity" />
     </application>
 
 </manifest>

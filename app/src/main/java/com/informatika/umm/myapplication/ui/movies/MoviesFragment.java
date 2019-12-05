@@ -44,13 +44,13 @@ public class MoviesFragment extends Fragment {
     }
 
     private void prepare() {
-        dataMovieTitle = getResources().getStringArray(R.array.item_movie_title);
-        dataMoviePoster = getResources().obtainTypedArray(R.array.item_movie_poster);
-        dataMovieBackdrop = getResources().obtainTypedArray(R.array.item_movie_backdrop);
-        dataMovieRelease = getResources().getStringArray(R.array.item_movie_release);
-        dataMovieScore = getResources().getStringArray(R.array.item_movie_score);
-        dataMovieRuntime = getResources().getStringArray(R.array.item_movie_runtime);
-        dataMovieOverview = getResources().getStringArray(R.array.item_movie_overview);
+        dataMovieTitle = getResources().getStringArray(R.array.item_movies_title);
+        dataMoviePoster = getResources().obtainTypedArray(R.array.item_movies_poster);
+        dataMovieBackdrop = getResources().obtainTypedArray(R.array.item_movies_backdrop);
+        dataMovieRelease = getResources().getStringArray(R.array.item_movies_release);
+        dataMovieScore = getResources().getStringArray(R.array.item_movies_score);
+        dataMovieRuntime = getResources().getStringArray(R.array.item_movies_runtime);
+        dataMovieOverview = getResources().getStringArray(R.array.item_movies_overview);
     }
 
     private void addItem() {

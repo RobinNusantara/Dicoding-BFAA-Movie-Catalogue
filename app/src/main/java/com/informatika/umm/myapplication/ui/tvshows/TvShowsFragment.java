@@ -22,7 +22,10 @@ public class TvShowsFragment extends Fragment {
     private String[] dataTvShowsTitle;
     private String[] dataTvShowsRelease;
     private String[] dataTvShowsScore;
+    private String[] dataTvShowsRuntime;
+    private String[] dataTvShowsOverview;
     private TypedArray dataTvShowsPoster;
+    private TypedArray dataTvShowsBackdrop;
     private TvShowsAdapter tvShowsAdapter;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -43,18 +46,24 @@ public class TvShowsFragment extends Fragment {
     private void prepare() {
         dataTvShowsTitle = getResources().getStringArray(R.array.item_tv_shows_title);
         dataTvShowsPoster = getResources().obtainTypedArray(R.array.item_tv_shows_poster);
+        dataTvShowsBackdrop = getResources().obtainTypedArray(R.array.item_tv_shows_backdrop);
         dataTvShowsRelease = getResources().getStringArray(R.array.item_tv_shows_release);
         dataTvShowsScore = getResources().getStringArray(R.array.item_tv_shows_score);
+        dataTvShowsRuntime = getResources().getStringArray(R.array.item_tv_shows_runtime);
+        dataTvShowsOverview = getResources().getStringArray(R.array.item_tv_shows_overview);
     }
 
     private void addItem() {
         ArrayList<TvShows> listTvShows = new ArrayList<>();
         for (int position = 0; position < dataTvShowsTitle.length; position++) {
             TvShows tvShows = new TvShows();
-            tvShows.setTvshowsPoster(dataTvShowsPoster.getResourceId(position, -1));
+            tvShows.setTvShowsPoster(dataTvShowsPoster.getResourceId(position, -1));
+            tvShows.setTvShowsBackdrop(dataTvShowsBackdrop.getResourceId(position, -1));
             tvShows.setTvshowsTitles(dataTvShowsTitle[position]);
-            tvShows.setTvshowsRelease(dataTvShowsRelease[position]);
-            tvShows.setTvshowsScore(dataTvShowsScore[position]);
+            tvShows.setTvShowsRelease(dataTvShowsRelease[position]);
+            tvShows.setTvShowsScore(dataTvShowsScore[position]);
+            tvShows.setTvShowsRuntime(dataTvShowsRuntime[position]);
+            tvShows.setTvShowsOverview(dataTvShowsOverview[position]);
             listTvShows.add(tvShows);
         }
         tvShowsAdapter.setTvShows(listTvShows);

@@ -1,6 +1,7 @@
 package com.informatika.umm.myapplication.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
+import com.informatika.umm.myapplication.DetailTvShowsActivity;
 import com.informatika.umm.myapplication.R;
 import com.informatika.umm.myapplication.model.TvShows;
 
@@ -45,18 +47,29 @@ public class TvShowsAdapter extends RecyclerView.Adapter<TvShowsAdapter.TvShowsV
     }
 
     @Override
-    public void onBindViewHolder(@NonNull TvShowsViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final TvShowsViewHolder holder, int position) {
 
         final TvShows tvShows = listTvShows.get(position);
         Glide.with(holder.itemView.getContext())
-                .load(tvShows.getTvshowsPoster())
+                .load(tvShows.getTvShowsPoster())
                 .apply(new RequestOptions().override(350, 550))
                 .transform(new RoundedCorners(32))
                 .into(holder.imgTvShowsPoster);
 
         holder.txtTvShowsTitle.setText(tvShows.getTvshowsTitles());
-        holder.txtTvShowsRelease.setText(tvShows.getTvshowsRelease());
-        holder.txtTvShowsScore.setText(tvShows.getTvshowsScore());
+        holder.txtTvShowsRelease.setText(tvShows.getTvShowsRelease());
+        holder.txtTvShowsScore.setText(tvShows.getTvShowsScore());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent;
+                intent = new Intent(context, DetailTvShowsActivity.class);
+                intent.putExtra(DetailTvShowsActivity.EXTRA_TVSHOWS, tvShows);
+                context.startActivity(intent);
+            }
+        });
+
         holder.getAdapterPosition();
     }
 

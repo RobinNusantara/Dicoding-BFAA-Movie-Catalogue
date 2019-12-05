@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
-import com.informatika.umm.myapplication.MoviesDetailActivity;
+import com.informatika.umm.myapplication.DetailMoviesActivity;
 import com.informatika.umm.myapplication.R;
 import com.informatika.umm.myapplication.model.Movies;
 
@@ -65,8 +65,8 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MoviesView
             @Override
             public void onClick(View view) {
                 Intent intent;
-                intent = new Intent(context, MoviesDetailActivity.class);
-                intent.putExtra(MoviesDetailActivity.EXTRA_MOVIE, movies);
+                intent = new Intent(context, DetailMoviesActivity.class);
+                intent.putExtra(DetailMoviesActivity.EXTRA_MOVIE, movies);
                 context.startActivity(intent);
             }
         });

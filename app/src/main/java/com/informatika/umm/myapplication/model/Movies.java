@@ -58,20 +58,20 @@ public class Movies implements Parcelable {
         this.movieBackdrop = movieBackdrop;
     }
 
-    public String getMovieOverview() {
-        return movieOverview;
-    }
-
-    public void setMovieOverview(String movieOverview) {
-        this.movieOverview = movieOverview;
-    }
-
     public String getMovieRuntime() {
         return movieRuntime;
     }
 
     public void setMovieRuntime(String movieRuntime) {
         this.movieRuntime = movieRuntime;
+    }
+
+    public String getMovieOverview() {
+        return movieOverview;
+    }
+
+    public void setMovieOverview(String movieOverview) {
+        this.movieOverview = movieOverview;
     }
 
     public Movies() {

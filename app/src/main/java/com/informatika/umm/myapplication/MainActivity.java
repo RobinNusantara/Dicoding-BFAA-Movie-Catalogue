@@ -24,12 +24,12 @@ public class MainActivity extends AppCompatActivity {
             Fragment fragment;
             switch (menuItem.getItemId()) {
                 case R.id.navigation_movies:
-                    setTitle("Movies");
+                    setTitle(getString(R.string.str_movies));
                     fragment = new MoviesFragment();
                     getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment, fragment, fragment.getClass().getSimpleName()).commit();
                     return true;
                 case R.id.navigation_tvshows:
-                    setTitle("Tv Shows");
+                    setTitle(getString(R.string.str_tv_shows));
                     fragment = new TvShowsFragment();
                     getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment, fragment, fragment.getClass().getSimpleName()).commit();
                     return true;
