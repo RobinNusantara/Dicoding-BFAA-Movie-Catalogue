@@ -1,7 +1,6 @@
 package com.informatika.umm.myapplication.ui.movies;
 
 import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -38,9 +37,9 @@ public class MoviesDetailActivity extends AppCompatActivity {
         imgMoviePoster = findViewById(R.id.img_movie_poster);
         imgMovieBackdrop = findViewById(R.id.img_movie_backdrop);
         txtMovieTitle = findViewById(R.id.txt_movie_title);
-        txtMovieOverview = findViewById(R.id.txt_movie_overview);
         txtMovieRelease = findViewById(R.id.txt_movie_release_date);
         txtMovieScore = findViewById(R.id.txt_movie_score);
+        txtMovieOverview = findViewById(R.id.txt_movie_overview);
 
         final AppBarLayout appBarLayout = findViewById(R.id.app_bar_layout);
         appBarLayout.setVisibility(View.INVISIBLE);

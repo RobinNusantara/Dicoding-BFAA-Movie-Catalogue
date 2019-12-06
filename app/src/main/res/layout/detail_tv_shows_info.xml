@@ -3,13 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
     <ImageView
         android:id="@+id/img_tv_shows_poster"
         android:layout_width="140dp"
-        android:layout_height="170dp"
+        android:layout_height="175dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:contentDescription="@string/str_tv_shows_poster"
@@ -23,6 +22,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:maxEms="10"
         android:textColor="@color/colorPrimary"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/img_tv_shows_poster"
@@ -39,14 +39,14 @@
         app:layout_constraintTop_toBottomOf="@+id/txt_tv_shows_title"
         tools:text="@tools:sample/date/mmddyy" />
 
-    <ImageView
-        android:id="@+id/img_star"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
+    <RatingBar
+        android:id="@+id/rate_tvshows"
+        style="@style/Widget.AppCompat.RatingBar.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:contentDescription="@string/str_star"
-        android:src="@drawable/ic_star_black_24dp"
+        android:progressTint="@color/colorNanohanachaGold"
         app:layout_constraintStart_toEndOf="@+id/img_tv_shows_poster"
         app:layout_constraintTop_toBottomOf="@+id/txt_tv_shows_release_date" />
 
@@ -55,29 +55,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/img_star"
-        app:layout_constraintStart_toEndOf="@+id/img_star"
-        app:layout_constraintTop_toTopOf="@+id/img_star"
+        android:textColor="@color/colorNanohanachaGold"
+        app:layout_constraintBottom_toBottomOf="@+id/rate_tvshows"
+        app:layout_constraintStart_toEndOf="@+id/rate_tvshows"
+        app:layout_constraintTop_toTopOf="@+id/rate_tvshows"
         tools:text="0/0" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:text="@string/str_tmdb"
-        app:layout_constraintBottom_toBottomOf="@+id/txt_tv_shows_score"
-        app:layout_constraintStart_toEndOf="@+id/txt_tv_shows_score"
-        app:layout_constraintTop_toTopOf="@+id/txt_tv_shows_score" />
-
-    <TextView
-        android:id="@+id/txt_tvshows_runtime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintStart_toEndOf="@+id/img_tv_shows_poster"
-        app:layout_constraintTop_toBottomOf="@+id/img_star"
-        tools:text="1h 5m" />
 
     <TextView
         android:id="@+id/txt_tv_shows_overview"

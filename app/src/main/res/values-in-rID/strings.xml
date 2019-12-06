@@ -1,12 +1,10 @@
 <resources>
-    <string name="app_name">Submission2</string>
+    <string name="app_name">Movie Catalogue</string>
     <string name="str_movie_title">Movie Title</string>
     <string name="str_movie_background">Movie Background</string>
     <string name="str_movie_poster">Movie Poster</string>
     <string name="str_tv_shows">Serial Tv</string>
     <string name="str_movies">Film</string>
-    <string name="str_tmdb">TMDb</string>
-    <string name="str_star">Star</string>
     <string name="str_tv_shows_poster">Tv Shows Poster</string>
     <string name="str_tv_shows_background">Tv Shows Background</string>
     <string name="title_activity_movie_detail">MovieDetailActivity</string>
