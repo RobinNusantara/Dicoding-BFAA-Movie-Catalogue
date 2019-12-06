@@ -5,8 +5,6 @@ import android.os.Parcelable;
 
 import org.json.JSONObject;
 
-import java.util.Objects;
-
 /**
  * MADE_Submission_2
  * created by : Robin Nusantara on 11/30/2019 11 2019

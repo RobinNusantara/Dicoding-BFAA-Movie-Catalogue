@@ -22,7 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="150dp"
             android:layout_centerVertical="true"
-            android:background="@drawable/item_row_container"
+            android:background="@drawable/item_rectangle_citylight"
             android:contentDescription="@string/str_tv_shows_background" />
 
         <ImageView
@@ -31,7 +31,7 @@
             android:layout_height="170dp"
             android:contentDescription="@string/str_tv_shows_poster"
             android:scaleType="fitXY"
-            tools:background="@drawable/item_row_container" />
+            tools:background="@drawable/item_rectangle_citylight" />
 
         <TextView
             android:id="@+id/txt_tv_shows_title"
