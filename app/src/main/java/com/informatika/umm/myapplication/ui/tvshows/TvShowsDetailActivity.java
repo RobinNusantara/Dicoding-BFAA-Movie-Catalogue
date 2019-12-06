@@ -83,15 +83,19 @@ public class TvShowsDetailActivity extends AppCompatActivity {
                                     .load(urlPoster)
                                     .override(350, 550)
                                     .transform(new RoundedCorners(32))
+                                    .placeholder(R.drawable.ic_image_placeholder)
+                                    .error(R.drawable.ic_image_error)
                                     .into(imgTvShowsPoster);
 
                             Glide.with(TvShowsDetailActivity.this)
                                     .load(urlBackdrop)
                                     .override(1366, 768)
+                                    .placeholder(R.color.colorClouds)
+                                    .error(R.color.colorClouds)
                                     .into(imgTvShowsBackdrop);
 
                             ratingBar.setVisibility(View.VISIBLE);
-                            if (tvShows.getTvShowsScore() >= 1 && tvShows.getTvShowsScore() < 2.0) {
+                            if (tvShows.getTvShowsScore() >= 1.0 && tvShows.getTvShowsScore() < 2.0) {
                                 ratingBar.setRating(1.0f);
                             } else if (tvShows.getTvShowsScore() >= 2.0 && tvShows.getTvShowsScore() < 5.0) {
                                 ratingBar.setRating(2.0f);
@@ -114,7 +118,7 @@ public class TvShowsDetailActivity extends AppCompatActivity {
                             String tvShowsScore = Double.toString(tvShows.getTvShowsScore());
                             txtTvShowsScore.setText(tvShowsScore);
 
-                            txtTvShowsTitle.setText(tvShows.getTvshowsTitles());
+                            txtTvShowsTitle.setText(tvShows.getTvShowsTitles());
                             txtTvShowsRelease.setText(tvShows.getTvShowsRelease());
                             txtTvShowsOverview.setText(tvShows.getTvShowsOverview());
 

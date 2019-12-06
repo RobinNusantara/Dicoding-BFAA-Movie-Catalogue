@@ -17,66 +17,30 @@ public class TvShows implements Parcelable {
     private String tvShowsTitle;
     private Double tvShowsScore;
     private String tvShowsRelease;
-    private String tvShowsRuntime;
     private String tvShowsOverview;
 
     public String getTvShowsPoster() {
         return tvShowsPoster;
     }
 
-    public void setTvShowsPoster(String tvShowsPoster) {
-        this.tvShowsPoster = tvShowsPoster;
-    }
-
-    public String getTvshowsTitles() {
+    public String getTvShowsTitles() {
         return tvShowsTitle;
-    }
-
-    public void setTvshowsTitles(String tvshowsTitles) {
-        this.tvShowsTitle = tvshowsTitles;
     }
 
     public Double getTvShowsScore() {
         return tvShowsScore;
     }
 
-    public void setTvShowsScore(Double tvShowsScore) {
-        this.tvShowsScore = tvShowsScore;
-    }
-
     public String getTvShowsRelease() {
         return tvShowsRelease;
-    }
-
-    public void setTvShowsRelease(String tvShowsRelease) {
-        this.tvShowsRelease = tvShowsRelease;
     }
 
     public String getTvShowsBackdrop() {
         return tvShowsBackdrop;
     }
 
-    public void setTvShowsBackdrop(String tvShowsBackdrop) {
-        this.tvShowsBackdrop = tvShowsBackdrop;
-    }
-
-    public String getTvShowsRuntime() {
-        return tvShowsRuntime;
-    }
-
-    public void setTvShowsRuntime(String tvShowsRuntime) {
-        this.tvShowsRuntime = tvShowsRuntime;
-    }
-
     public String getTvShowsOverview() {
         return tvShowsOverview;
-    }
-
-    public void setTvShowsOverview(String tvShowsOverview) {
-        this.tvShowsOverview = tvShowsOverview;
-    }
-
-    public TvShows() {
     }
 
     @Override

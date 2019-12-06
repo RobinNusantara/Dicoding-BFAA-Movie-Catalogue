@@ -1,6 +1,7 @@
 package com.informatika.umm.myapplication.ui.movies;
 
 import android.os.Bundle;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -83,15 +84,19 @@ public class MoviesDetailActivity extends AppCompatActivity {
                                     .load(urlPoster)
                                     .override(350, 550)
                                     .transform(new RoundedCorners(32))
+                                    .placeholder(R.drawable.ic_image_placeholder)
+                                    .error(R.drawable.ic_image_error)
                                     .into(imgMoviePoster);
 
                             Glide.with(MoviesDetailActivity.this)
                                     .load(urlBackdrop)
                                     .override(1366, 768)
+                                    .placeholder(R.color.colorClouds)
+                                    .error(R.color.colorClouds)
                                     .into(imgMovieBackdrop);
 
                             ratingBar.setVisibility(View.VISIBLE);
-                            if (movies.getMovieScore() >= 1 && movies.getMovieScore() < 2.0) {
+                            if (movies.getMovieScore() >= 1.0 && movies.getMovieScore() < 2.0) {
                                 ratingBar.setRating(1.0f);
                             } else if (movies.getMovieScore() >= 2.0 && movies.getMovieScore() < 5.0) {
                                 ratingBar.setRating(2.0f);

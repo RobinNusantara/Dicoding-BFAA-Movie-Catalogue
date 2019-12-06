@@ -18,65 +18,29 @@ public class Movies implements Parcelable {
     private Double movieScore;
     private String movieRelease;
     private String movieOverview;
-    private String movieRuntime;
 
     public String getMoviePoster() {
         return moviePoster;
-    }
-
-    public void setMoviePoster(String moviePoster) {
-        this.moviePoster = moviePoster;
     }
 
     public String getMovieTitle() {
         return movieTitle;
     }
 
-    public void setMovieTitle(String movieTitle) {
-        this.movieTitle = movieTitle;
-    }
-
     public Double getMovieScore() {
         return movieScore;
-    }
-
-    public void setMovieScore(Double movieScore) {
-        this.movieScore = movieScore;
     }
 
     public String getMovieRelease() {
         return movieRelease;
     }
 
-    public void setMovieRelease(String movieRelease) {
-        this.movieRelease = movieRelease;
-    }
-
     public String getMovieBackdrop() {
         return movieBackdrop;
     }
 
-    public void setMovieBackdrop(String movieBackdrop) {
-        this.movieBackdrop = movieBackdrop;
-    }
-
-    public String getMovieRuntime() {
-        return movieRuntime;
-    }
-
-    public void setMovieRuntime(String movieRuntime) {
-        this.movieRuntime = movieRuntime;
-    }
-
     public String getMovieOverview() {
         return movieOverview;
-    }
-
-    public void setMovieOverview(String movieOverview) {
-        this.movieOverview = movieOverview;
-    }
-
-    public Movies() {
     }
 
     @Override

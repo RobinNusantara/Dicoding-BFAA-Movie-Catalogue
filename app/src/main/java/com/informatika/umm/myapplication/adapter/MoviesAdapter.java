@@ -58,12 +58,14 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MoviesView
                 .load(urlPoster)
                 .apply(new RequestOptions().override(350, 550))
                 .transform(new RoundedCorners(32))
+                .placeholder(R.drawable.ic_image_placeholder)
+                .error(R.drawable.ic_image_error)
                 .into(holder.imgMoviePoster);
 
         holder.txtMovieTitle.setText(movies.getMovieTitle());
         holder.txtMovieRelease.setText(movies.getMovieRelease());
 
-        if (movies.getMovieScore() >= 1 && movies.getMovieScore() < 2.0) {
+        if (movies.getMovieScore() >= 1.0 && movies.getMovieScore() < 2.0) {
             holder.ratingBar.setRating(1.0f);
         } else if (movies.getMovieScore() >= 2.0 && movies.getMovieScore() < 5.0) {
             holder.ratingBar.setRating(2.0f);

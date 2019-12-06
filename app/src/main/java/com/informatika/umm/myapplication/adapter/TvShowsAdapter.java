@@ -58,12 +58,14 @@ public class TvShowsAdapter extends RecyclerView.Adapter<TvShowsAdapter.TvShowsV
                 .load(urlPoster)
                 .apply(new RequestOptions().override(350, 550))
                 .transform(new RoundedCorners(32))
+                .placeholder(R.drawable.ic_image_placeholder)
+                .error(R.drawable.ic_image_error)
                 .into(holder.imgTvShowsPoster);
 
-        holder.txtTvShowsTitle.setText(tvShows.getTvshowsTitles());
+        holder.txtTvShowsTitle.setText(tvShows.getTvShowsTitles());
         holder.txtTvShowsRelease.setText(tvShows.getTvShowsRelease());
 
-        if (tvShows.getTvShowsScore() >= 1 && tvShows.getTvShowsScore() < 2.0) {
+        if (tvShows.getTvShowsScore() >= 1.0 && tvShows.getTvShowsScore() < 2.0) {
             holder.ratingBar.setRating(1.0f);
         } else if (tvShows.getTvShowsScore() >= 2.0 && tvShows.getTvShowsScore() < 5.0) {
             holder.ratingBar.setRating(2.0f);
