@@ -25,13 +25,13 @@ import com.informatika.umm.myapplication.model.Movies;
 public class MoviesDetailActivity extends AppCompatActivity {
 
     public static final String EXTRA_MOVIE = "extra_movie";
-    ImageView imgMovieBackdrop, imgMoviePoster;
-    TextView txtMovieTitle, txtMovieRelease, txtMovieScore, txtMovieOverview;
-    RatingBar ratingBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        final ImageView imgMovieBackdrop, imgMoviePoster;
+        final TextView txtMovieTitle, txtMovieRelease, txtMovieScore, txtMovieOverview;
+        final RatingBar ratingBar;
 
         setContentView(R.layout.activity_detail_movies);
         ratingBar = findViewById(R.id.rate_movie);

@@ -3,6 +3,8 @@ package com.informatika.umm.myapplication.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import org.json.JSONObject;
+
 /**
  * MADE_Submission_2
  * created by : Robin Nusantara on 11/30/2019 11 2019
@@ -10,19 +12,19 @@ import android.os.Parcelable;
  **/
 public class TvShows implements Parcelable {
 
-    private int tvShowsPoster;
-    private int tvShowsBackdrop;
+    private String tvShowsPoster;
+    private String tvShowsBackdrop;
     private String tvShowsTitle;
-    private String tvShowsScore;
+    private Double tvShowsScore;
     private String tvShowsRelease;
     private String tvShowsRuntime;
     private String tvShowsOverview;
 
-    public int getTvShowsPoster() {
+    public String getTvShowsPoster() {
         return tvShowsPoster;
     }
 
-    public void setTvShowsPoster(int tvShowsPoster) {
+    public void setTvShowsPoster(String tvShowsPoster) {
         this.tvShowsPoster = tvShowsPoster;
     }
 
@@ -34,11 +36,11 @@ public class TvShows implements Parcelable {
         this.tvShowsTitle = tvshowsTitles;
     }
 
-    public String getTvShowsScore() {
+    public Double getTvShowsScore() {
         return tvShowsScore;
     }
 
-    public void setTvShowsScore(String tvShowsScore) {
+    public void setTvShowsScore(Double tvShowsScore) {
         this.tvShowsScore = tvShowsScore;
     }
 
@@ -50,11 +52,11 @@ public class TvShows implements Parcelable {
         this.tvShowsRelease = tvShowsRelease;
     }
 
-    public int getTvShowsBackdrop() {
+    public String getTvShowsBackdrop() {
         return tvShowsBackdrop;
     }
 
-    public void setTvShowsBackdrop(int tvShowsBackdrop) {
+    public void setTvShowsBackdrop(String tvShowsBackdrop) {
         this.tvShowsBackdrop = tvShowsBackdrop;
     }
 
@@ -84,22 +86,20 @@ public class TvShows implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(this.tvShowsPoster);
-        dest.writeInt(this.tvShowsBackdrop);
+        dest.writeString(this.tvShowsPoster);
+        dest.writeString(this.tvShowsBackdrop);
         dest.writeString(this.tvShowsTitle);
-        dest.writeString(this.tvShowsScore);
+        dest.writeDouble(this.tvShowsScore);
         dest.writeString(this.tvShowsRelease);
-        dest.writeString(this.tvShowsRuntime);
         dest.writeString(this.tvShowsOverview);
     }
 
     protected TvShows(Parcel in) {
-        this.tvShowsPoster = in.readInt();
-        this.tvShowsBackdrop = in.readInt();
+        this.tvShowsPoster = in.readString();
+        this.tvShowsBackdrop = in.readString();
         this.tvShowsTitle = in.readString();
-        this.tvShowsScore = in.readString();
+        this.tvShowsScore = in.readDouble();
         this.tvShowsRelease = in.readString();
-        this.tvShowsRuntime = in.readString();
         this.tvShowsOverview = in.readString();
     }
 
@@ -114,4 +114,27 @@ public class TvShows implements Parcelable {
             return new TvShows[size];
         }
     };
+
+    public TvShows(JSONObject object) {
+        try {
+            String tvShowsPoster = object.getString("poster_path");
+            String tvShowsBackdrop = object.getString("backdrop_path");
+            String tvShowsTitle = object.getString("name");
+            Double tvShowsScore = object.getDouble("vote_average");
+            String tvShowsRelease = object.getString("first_air_date");
+            String tvShowsOverview = object.getString("overview");
+
+            this.tvShowsPoster = tvShowsPoster;
+            this.tvShowsBackdrop = tvShowsBackdrop;
+            this.tvShowsTitle = tvShowsTitle;
+            this.tvShowsScore = tvShowsScore;
+            this.tvShowsRelease = tvShowsRelease;
+            this.tvShowsOverview = tvShowsOverview;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
 }

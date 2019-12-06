@@ -1,5 +1,7 @@
 package com.informatika.umm.myapplication.ui.movies;
 
+import android.util.Log;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -28,7 +30,6 @@ public class MoviesViewModel extends ViewModel {
     public void setMovies() {
         AsyncHttpClient client = new AsyncHttpClient();
         final ArrayList<Movies> listsItem = new ArrayList<>();
-
         String url = BuildConfig.MOVIE_URL + BuildConfig.API_KEY + BuildConfig.LANGUAGE;
 
         client.get(url, new AsyncHttpResponseHandler() {
@@ -46,12 +47,13 @@ public class MoviesViewModel extends ViewModel {
                     }
                     listMovies.postValue(listsItem);
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    Log.d(e.getMessage(), "Exception");
                 }
             }
+
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-
+                Log.d(error.getMessage(), "onFailure");
             }
         });
     }

@@ -13,6 +13,7 @@ import com.informatika.umm.myapplication.ui.profile.ProfileActivity;
 import com.informatika.umm.myapplication.ui.tvshows.TvShowsFragment;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
@@ -25,12 +26,10 @@ public class MainActivity extends AppCompatActivity {
             Fragment fragment;
             switch (menuItem.getItemId()) {
                 case R.id.navigation_movies:
-                    setTitle(getString(R.string.str_movies));
                     fragment = new MoviesFragment();
                     getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment, fragment, fragment.getClass().getSimpleName()).commit();
                     return true;
                 case R.id.navigation_tvshows:
-                    setTitle(getString(R.string.str_tv_shows));
                     fragment = new TvShowsFragment();
                     getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment, fragment, fragment.getClass().getSimpleName()).commit();
                     return true;
@@ -45,6 +44,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         BottomNavigationView bottomNavigationView = findViewById(R.id.nav_view);
         bottomNavigationView.setOnNavigationItemSelectedListener(navigationItemSelectedListener);
+
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayShowTitleEnabled(false);
+        }
 
         if (savedInstanceState == null) {
             bottomNavigationView.setSelectedItemId(R.id.navigation_movies);

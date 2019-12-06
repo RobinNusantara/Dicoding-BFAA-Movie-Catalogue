@@ -60,7 +60,6 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MoviesView
                 .transform(new RoundedCorners(32))
                 .into(holder.imgMoviePoster);
 
-
         holder.txtMovieTitle.setText(movies.getMovieTitle());
         holder.txtMovieRelease.setText(movies.getMovieRelease());
 

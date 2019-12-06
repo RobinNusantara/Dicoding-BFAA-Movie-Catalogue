@@ -9,81 +9,69 @@
     android:layout_marginEnd="8dp"
     android:layout_marginBottom="8dp">
 
-    <RelativeLayout
-        android:id="@+id/container"
+    <ImageView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="150dp"
+        android:background="@drawable/item_rectangle_citylight"
+        android:contentDescription="@string/str_tv_shows_background"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/img_tv_shows_poster"
+        android:layout_width="140dp"
+        android:layout_height="175dp"
+        android:contentDescription="@string/str_tv_shows_poster"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        tools:background="@drawable/item_rectangle_citylight" />
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:layout_centerVertical="true"
-            android:background="@drawable/item_rectangle_citylight"
-            android:contentDescription="@string/str_tv_shows_background" />
+    <TextView
+        android:id="@+id/txt_tv_shows_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:maxEms="10"
+        android:textColor="@color/colorPrimary"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/img_tv_shows_poster"
+        app:layout_constraintTop_toTopOf="@+id/img_tv_shows_poster"
+        tools:text="Tv Shows Title" />
 
-        <ImageView
-            android:id="@+id/img_tv_shows_poster"
-            android:layout_width="140dp"
-            android:layout_height="170dp"
-            android:contentDescription="@string/str_tv_shows_poster"
-            android:scaleType="fitXY"
-            tools:background="@drawable/item_rectangle_citylight" />
+    <TextView
+        android:id="@+id/txt_tv_shows_release_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txt_tv_shows_title"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toEndOf="@+id/img_tv_shows_poster"
+        app:layout_constraintTop_toBottomOf="@+id/txt_tv_shows_title"
+        tools:text="@tools:sample/date/mmddyy" />
 
-        <TextView
-            android:id="@+id/txt_tv_shows_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_toEndOf="@id/img_tv_shows_poster"
-            android:textColor="@color/colorPrimary"
-            android:textStyle="bold"
-            tools:text="Tv Shows Title" />
+    <RatingBar
+        android:id="@+id/rate_tvshows"
+        style="@style/Widget.AppCompat.RatingBar.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:progressTint="@color/colorNanohanachaGold"
+        app:layout_constraintStart_toEndOf="@+id/img_tv_shows_poster"
+        app:layout_constraintTop_toBottomOf="@+id/txt_tv_shows_release_date" />
 
-        <TextView
-            android:id="@+id/txt_tv_shows_release_date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/txt_tv_shows_title"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_toEndOf="@id/img_tv_shows_poster"
-            tools:text="@tools:sample/date/mmddyy" />
-
-        <ImageView
-            android:id="@+id/img_star"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_below="@id/txt_tv_shows_release_date"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_toEndOf="@id/img_tv_shows_poster"
-            android:background="@drawable/ic_star_black_24dp"
-            android:contentDescription="@string/str_star" />
-
-        <TextView
-            android:id="@+id/txt_tv_shows_score"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/txt_tv_shows_release_date"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_toEndOf="@id/img_star"
-            tools:text="0/0" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/txt_tv_shows_release_date"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_toEndOf="@id/txt_tv_shows_score"
-            android:text="@string/str_tmdb" />
-
-    </RelativeLayout>
+    <TextView
+        android:id="@+id/txt_tv_shows_score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:textColor="@color/colorNanohanachaGold"
+        app:layout_constraintBottom_toBottomOf="@+id/rate_tvshows"
+        app:layout_constraintStart_toEndOf="@+id/rate_tvshows"
+        app:layout_constraintTop_toTopOf="@+id/rate_tvshows"
+        tools:text="0/0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

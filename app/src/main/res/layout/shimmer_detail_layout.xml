@@ -53,7 +53,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="380dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/thumbnal_poster"
         android:layout_marginStart="16dp"
@@ -61,7 +61,7 @@
         android:orientation="vertical">
 
         <View
-            android:layout_width="380dp"
+            android:layout_width="match_parent"
             android:layout_height="10dp"
             android:background="@drawable/item_rectangle_silver" />
 
@@ -69,22 +69,11 @@
             android:layout_width="360dp"
             android:layout_height="10dp"
             android:layout_marginTop="8dp"
+            android:layout_gravity="center"
             android:background="@drawable/item_rectangle_silver" />
 
         <View
-            android:layout_width="380dp"
-            android:layout_height="10dp"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/item_rectangle_silver" />
-
-        <View
-            android:layout_width="360dp"
-            android:layout_height="10dp"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/item_rectangle_silver" />
-
-        <View
-            android:layout_width="380dp"
+            android:layout_width="match_parent"
             android:layout_height="10dp"
             android:layout_marginTop="8dp"
             android:background="@drawable/item_rectangle_silver" />
@@ -93,6 +82,20 @@
             android:layout_width="360dp"
             android:layout_height="10dp"
             android:layout_marginTop="8dp"
+            android:layout_gravity="center"
+            android:background="@drawable/item_rectangle_silver" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/item_rectangle_silver" />
+
+        <View
+            android:layout_width="360dp"
+            android:layout_height="10dp"
+            android:layout_marginTop="8dp"
+            android:layout_gravity="center"
             android:background="@drawable/item_rectangle_silver" />
     </LinearLayout>
 
