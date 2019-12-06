@@ -99,6 +99,4 @@ public class TvShows implements Parcelable {
             e.printStackTrace();
         }
     }
-
-
 }

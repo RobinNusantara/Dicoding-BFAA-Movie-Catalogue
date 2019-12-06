@@ -61,5 +61,4 @@ public class TvShowsViewModel extends ViewModel {
     public LiveData<ArrayList<TvShows>> getTvShows() {
         return listTvShows;
     }
-
 }
