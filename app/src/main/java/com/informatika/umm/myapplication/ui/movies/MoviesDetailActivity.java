@@ -20,7 +20,7 @@ import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.android.material.appbar.AppBarLayout;
 import com.informatika.umm.myapplication.BuildConfig;
 import com.informatika.umm.myapplication.R;
-import com.informatika.umm.myapplication.model.Movies;
+import com.informatika.umm.myapplication.model.Movie;
 
 public class MoviesDetailActivity extends AppCompatActivity {
 
@@ -72,20 +72,18 @@ public class MoviesDetailActivity extends AppCompatActivity {
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
-                        Movies movies = getIntent().getParcelableExtra(EXTRA_MOVIE);
-                        if (movies != null) {
+                        Movie movie = getIntent().getParcelableExtra(EXTRA_MOVIE);
+                        if (movie != null) {
                             appBarLayout.setVisibility(View.VISIBLE);
                             toolbar.setVisibility(View.VISIBLE);
 
-                            String urlPoster = BuildConfig.IMAGE_URL + movies.getMoviePoster();
-                            String urlBackdrop = BuildConfig.IMAGE_URL + movies.getMovieBackdrop();
+                            String urlPoster = BuildConfig.IMAGE_URL + movie.getMoviePoster();
+                            String urlBackdrop = BuildConfig.IMAGE_URL + movie.getMovieBackdrop();
 
                             Glide.with(MoviesDetailActivity.this)
                                     .load(urlPoster)
                                     .override(350, 550)
                                     .transform(new RoundedCorners(32))
-                                    .placeholder(R.drawable.ic_image_placeholder)
-                                    .error(R.drawable.ic_image_error)
                                     .into(imgMoviePoster);
 
                             Glide.with(MoviesDetailActivity.this)
@@ -96,32 +94,32 @@ public class MoviesDetailActivity extends AppCompatActivity {
                                     .into(imgMovieBackdrop);
 
                             ratingBar.setVisibility(View.VISIBLE);
-                            if (movies.getMovieScore() >= 1.0 && movies.getMovieScore() < 2.0) {
+                            if (movie.getMovieScore() >= 1.0 && movie.getMovieScore() < 2.0) {
                                 ratingBar.setRating(1.0f);
-                            } else if (movies.getMovieScore() >= 2.0 && movies.getMovieScore() < 5.0) {
+                            } else if (movie.getMovieScore() >= 2.0 && movie.getMovieScore() < 5.0) {
                                 ratingBar.setRating(2.0f);
-                            } else if (movies.getMovieScore() >= 5.0 && movies.getMovieScore() < 6.0) {
+                            } else if (movie.getMovieScore() >= 5.0 && movie.getMovieScore() < 6.0) {
                                 ratingBar.setRating(2.5f);
-                            } else if (movies.getMovieScore() >= 6.0 && movies.getMovieScore() < 7.0) {
+                            } else if (movie.getMovieScore() >= 6.0 && movie.getMovieScore() < 7.0) {
                                 ratingBar.setRating(3.0f);
-                            } else if (movies.getMovieScore() >= 7.0 && movies.getMovieScore() < 8.0) {
+                            } else if (movie.getMovieScore() >= 7.0 && movie.getMovieScore() < 8.0) {
                                 ratingBar.setRating(3.5f);
-                            } else if (movies.getMovieScore() >= 8.0 && movies.getMovieScore() < 9.0) {
+                            } else if (movie.getMovieScore() >= 8.0 && movie.getMovieScore() < 9.0) {
                                 ratingBar.setRating(4.0f);
-                            } else if (movies.getMovieScore() >= 9.0) {
+                            } else if (movie.getMovieScore() >= 9.0) {
                                 ratingBar.setRating(4.5f);
-                            } else if (movies.getMovieScore() >= 9.5) {
+                            } else if (movie.getMovieScore() >= 9.5) {
                                 ratingBar.setRating(5.0f);
                             } else {
                                 ratingBar.setRating(0);
                             }
 
-                            String txtMoviesScore = Double.toString(movies.getMovieScore());
+                            String txtMoviesScore = Double.toString(movie.getMovieScore());
                             txtMovieScore.setText(txtMoviesScore);
 
-                            txtMovieTitle.setText(movies.getMovieTitle());
-                            txtMovieRelease.setText(movies.getMovieRelease());
-                            txtMovieOverview.setText(movies.getMovieOverview());
+                            txtMovieTitle.setText(movie.getMovieTitle());
+                            txtMovieRelease.setText(movie.getMovieRelease());
+                            txtMovieOverview.setText(movie.getMovieOverview());
 
                             shimmerFrameLayout.setVisibility(View.INVISIBLE);
                             getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);

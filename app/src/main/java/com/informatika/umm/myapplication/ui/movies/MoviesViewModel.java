@@ -7,7 +7,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.informatika.umm.myapplication.BuildConfig;
-import com.informatika.umm.myapplication.model.Movies;
+import com.informatika.umm.myapplication.model.Movie;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 
@@ -25,11 +25,11 @@ import cz.msebera.android.httpclient.Header;
  **/
 public class MoviesViewModel extends ViewModel {
 
-    private MutableLiveData<ArrayList<Movies>> listMovies = new MutableLiveData<>();
+    /*private MutableLiveData<ArrayList<Movie>> listMovies = new MutableLiveData<>();
 
     public void setMovies() {
         AsyncHttpClient client = new AsyncHttpClient();
-        final ArrayList<Movies> listsItem = new ArrayList<>();
+        final ArrayList<Movie> listsItem = new ArrayList<>();
         String url = BuildConfig.MOVIE_URL + BuildConfig.API_KEY + BuildConfig.LANGUAGE;
 
         client.get(url, new AsyncHttpResponseHandler() {
@@ -42,8 +42,8 @@ public class MoviesViewModel extends ViewModel {
 
                     for (int i = 0; i < list.length(); i++) {
                         JSONObject jsonMovies = list.getJSONObject(i);
-                        Movies movies = new Movies(jsonMovies);
-                        listsItem.add(movies);
+                        Movie movie = new Movie(jsonMovies);
+                        listsItem.add(movie);
                     }
                     listMovies.postValue(listsItem);
                 } catch (Exception e) {
@@ -58,7 +58,7 @@ public class MoviesViewModel extends ViewModel {
         });
     }
 
-    public LiveData<ArrayList<Movies>> getMovies() {
+    public LiveData<ArrayList<Movie>> getMovies() {
         return listMovies;
-    }
+    }*/
 }

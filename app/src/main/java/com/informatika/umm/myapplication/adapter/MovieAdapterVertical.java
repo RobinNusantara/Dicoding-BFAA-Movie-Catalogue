@@ -16,76 +16,69 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.informatika.umm.myapplication.BuildConfig;
-import com.informatika.umm.myapplication.ui.movies.MoviesDetailActivity;
 import com.informatika.umm.myapplication.R;
-import com.informatika.umm.myapplication.model.Movies;
+import com.informatika.umm.myapplication.model.Movie;
+import com.informatika.umm.myapplication.ui.movies.MoviesDetailActivity;
 
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * MADE_Submission_2
  * created by : Robin Nusantara on 11/29/2019 11 2019
  * 22:21 Fri
  **/
-public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MoviesViewHolder> {
+public class MovieAdapterVertical extends RecyclerView.Adapter<MovieAdapterVertical.MoviesViewHolder> {
 
     private Context context;
-    private ArrayList<Movies> listMovies = new ArrayList<>();
+    private List<Movie> movieList;
 
-    public MoviesAdapter(Context context) {
+    public MovieAdapterVertical(Context context, List<Movie> movieList) {
         this.context = context;
-    }
-
-    public void setMovies(ArrayList<Movies> listMovies) {
-        this.listMovies.clear();
-        this.listMovies.addAll(listMovies);
-        notifyDataSetChanged();
+        this.movieList = movieList;
     }
 
     @NonNull
     @Override
     public MoviesViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_row_movies, viewGroup, false);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_row_movies_now_playing, viewGroup, false);
         return new MoviesViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull final MoviesViewHolder holder, int position) {
 
-        final Movies movies = listMovies.get(position);
-        String urlPoster = BuildConfig.IMAGE_URL + movies.getMoviePoster();
+        final Movie movie = movieList.get(position);
+        String urlPoster = BuildConfig.IMAGE_URL + movie.getMoviePoster();
         Glide.with(holder.itemView.getContext())
                 .load(urlPoster)
                 .apply(new RequestOptions().override(350, 550))
                 .transform(new RoundedCorners(32))
-                .placeholder(R.drawable.ic_image_placeholder)
-                .error(R.drawable.ic_image_error)
                 .into(holder.imgMoviePoster);
 
-        holder.txtMovieTitle.setText(movies.getMovieTitle());
-        holder.txtMovieRelease.setText(movies.getMovieRelease());
+        holder.txtMovieTitle.setText(movie.getMovieTitle());
+        holder.txtMovieRelease.setText(movie.getMovieRelease());
 
-        if (movies.getMovieScore() >= 1.0 && movies.getMovieScore() < 2.0) {
+        if (movie.getMovieScore() >= 1.0 && movie.getMovieScore() < 2.0) {
             holder.ratingBar.setRating(1.0f);
-        } else if (movies.getMovieScore() >= 2.0 && movies.getMovieScore() < 5.0) {
+        } else if (movie.getMovieScore() >= 2.0 && movie.getMovieScore() < 5.0) {
             holder.ratingBar.setRating(2.0f);
-        } else if (movies.getMovieScore() >= 5.0 && movies.getMovieScore() < 6.0) {
+        } else if (movie.getMovieScore() >= 5.0 && movie.getMovieScore() < 6.0) {
             holder.ratingBar.setRating(2.5f);
-        } else if (movies.getMovieScore() >= 6.0 && movies.getMovieScore() < 7.0) {
+        } else if (movie.getMovieScore() >= 6.0 && movie.getMovieScore() < 7.0) {
             holder.ratingBar.setRating(3.0f);
-        } else if (movies.getMovieScore() >= 7.0 && movies.getMovieScore() < 8.0) {
+        } else if (movie.getMovieScore() >= 7.0 && movie.getMovieScore() < 8.0) {
             holder.ratingBar.setRating(3.5f);
-        } else if (movies.getMovieScore() >= 8.0 && movies.getMovieScore() < 9.0) {
+        } else if (movie.getMovieScore() >= 8.0 && movie.getMovieScore() < 9.0) {
             holder.ratingBar.setRating(4.0f);
-        } else if (movies.getMovieScore() >= 9.0) {
+        } else if (movie.getMovieScore() >= 9.0) {
             holder.ratingBar.setRating(4.5f);
-        } else if (movies.getMovieScore() >= 9.5) {
+        } else if (movie.getMovieScore() >= 9.5) {
             holder.ratingBar.setRating(5.0f);
         } else {
             holder.ratingBar.setRating(0);
         }
 
-        String moviesScore = Double.toString(movies.getMovieScore());
+        String moviesScore = Double.toString(movie.getMovieScore());
         holder.txtMovieScore.setText(moviesScore);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -93,7 +86,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MoviesView
             public void onClick(View view) {
                 Intent intent;
                 intent = new Intent(context, MoviesDetailActivity.class);
-                intent.putExtra(MoviesDetailActivity.EXTRA_MOVIE, movies);
+                intent.putExtra(MoviesDetailActivity.EXTRA_MOVIE, movie);
                 context.startActivity(intent);
             }
         });
@@ -103,7 +96,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MoviesView
 
     @Override
     public int getItemCount() {
-        return listMovies.size();
+        return movieList.size();
     }
 
     class MoviesViewHolder extends RecyclerView.ViewHolder {

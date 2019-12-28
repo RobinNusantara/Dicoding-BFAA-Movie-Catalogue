@@ -7,18 +7,17 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.informatika.umm.myapplication.ui.movies.MoviesFragment;
-import com.informatika.umm.myapplication.ui.profile.ProfileActivity;
-import com.informatika.umm.myapplication.ui.tvshows.TvShowsFragment;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
-public class MainActivity extends AppCompatActivity {
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.informatika.umm.myapplication.ui.movies.MovieFragment;
+import com.informatika.umm.myapplication.ui.profile.ProfileActivity;
+import com.informatika.umm.myapplication.ui.tvshows.TvShowsFragment;
 
+public class MainActivity extends AppCompatActivity {
 
     private BottomNavigationView.OnNavigationItemSelectedListener navigationItemSelectedListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
@@ -26,12 +25,12 @@ public class MainActivity extends AppCompatActivity {
             Fragment fragment;
             switch (menuItem.getItemId()) {
                 case R.id.navigation_movies:
-                    fragment = new MoviesFragment();
-                    getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment, fragment, fragment.getClass().getSimpleName()).commit();
+                    fragment = new MovieFragment();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_now_playing, fragment, fragment.getClass().getSimpleName()).commit();
                     return true;
                 case R.id.navigation_tvshows:
                     fragment = new TvShowsFragment();
-                    getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment, fragment, fragment.getClass().getSimpleName()).commit();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_now_playing, fragment, fragment.getClass().getSimpleName()).commit();
                     return true;
             }
             return false;
