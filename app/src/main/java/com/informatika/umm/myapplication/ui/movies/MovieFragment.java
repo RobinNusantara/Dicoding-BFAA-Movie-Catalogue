@@ -19,7 +19,7 @@ import com.informatika.umm.myapplication.adapter.MovieAdapterHorizontal;
 import com.informatika.umm.myapplication.adapter.MovieAdapterVertical;
 import com.informatika.umm.myapplication.api.Client;
 import com.informatika.umm.myapplication.api.Service;
-import com.informatika.umm.myapplication.model.Movie;
+import com.informatika.umm.myapplication.model.MovieItem;
 import com.informatika.umm.myapplication.model.MovieResponse;
 import com.takusemba.multisnaprecyclerview.MultiSnapRecyclerView;
 
@@ -55,18 +55,18 @@ public class MovieFragment extends Fragment {
             call.enqueue(new Callback<MovieResponse>() {
                 @Override
                 public void onResponse(@NonNull Call<MovieResponse> call, @NonNull Response<MovieResponse> response) {
-                    List<Movie> movies = null;
+                    List<MovieItem> movies = null;
                     if (response.body() != null) {
                         movies = response.body().getResults();
                     }
                     if (response.isSuccessful()) {
                         if (response.body() != null) {
-                            MovieAdapterHorizontal movieAdapterPopular = new MovieAdapterHorizontal(getContext(), movies);
+                            MovieAdapterHorizontal adapterPopularMovies = new MovieAdapterHorizontal(getContext(), movies);
                             if (getActivity() != null) {
                                 MultiSnapRecyclerView rvPopularMovies = getActivity().findViewById(R.id.rv_movies_popular);
                                 LinearLayoutManager layoutPopularMovies = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
                                 rvPopularMovies.setLayoutManager(layoutPopularMovies);
-                                rvPopularMovies.setAdapter(movieAdapterPopular);
+                                rvPopularMovies.setAdapter(adapterPopularMovies);
                                 shimmerFrameLayout.setVisibility(View.GONE);
                                 shimmerFrameLayout.stopShimmer();
                             }
@@ -77,7 +77,7 @@ public class MovieFragment extends Fragment {
                 @Override
                 public void onFailure(@NonNull Call<MovieResponse> call, @NonNull Throwable t) {
                     Log.d(t.getMessage(), "Error");
-                    Toast.makeText(getContext(), "Error", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Error while Load Data Please Check Your Internet Connection", Toast.LENGTH_SHORT).show();
                 }
             });
         } catch (Exception e) {
@@ -94,15 +94,15 @@ public class MovieFragment extends Fragment {
                 @Override
                 public void onResponse(@NonNull Call<MovieResponse> call, @NonNull Response<MovieResponse> response) {
                     assert response.body() != null;
-                    List<Movie> movies = response.body().getResults();
+                    List<MovieItem> movies = response.body().getResults();
                     if (response.isSuccessful()) {
                         if (response.body() != null) {
-                            MovieAdapterVertical movieAdapterNowPlaying = new MovieAdapterVertical(getContext(), movies);
+                            MovieAdapterVertical adapterNowPlayingMovies = new MovieAdapterVertical(getContext(), movies);
                             if (getActivity() != null) {
                                 MultiSnapRecyclerView rvNowPlayingMovies = getActivity().findViewById(R.id.rv_movies_now_playing);
-                                LinearLayoutManager layoutPopularMovies = new LinearLayoutManager(getContext());
-                                rvNowPlayingMovies.setLayoutManager(layoutPopularMovies);
-                                rvNowPlayingMovies.setAdapter(movieAdapterNowPlaying);
+                                LinearLayoutManager layoutNowPlayingMovies = new LinearLayoutManager(getContext());
+                                rvNowPlayingMovies.setLayoutManager(layoutNowPlayingMovies);
+                                rvNowPlayingMovies.setAdapter(adapterNowPlayingMovies);
                                 shimmerFrameLayout.setVisibility(View.GONE);
                                 shimmerFrameLayout.stopShimmer();
                             }
@@ -113,7 +113,7 @@ public class MovieFragment extends Fragment {
                 @Override
                 public void onFailure(@NonNull Call<MovieResponse> call, @NonNull Throwable t) {
                     Log.d(t.getMessage(), "Error");
-                    Toast.makeText(getContext(), "Error", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Error while Load Data Please Check Your Internet Connection", Toast.LENGTH_SHORT).show();
                 }
             });
         } catch (Exception e) {

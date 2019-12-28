@@ -10,7 +10,7 @@ import com.google.gson.annotations.SerializedName;
  * created by : Robin Nusantara on 11/30/2019 11 2019
  * 10:22 Sat
  **/
-public class Movie implements Parcelable {
+public class MovieItem implements Parcelable {
 
     @SerializedName("backdrop_path")
     private String movieBackdrop;
@@ -54,20 +54,6 @@ public class Movie implements Parcelable {
         return movieOverview;
     }
 
-    public Movie(String movieBackdrop, String moviePoster, String movieTitle,
-                 Double movieScore, String movieRelease, String movieOverview) {
-        this.movieBackdrop = movieBackdrop;
-        this.moviePoster = moviePoster;
-        this.movieTitle = movieTitle;
-        this.movieScore = movieScore;
-        this.movieRelease = movieRelease;
-        this.movieOverview = movieOverview;
-    }
-
-    public Movie() {
-
-    }
-
     @Override
     public int describeContents() {
         return 0;
@@ -83,7 +69,7 @@ public class Movie implements Parcelable {
         dest.writeString(this.movieOverview);
     }
 
-    protected Movie(Parcel in) {
+    private MovieItem(Parcel in) {
         this.moviePoster = in.readString();
         this.movieBackdrop = in.readString();
         this.movieTitle = in.readString();
@@ -92,15 +78,27 @@ public class Movie implements Parcelable {
         this.movieOverview = in.readString();
     }
 
-    public static final Creator<Movie> CREATOR = new Creator<Movie>() {
+    public static final Creator<MovieItem> CREATOR = new Creator<MovieItem>() {
         @Override
-        public Movie createFromParcel(Parcel source) {
-            return new Movie(source);
+        public MovieItem createFromParcel(Parcel source) {
+            return new MovieItem(source);
         }
 
         @Override
-        public Movie[] newArray(int size) {
-            return new Movie[size];
+        public MovieItem[] newArray(int size) {
+            return new MovieItem[size];
         }
     };
+
+    public Float getRating() {
+        String movieRating = Double.toString(movieScore);
+        float divideRating;
+        if (!movieRating.isEmpty()) {
+            divideRating = Float.parseFloat(movieRating);
+            divideRating = divideRating / 2;
+        } else {
+            divideRating = 0;
+        }
+        return divideRating;
+    }
 }

@@ -11,12 +11,11 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.informatika.umm.myapplication.BuildConfig;
 import com.informatika.umm.myapplication.R;
-import com.informatika.umm.myapplication.model.Movie;
-import com.informatika.umm.myapplication.ui.movies.MoviesDetailActivity;
+import com.informatika.umm.myapplication.model.MovieItem;
+import com.informatika.umm.myapplication.ui.movies.MovieDetailActivity;
 
 import java.util.List;
 
@@ -28,11 +27,12 @@ import java.util.List;
 public class MovieAdapterHorizontal extends RecyclerView.Adapter<MovieAdapterHorizontal.MovieViewHolder> {
 
     private Context context;
-    private List<Movie> listMovies;
+    private List<MovieItem> listMovies;
 
-    public MovieAdapterHorizontal(Context context, List<Movie> listMovies) {
+    public MovieAdapterHorizontal(Context context, List<MovieItem> listMovies) {
         this.listMovies = listMovies;
         this.context = context;
+        notifyDataSetChanged();
     }
 
     @NonNull
@@ -45,12 +45,11 @@ public class MovieAdapterHorizontal extends RecyclerView.Adapter<MovieAdapterHor
     @Override
     public void onBindViewHolder(@NonNull MovieAdapterHorizontal.MovieViewHolder holder, int position) {
 
-        final Movie movie = listMovies.get(position);
+        final MovieItem movie = listMovies.get(position);
         String urlPoster = BuildConfig.IMAGE_URL + movie.getMoviePoster();
         Glide.with(holder.itemView.getContext())
                 .load(urlPoster)
                 .apply(new RequestOptions().override(350, 550))
-                .transform(new RoundedCorners(32))
                 .into(holder.imgMoviePoster);
 
 
@@ -58,14 +57,13 @@ public class MovieAdapterHorizontal extends RecyclerView.Adapter<MovieAdapterHor
             @Override
             public void onClick(View view) {
                 Intent intent;
-                intent = new Intent(context, MoviesDetailActivity.class);
-                intent.putExtra(MoviesDetailActivity.EXTRA_MOVIE, movie);
+                intent = new Intent(context, MovieDetailActivity.class);
+                intent.putExtra(MovieDetailActivity.EXTRA_MOVIE, movie);
                 context.startActivity(intent);
             }
         });
 
         holder.getAdapterPosition();
-
     }
 
     @Override

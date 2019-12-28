@@ -20,9 +20,9 @@ import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.android.material.appbar.AppBarLayout;
 import com.informatika.umm.myapplication.BuildConfig;
 import com.informatika.umm.myapplication.R;
-import com.informatika.umm.myapplication.model.Movie;
+import com.informatika.umm.myapplication.model.MovieItem;
 
-public class MoviesDetailActivity extends AppCompatActivity {
+public class MovieDetailActivity extends AppCompatActivity {
 
     public static final String EXTRA_MOVIE = "extra_movie";
 
@@ -72,7 +72,7 @@ public class MoviesDetailActivity extends AppCompatActivity {
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
-                        Movie movie = getIntent().getParcelableExtra(EXTRA_MOVIE);
+                        MovieItem movie = getIntent().getParcelableExtra(EXTRA_MOVIE);
                         if (movie != null) {
                             appBarLayout.setVisibility(View.VISIBLE);
                             toolbar.setVisibility(View.VISIBLE);
@@ -80,13 +80,13 @@ public class MoviesDetailActivity extends AppCompatActivity {
                             String urlPoster = BuildConfig.IMAGE_URL + movie.getMoviePoster();
                             String urlBackdrop = BuildConfig.IMAGE_URL + movie.getMovieBackdrop();
 
-                            Glide.with(MoviesDetailActivity.this)
+                            Glide.with(MovieDetailActivity.this)
                                     .load(urlPoster)
                                     .override(350, 550)
                                     .transform(new RoundedCorners(32))
                                     .into(imgMoviePoster);
 
-                            Glide.with(MoviesDetailActivity.this)
+                            Glide.with(MovieDetailActivity.this)
                                     .load(urlBackdrop)
                                     .override(1366, 768)
                                     .placeholder(R.color.colorClouds)
@@ -94,25 +94,7 @@ public class MoviesDetailActivity extends AppCompatActivity {
                                     .into(imgMovieBackdrop);
 
                             ratingBar.setVisibility(View.VISIBLE);
-                            if (movie.getMovieScore() >= 1.0 && movie.getMovieScore() < 2.0) {
-                                ratingBar.setRating(1.0f);
-                            } else if (movie.getMovieScore() >= 2.0 && movie.getMovieScore() < 5.0) {
-                                ratingBar.setRating(2.0f);
-                            } else if (movie.getMovieScore() >= 5.0 && movie.getMovieScore() < 6.0) {
-                                ratingBar.setRating(2.5f);
-                            } else if (movie.getMovieScore() >= 6.0 && movie.getMovieScore() < 7.0) {
-                                ratingBar.setRating(3.0f);
-                            } else if (movie.getMovieScore() >= 7.0 && movie.getMovieScore() < 8.0) {
-                                ratingBar.setRating(3.5f);
-                            } else if (movie.getMovieScore() >= 8.0 && movie.getMovieScore() < 9.0) {
-                                ratingBar.setRating(4.0f);
-                            } else if (movie.getMovieScore() >= 9.0) {
-                                ratingBar.setRating(4.5f);
-                            } else if (movie.getMovieScore() >= 9.5) {
-                                ratingBar.setRating(5.0f);
-                            } else {
-                                ratingBar.setRating(0);
-                            }
+                            ratingBar.setRating(movie.getRating());
 
                             String txtMoviesScore = Double.toString(movie.getMovieScore());
                             txtMovieScore.setText(txtMoviesScore);

@@ -17,8 +17,8 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.informatika.umm.myapplication.BuildConfig;
 import com.informatika.umm.myapplication.R;
-import com.informatika.umm.myapplication.model.Movie;
-import com.informatika.umm.myapplication.ui.movies.MoviesDetailActivity;
+import com.informatika.umm.myapplication.model.MovieItem;
+import com.informatika.umm.myapplication.ui.movies.MovieDetailActivity;
 
 import java.util.List;
 
@@ -30,11 +30,12 @@ import java.util.List;
 public class MovieAdapterVertical extends RecyclerView.Adapter<MovieAdapterVertical.MoviesViewHolder> {
 
     private Context context;
-    private List<Movie> movieList;
+    private List<MovieItem> movieList;
 
-    public MovieAdapterVertical(Context context, List<Movie> movieList) {
+    public MovieAdapterVertical(Context context, List<MovieItem> movieList) {
         this.context = context;
         this.movieList = movieList;
+        notifyDataSetChanged();
     }
 
     @NonNull
@@ -47,7 +48,7 @@ public class MovieAdapterVertical extends RecyclerView.Adapter<MovieAdapterVerti
     @Override
     public void onBindViewHolder(@NonNull final MoviesViewHolder holder, int position) {
 
-        final Movie movie = movieList.get(position);
+        final MovieItem movie = movieList.get(position);
         String urlPoster = BuildConfig.IMAGE_URL + movie.getMoviePoster();
         Glide.with(holder.itemView.getContext())
                 .load(urlPoster)
@@ -58,25 +59,7 @@ public class MovieAdapterVertical extends RecyclerView.Adapter<MovieAdapterVerti
         holder.txtMovieTitle.setText(movie.getMovieTitle());
         holder.txtMovieRelease.setText(movie.getMovieRelease());
 
-        if (movie.getMovieScore() >= 1.0 && movie.getMovieScore() < 2.0) {
-            holder.ratingBar.setRating(1.0f);
-        } else if (movie.getMovieScore() >= 2.0 && movie.getMovieScore() < 5.0) {
-            holder.ratingBar.setRating(2.0f);
-        } else if (movie.getMovieScore() >= 5.0 && movie.getMovieScore() < 6.0) {
-            holder.ratingBar.setRating(2.5f);
-        } else if (movie.getMovieScore() >= 6.0 && movie.getMovieScore() < 7.0) {
-            holder.ratingBar.setRating(3.0f);
-        } else if (movie.getMovieScore() >= 7.0 && movie.getMovieScore() < 8.0) {
-            holder.ratingBar.setRating(3.5f);
-        } else if (movie.getMovieScore() >= 8.0 && movie.getMovieScore() < 9.0) {
-            holder.ratingBar.setRating(4.0f);
-        } else if (movie.getMovieScore() >= 9.0) {
-            holder.ratingBar.setRating(4.5f);
-        } else if (movie.getMovieScore() >= 9.5) {
-            holder.ratingBar.setRating(5.0f);
-        } else {
-            holder.ratingBar.setRating(0);
-        }
+        holder.ratingBar.setRating(movie.getRating());
 
         String moviesScore = Double.toString(movie.getMovieScore());
         holder.txtMovieScore.setText(moviesScore);
@@ -85,8 +68,8 @@ public class MovieAdapterVertical extends RecyclerView.Adapter<MovieAdapterVerti
             @Override
             public void onClick(View view) {
                 Intent intent;
-                intent = new Intent(context, MoviesDetailActivity.class);
-                intent.putExtra(MoviesDetailActivity.EXTRA_MOVIE, movie);
+                intent = new Intent(context, MovieDetailActivity.class);
+                intent.putExtra(MovieDetailActivity.EXTRA_MOVIE, movie);
                 context.startActivity(intent);
             }
         });
