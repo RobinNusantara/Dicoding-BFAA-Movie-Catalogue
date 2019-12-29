@@ -17,7 +17,7 @@ import com.informatika.umm.myapplication.R;
 import com.informatika.umm.myapplication.model.MovieItem;
 import com.informatika.umm.myapplication.ui.movies.MovieDetailActivity;
 
-import java.util.List;
+import java.util.ArrayList;
 
 /**
  * MADE_Submission_2
@@ -27,12 +27,11 @@ import java.util.List;
 public class MovieAdapterHorizontal extends RecyclerView.Adapter<MovieAdapterHorizontal.MovieViewHolder> {
 
     private Context context;
-    private List<MovieItem> listMovies;
+    private ArrayList<MovieItem> listMovies;
 
-    public MovieAdapterHorizontal(Context context, List<MovieItem> listMovies) {
+    public MovieAdapterHorizontal(Context context, ArrayList<MovieItem> listMovies) {
         this.listMovies = listMovies;
         this.context = context;
-        notifyDataSetChanged();
     }
 
     @NonNull

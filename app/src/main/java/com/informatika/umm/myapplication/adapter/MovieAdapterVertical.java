@@ -20,7 +20,7 @@ import com.informatika.umm.myapplication.R;
 import com.informatika.umm.myapplication.model.MovieItem;
 import com.informatika.umm.myapplication.ui.movies.MovieDetailActivity;
 
-import java.util.List;
+import java.util.ArrayList;
 
 /**
  * MADE_Submission_2
@@ -30,12 +30,11 @@ import java.util.List;
 public class MovieAdapterVertical extends RecyclerView.Adapter<MovieAdapterVertical.MoviesViewHolder> {
 
     private Context context;
-    private List<MovieItem> movieList;
+    private ArrayList<MovieItem> movieList;
 
-    public MovieAdapterVertical(Context context, List<MovieItem> movieList) {
+    public MovieAdapterVertical(Context context, ArrayList<MovieItem> movieList) {
         this.context = context;
         this.movieList = movieList;
-        notifyDataSetChanged();
     }
 
     @NonNull
