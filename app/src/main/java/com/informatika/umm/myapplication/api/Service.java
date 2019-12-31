@@ -1,9 +1,11 @@
 package com.informatika.umm.myapplication.api;
 
+import com.informatika.umm.myapplication.model.Movie;
 import com.informatika.umm.myapplication.model.MovieResponse;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 /**
@@ -14,6 +16,14 @@ import retrofit2.http.Query;
 public interface Service {
     @GET("movie/popular")
     Call<MovieResponse> getPopularMovies(@Query("api_key") String apiKey);
+
+    @GET("movie/{movie_id}")
+    Call<Movie> getMovieDetails(
+            @Path("movie_id") int id,
+            @Query("api_key") String apiKey,
+            @Query("language") String language
+    );
+
 
     @GET("movie/now_playing")
     Call<MovieResponse> getNowPlayingMovies(@Query("api_key") String apiKey);

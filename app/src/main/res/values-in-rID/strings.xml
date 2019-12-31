@@ -22,7 +22,7 @@
     <string name="str_profile_location">Kota Batu, Jawa Timur</string>
     <string name="str_tv_shows_backdrop">Tv Shows Backdrop</string>
     <string name="str_movie_catalogue_logo">Movie Catalogue Logo</string>
-
+    <string name="str_movie_runtime">%1$sh %2$sm</string>
     <!-- TODO MOVIE ITEM -->
 
     <!-- TODO TV SHOWS ITEM -->

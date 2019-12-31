@@ -17,7 +17,7 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.informatika.umm.myapplication.BuildConfig;
 import com.informatika.umm.myapplication.R;
-import com.informatika.umm.myapplication.model.MovieItem;
+import com.informatika.umm.myapplication.model.Movie;
 import com.informatika.umm.myapplication.ui.movies.MovieDetailActivity;
 
 import java.util.ArrayList;
@@ -27,27 +27,34 @@ import java.util.ArrayList;
  * created by : Robin Nusantara on 11/29/2019 11 2019
  * 22:21 Fri
  **/
-public class MovieAdapterVertical extends RecyclerView.Adapter<MovieAdapterVertical.MoviesViewHolder> {
+public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MoviesViewHolder> {
 
     private Context context;
-    private ArrayList<MovieItem> movieList;
+    private ArrayList<Movie> movieList;
 
-    public MovieAdapterVertical(Context context, ArrayList<MovieItem> movieList) {
+
+    public MovieAdapter(Context context, ArrayList<Movie> movieList) {
         this.context = context;
         this.movieList = movieList;
+    }
+
+    public void setMovie(ArrayList<Movie> movieList) {
+        this.movieList.clear();
+        this.movieList.addAll(movieList);
+        notifyDataSetChanged();
     }
 
     @NonNull
     @Override
     public MoviesViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_row_movies_now_playing, viewGroup, false);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_row_movies, viewGroup, false);
         return new MoviesViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull final MoviesViewHolder holder, int position) {
 
-        final MovieItem movie = movieList.get(position);
+        final Movie movie = movieList.get(position);
         String urlPoster = BuildConfig.IMAGE_URL + movie.getMoviePoster();
         Glide.with(holder.itemView.getContext())
                 .load(urlPoster)

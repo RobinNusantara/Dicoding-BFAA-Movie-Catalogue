@@ -1,26 +1,27 @@
 package com.informatika.umm.myapplication.ui.movies;
 
 import android.os.Bundle;
+import android.view.MenuItem;
+import android.widget.ImageView;
+import android.widget.RatingBar;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import android.os.Handler;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.WindowManager;
-import android.widget.ImageView;
-import android.widget.RatingBar;
-import android.widget.TextView;
-
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
-import com.facebook.shimmer.ShimmerFrameLayout;
-import com.google.android.material.appbar.AppBarLayout;
 import com.informatika.umm.myapplication.BuildConfig;
 import com.informatika.umm.myapplication.R;
-import com.informatika.umm.myapplication.model.MovieItem;
+import com.informatika.umm.myapplication.api.Client;
+import com.informatika.umm.myapplication.api.Service;
+import com.informatika.umm.myapplication.model.Movie;
+import com.informatika.umm.myapplication.util.StringUtils;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MovieDetailActivity extends AppCompatActivity {
 
@@ -30,7 +31,7 @@ public class MovieDetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         final ImageView imgMovieBackdrop, imgMoviePoster;
-        final TextView txtMovieTitle, txtMovieRelease, txtMovieScore, txtMovieOverview;
+        final TextView txtMovieTitle, txtMovieRelease, txtMovieScore, txtMovieRuntime, txtMovieGenre, txtMovieOverview, txtMovieSimilar;
         final RatingBar ratingBar;
 
         setContentView(R.layout.activity_detail_movies);
@@ -40,76 +41,65 @@ public class MovieDetailActivity extends AppCompatActivity {
         txtMovieTitle = findViewById(R.id.txt_movie_title);
         txtMovieRelease = findViewById(R.id.txt_movie_release_date);
         txtMovieScore = findViewById(R.id.txt_movie_score);
+        txtMovieGenre = findViewById(R.id.txt_movie_genre);
+        txtMovieRuntime = findViewById(R.id.txt_movie_runtime);
         txtMovieOverview = findViewById(R.id.txt_movie_overview);
+        txtMovieSimilar = findViewById(R.id.txt_movie_similar);
 
-        final AppBarLayout appBarLayout = findViewById(R.id.app_bar_layout);
-        appBarLayout.setVisibility(View.INVISIBLE);
-        final Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setVisibility(View.INVISIBLE);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_navigate_before_black_24dp);
             getSupportActionBar().setTitle("");
         }
 
-        ratingBar.setVisibility(View.INVISIBLE);
+        final Movie movie = getIntent().getParcelableExtra(EXTRA_MOVIE);
+        if (movie != null) {
 
-        final ShimmerFrameLayout shimmerFrameLayout = findViewById(R.id.shimmer_container);
-        shimmerFrameLayout.setVisibility(View.VISIBLE);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
-                WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
-        final Handler handler = new Handler();
+            String urlPoster = BuildConfig.IMAGE_URL + movie.getMoviePoster();
+            String urlBackdrop = BuildConfig.IMAGE_URL + movie.getMovieBackdrop();
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    Thread.sleep(3000);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                handler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        MovieItem movie = getIntent().getParcelableExtra(EXTRA_MOVIE);
-                        if (movie != null) {
-                            appBarLayout.setVisibility(View.VISIBLE);
-                            toolbar.setVisibility(View.VISIBLE);
+            Glide.with(MovieDetailActivity.this)
+                    .load(urlPoster)
+                    .override(350, 550)
+                    .transform(new RoundedCorners(32))
+                    .into(imgMoviePoster);
 
-                            String urlPoster = BuildConfig.IMAGE_URL + movie.getMoviePoster();
-                            String urlBackdrop = BuildConfig.IMAGE_URL + movie.getMovieBackdrop();
+            Glide.with(MovieDetailActivity.this)
+                    .load(urlBackdrop)
+                    .override(1366, 768)
+                    .placeholder(R.color.colorClouds)
+                    .error(R.color.colorClouds)
+                    .into(imgMovieBackdrop);
 
-                            Glide.with(MovieDetailActivity.this)
-                                    .load(urlPoster)
-                                    .override(350, 550)
-                                    .transform(new RoundedCorners(32))
-                                    .into(imgMoviePoster);
+            ratingBar.setRating(movie.getRating());
 
-                            Glide.with(MovieDetailActivity.this)
-                                    .load(urlBackdrop)
-                                    .override(1366, 768)
-                                    .placeholder(R.color.colorClouds)
-                                    .error(R.color.colorClouds)
-                                    .into(imgMovieBackdrop);
-
-                            ratingBar.setVisibility(View.VISIBLE);
-                            ratingBar.setRating(movie.getRating());
-
-                            String txtMoviesScore = Double.toString(movie.getMovieScore());
-                            txtMovieScore.setText(txtMoviesScore);
-
-                            txtMovieTitle.setText(movie.getMovieTitle());
-                            txtMovieRelease.setText(movie.getMovieRelease());
-                            txtMovieOverview.setText(movie.getMovieOverview());
-
-                            shimmerFrameLayout.setVisibility(View.INVISIBLE);
-                            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+            String txtMoviesScore = Double.toString(movie.getMovieScore());
+            txtMovieScore.setText(txtMoviesScore);
+            txtMovieTitle.setText(movie.getMovieTitle());
+            txtMovieRelease.setText(movie.getMovieRelease());
+            txtMovieOverview.setText(movie.getMovieOverview());
+            Service apiService = Client.getClient().create(Service.class);
+            Call<Movie> call = apiService.getMovieDetails(movie.getMovieId(), BuildConfig.API_KEY, BuildConfig.LANGUAGE);
+            call.enqueue(new Callback<Movie>() {
+                @Override
+                public void onResponse(@NonNull Call<Movie> call, @NonNull Response<Movie> response) {
+                    if (response.isSuccessful()) {
+                        Movie movies = response.body();
+                        if (movies != null) {
+                            txtMovieGenre.setText(StringUtils.getGenre(movies.getMovieGenre()));
+                            txtMovieRuntime.setText(StringUtils.getRuntime(MovieDetailActivity.this, movies.getMovieRuntime()));
+                            txtMovieSimilar.setText(movies.getMovieTitle());
                         }
                     }
-                });
-            }
-        }).start();
+                }
+
+                @Override
+                public void onFailure(@NonNull Call<Movie> call, @NonNull Throwable t) {
+
+                }
+            });
+        }
     }
 
     @Override

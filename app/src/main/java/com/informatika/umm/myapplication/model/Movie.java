@@ -5,12 +5,17 @@ import android.os.Parcelable;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
+
 /**
  * MADE_Submission_2
  * created by : Robin Nusantara on 11/30/2019 11 2019
  * 10:22 Sat
  **/
-public class MovieItem implements Parcelable {
+public class Movie implements Parcelable {
+
+    @SerializedName("id")
+    private int movieId;
 
     @SerializedName("backdrop_path")
     private String movieBackdrop;
@@ -29,6 +34,16 @@ public class MovieItem implements Parcelable {
 
     @SerializedName("overview")
     private String movieOverview;
+
+    @SerializedName("genres")
+    private ArrayList<Genre> movieGenre;
+
+    @SerializedName("runtime")
+    private int movieRuntime;
+
+    public int getMovieId() {
+        return movieId;
+    }
 
     public String getMovieBackdrop() {
         return movieBackdrop;
@@ -54,41 +69,13 @@ public class MovieItem implements Parcelable {
         return movieOverview;
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
+    public ArrayList<Genre> getMovieGenre() {
+        return movieGenre;
     }
 
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(this.moviePoster);
-        dest.writeString(this.movieBackdrop);
-        dest.writeString(this.movieTitle);
-        dest.writeDouble(this.movieScore);
-        dest.writeString(this.movieRelease);
-        dest.writeString(this.movieOverview);
+    public int getMovieRuntime() {
+        return movieRuntime;
     }
-
-    private MovieItem(Parcel in) {
-        this.moviePoster = in.readString();
-        this.movieBackdrop = in.readString();
-        this.movieTitle = in.readString();
-        this.movieScore = in.readDouble();
-        this.movieRelease = in.readString();
-        this.movieOverview = in.readString();
-    }
-
-    public static final Creator<MovieItem> CREATOR = new Creator<MovieItem>() {
-        @Override
-        public MovieItem createFromParcel(Parcel source) {
-            return new MovieItem(source);
-        }
-
-        @Override
-        public MovieItem[] newArray(int size) {
-            return new MovieItem[size];
-        }
-    };
 
     public Float getRating() {
         String movieRating = Double.toString(movieScore);
@@ -101,4 +88,50 @@ public class MovieItem implements Parcelable {
         }
         return divideRating;
     }
+
+    public Movie() {
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(this.movieId);
+        dest.writeString(this.movieBackdrop);
+        dest.writeString(this.moviePoster);
+        dest.writeString(this.movieTitle);
+        dest.writeValue(this.movieScore);
+        dest.writeString(this.movieRelease);
+        dest.writeString(this.movieOverview);
+        dest.writeList(this.movieGenre);
+        dest.writeInt(this.movieRuntime);
+    }
+
+    protected Movie(Parcel in) {
+        this.movieId = in.readInt();
+        this.movieBackdrop = in.readString();
+        this.moviePoster = in.readString();
+        this.movieTitle = in.readString();
+        this.movieScore = (Double) in.readValue(Double.class.getClassLoader());
+        this.movieRelease = in.readString();
+        this.movieOverview = in.readString();
+        this.movieGenre = new ArrayList<Genre>();
+        in.readList(this.movieGenre, Genre.class.getClassLoader());
+        this.movieRuntime = in.readInt();
+    }
+
+    public static final Creator<Movie> CREATOR = new Creator<Movie>() {
+        @Override
+        public Movie createFromParcel(Parcel source) {
+            return new Movie(source);
+        }
+
+        @Override
+        public Movie[] newArray(int size) {
+            return new Movie[size];
+        }
+    };
 }
