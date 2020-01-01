@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.informatika.umm.myapplication.ui.favorite.FavoriteFragment;
 import com.informatika.umm.myapplication.ui.movies.MovieFragment;
 import com.informatika.umm.myapplication.ui.profile.ProfileActivity;
 import com.informatika.umm.myapplication.ui.tvshows.TvShowsFragment;
@@ -26,12 +27,17 @@ public class MainActivity extends AppCompatActivity {
             switch (menuItem.getItemId()) {
                 case R.id.navigation_movies:
                     fragment = new MovieFragment();
-                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_now_playing, fragment, fragment.getClass().getSimpleName()).commit();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment, fragment, fragment.getClass().getSimpleName()).commit();
                     return true;
                 case R.id.navigation_tvshows:
                     fragment = new TvShowsFragment();
-                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_now_playing, fragment, fragment.getClass().getSimpleName()).commit();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment, fragment, fragment.getClass().getSimpleName()).commit();
                     return true;
+                case R.id.navigation_favorite:
+                    fragment = new FavoriteFragment();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment, fragment, fragment.getClass().getSimpleName()).commit();
+                    return true;
+
             }
             return false;
         }

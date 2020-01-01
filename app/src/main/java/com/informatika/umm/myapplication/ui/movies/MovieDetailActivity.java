@@ -5,6 +5,7 @@ import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -32,7 +33,7 @@ import retrofit2.Response;
 public class MovieDetailActivity extends AppCompatActivity {
 
     public static final String EXTRA_MOVIE = "extra_movie";
-   TextView txtMovieTitle, txtMovieRelease, txtMovieScore, txtMovieRuntime, txtMovieGenre, txtMovieOverview, txtMovieSimilar;
+    TextView txtMovieTitle, txtMovieRelease, txtMovieScore, txtMovieRuntime, txtMovieGenre, txtMovieOverview, txtMovieSimilar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,7 +116,7 @@ public class MovieDetailActivity extends AppCompatActivity {
 
                 @Override
                 public void onFailure(@NonNull Call<MovieResponse> call, @NonNull Throwable t) {
-
+                    Toast.makeText(getApplicationContext(), "Failed to Load Similar Movie", Toast.LENGTH_SHORT).show();
                 }
             });
         }

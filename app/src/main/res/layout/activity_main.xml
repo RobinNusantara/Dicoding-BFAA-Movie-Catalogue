@@ -19,7 +19,7 @@
         app:menu="@menu/bottom_nav_menu" />
 
     <FrameLayout
-        android:id="@+id/fragment_now_playing"
+        android:id="@+id/fragment"
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="0dp"
         android:layout_height="0dp"
