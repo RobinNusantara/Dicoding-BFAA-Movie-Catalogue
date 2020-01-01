@@ -38,12 +38,6 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MoviesViewHo
         this.movieList = movieList;
     }
 
-    public void setMovie(ArrayList<Movie> movieList) {
-        this.movieList.clear();
-        this.movieList.addAll(movieList);
-        notifyDataSetChanged();
-    }
-
     @NonNull
     @Override
     public MoviesViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {

@@ -78,10 +78,9 @@ public class Movie implements Parcelable {
     }
 
     public Float getRating() {
-        String movieRating = Double.toString(movieScore);
         float divideRating;
-        if (!movieRating.isEmpty()) {
-            divideRating = Float.parseFloat(movieRating);
+        if (movieScore != null) {
+            divideRating = movieScore.floatValue();
             divideRating = divideRating / 2;
         } else {
             divideRating = 0;
@@ -90,6 +89,7 @@ public class Movie implements Parcelable {
     }
 
     public Movie() {
+
     }
 
     @Override
@@ -118,7 +118,7 @@ public class Movie implements Parcelable {
         this.movieScore = (Double) in.readValue(Double.class.getClassLoader());
         this.movieRelease = in.readString();
         this.movieOverview = in.readString();
-        this.movieGenre = new ArrayList<Genre>();
+        this.movieGenre = new ArrayList<>();
         in.readList(this.movieGenre, Genre.class.getClassLoader());
         this.movieRuntime = in.readInt();
     }

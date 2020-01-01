@@ -1,6 +1,5 @@
 package com.informatika.umm.myapplication.model;
 
-import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 /**
@@ -11,19 +10,15 @@ import com.google.gson.annotations.SerializedName;
 public class Genre {
 
     @SerializedName("id")
-    @Expose
     private String id;
     @SerializedName("name")
-    @Expose
     private String name;
 
     public String getId() {
         return id;
     }
 
-
     public String getName() {
         return name;
     }
-
 }

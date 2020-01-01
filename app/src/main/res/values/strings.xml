@@ -27,7 +27,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="str_popular_movie">Popular Movie</string>
     <string name="str_now_playing">Now Playing</string>
-    <string name="str_similar_like">Similar Like</string>
+    <string name="str_similar_like">Similar to</string>
 
     <!-- TODO MOVIE ITEM -->
 

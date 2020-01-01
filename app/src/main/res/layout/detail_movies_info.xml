@@ -115,4 +115,12 @@
         app:layout_constraintTop_toTopOf="@+id/txt_similar"
         tools:text="@string/str_movie_title" />
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_movies_similar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toBottomOf="@+id/txt_similar" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
