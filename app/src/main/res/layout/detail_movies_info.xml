@@ -51,22 +51,12 @@
         app:layout_constraintTop_toBottomOf="@+id/txt_movie_release_date" />
 
     <TextView
-        android:id="@+id/txt_movie_genre"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:maxEms="12"
-        app:layout_constraintStart_toStartOf="@+id/rate_movie"
-        app:layout_constraintTop_toBottomOf="@+id/rate_movie"
-        tools:text="Movie Genre" />
-
-    <TextView
         android:id="@+id/txt_movie_runtime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        app:layout_constraintStart_toStartOf="@+id/txt_movie_genre"
-        app:layout_constraintTop_toBottomOf="@+id/txt_movie_genre"
+        app:layout_constraintStart_toStartOf="@+id/rate_movie"
+        app:layout_constraintTop_toBottomOf="@+id/rate_movie"
         tools:text="1h 45m" />
 
     <TextView
@@ -80,6 +70,14 @@
         app:layout_constraintTop_toTopOf="@+id/rate_movie"
         tools:text="0/0" />
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_genre"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toBottomOf="@+id/img_movie_poster" />
+
     <TextView
         android:id="@+id/txt_movie_overview"
         android:layout_width="match_parent"
@@ -89,7 +87,7 @@
         android:layout_marginEnd="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/img_movie_poster"
+        app:layout_constraintTop_toBottomOf="@+id/rv_genre"
         tools:text="@string/str_lorem" />
 
     <TextView
@@ -119,7 +117,7 @@
         android:id="@+id/rv_movies_similar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
+        android:layout_marginStart="15dp"
         android:layout_marginTop="10dp"
         app:layout_constraintTop_toBottomOf="@+id/txt_similar" />
 

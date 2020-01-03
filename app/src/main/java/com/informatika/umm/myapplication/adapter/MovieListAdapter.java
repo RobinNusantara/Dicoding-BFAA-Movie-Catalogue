@@ -27,15 +27,20 @@ import java.util.ArrayList;
  * created by : Robin Nusantara on 11/29/2019 11 2019
  * 22:21 Fri
  **/
-public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MoviesViewHolder> {
+public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.MoviesViewHolder> {
 
     private Context context;
     private ArrayList<Movie> movieList;
 
-
-    public MovieAdapter(Context context, ArrayList<Movie> movieList) {
+    public MovieListAdapter(Context context, ArrayList<Movie> movieList) {
         this.context = context;
         this.movieList = movieList;
+    }
+
+    public void setMovie(ArrayList<Movie> movieList) {
+        this.movieList.clear();
+        this.movieList.addAll(movieList);
+        notifyDataSetChanged();
     }
 
     @NonNull
@@ -53,6 +58,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MoviesViewHo
         Glide.with(holder.itemView.getContext())
                 .load(urlPoster)
                 .apply(new RequestOptions().override(350, 550))
+                .placeholder(R.drawable.ic_movie_roll_logo)
                 .transform(new RoundedCorners(32))
                 .into(holder.imgMoviePoster);
 

@@ -12,7 +12,7 @@
         android:id="@+id/txt_movie_genre"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/item_rectangle_citylight"
+        android:background="@drawable/item_rectangle_silver"
         android:backgroundTint="@color/colorPrimary"
         android:paddingLeft="10dp"
         android:paddingTop="5dp"

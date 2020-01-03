@@ -3,9 +3,6 @@ package com.informatika.umm.myapplication.util;
 import android.content.Context;
 
 import com.informatika.umm.myapplication.R;
-import com.informatika.umm.myapplication.model.Genre;
-
-import java.util.ArrayList;
 
 /**
  * MADE_Submission_2
@@ -18,20 +15,5 @@ public class StringUtils {
         String hours = String.valueOf(time / 60);
         String minutes = String.valueOf(time % 60);
         return context.getString(R.string.str_movie_runtime, hours, minutes);
-    }
-
-    public static String getGenre(ArrayList<Genre> genres) {
-        StringBuilder result = new StringBuilder("-");
-        if (!genres.isEmpty()) {
-            result = new StringBuilder();
-            for (int i = 0; i < genres.size(); i++) {
-                if (genres.get(i) == genres.get(genres.size() - 1)) {
-                    result.append(genres.get(i).getName());
-                } else {
-                    result.append(genres.get(i).getName()).append(", ");
-                }
-            }
-        }
-        return result.toString();
     }
 }

@@ -32,6 +32,12 @@ public class MovieCardAdapter extends RecyclerView.Adapter<MovieCardAdapter.Card
         this.movieList = movieList;
     }
 
+    public void setMovie(ArrayList<Movie> movieList){
+        this.movieList.clear();
+        this.movieList.addAll(movieList);
+        notifyDataSetChanged();
+    }
+
     @NonNull
     @Override
     public MovieCardAdapter.CardViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {

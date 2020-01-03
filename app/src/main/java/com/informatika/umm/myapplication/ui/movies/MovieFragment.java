@@ -16,7 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.facebook.shimmer.ShimmerFrameLayout;
 import com.informatika.umm.myapplication.BuildConfig;
 import com.informatika.umm.myapplication.R;
-import com.informatika.umm.myapplication.adapter.MovieAdapter;
+import com.informatika.umm.myapplication.adapter.MovieListAdapter;
 import com.informatika.umm.myapplication.api.Client;
 import com.informatika.umm.myapplication.api.Service;
 import com.informatika.umm.myapplication.model.Movie;
@@ -31,6 +31,7 @@ import retrofit2.Response;
 public class MovieFragment extends Fragment {
 
     private ShimmerFrameLayout shimmerFrameLayout;
+    private MovieListAdapter listAdapter;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -46,6 +47,17 @@ public class MovieFragment extends Fragment {
     }
 
     private void loadNowPlayingMovies() {
+
+        ArrayList<Movie> movies = new ArrayList<>();
+        listAdapter = new MovieListAdapter(getContext(), movies);
+        if (getActivity() != null) {
+            RecyclerView rvNowPlayingMovies = getActivity().findViewById(R.id.rv_movies_now_playing);
+            rvNowPlayingMovies.setHasFixedSize(true);
+            LinearLayoutManager layoutNowPlayingMovies = new LinearLayoutManager(getContext());
+            rvNowPlayingMovies.setLayoutManager(layoutNowPlayingMovies);
+            rvNowPlayingMovies.setAdapter(listAdapter);
+        }
+
         Service apiService = Client.getClient().create(Service.class);
         Call<MovieResponse> call = apiService.getNowPlayingMovies(BuildConfig.API_KEY);
         call.enqueue(new Callback<MovieResponse>() {
@@ -57,14 +69,9 @@ public class MovieFragment extends Fragment {
                 }
                 if (response.isSuccessful()) {
                     if (getActivity() != null) {
-                        MovieAdapter adapterNowPlayingMovies = new MovieAdapter(getContext(), movies);
-                        RecyclerView rvNowPlayingMovies = getActivity().findViewById(R.id.rv_movies_now_playing);
-                        rvNowPlayingMovies.setHasFixedSize(true);
-                        LinearLayoutManager layoutNowPlayingMovies = new LinearLayoutManager(getContext());
-                        rvNowPlayingMovies.setLayoutManager(layoutNowPlayingMovies);
-                        rvNowPlayingMovies.setAdapter(adapterNowPlayingMovies);
                         shimmerFrameLayout.stopShimmer();
                         shimmerFrameLayout.setVisibility(View.GONE);
+                        listAdapter.setMovie(movies);
                     }
                 }
             }
