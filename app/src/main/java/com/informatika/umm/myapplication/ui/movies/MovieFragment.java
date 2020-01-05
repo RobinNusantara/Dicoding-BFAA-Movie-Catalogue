@@ -31,7 +31,6 @@ import retrofit2.Response;
 public class MovieFragment extends Fragment {
 
     private ShimmerFrameLayout shimmerFrameLayout;
-    private MovieListAdapter listAdapter;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -43,23 +42,24 @@ public class MovieFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         shimmerFrameLayout = view.findViewById(R.id.shimmer_container);
         shimmerFrameLayout.startShimmer();
-        loadNowPlayingMovies();
+        loadDiscoverMovies();
     }
 
-    private void loadNowPlayingMovies() {
+    private void loadDiscoverMovies() {
 
-        ArrayList<Movie> movies = new ArrayList<>();
-        listAdapter = new MovieListAdapter(getContext(), movies);
+        ArrayList<Movie> movieList = new ArrayList<>();
+        final MovieListAdapter listAdapter = new MovieListAdapter(getContext(), movieList);
         if (getActivity() != null) {
             RecyclerView rvNowPlayingMovies = getActivity().findViewById(R.id.rv_movies_now_playing);
             rvNowPlayingMovies.setHasFixedSize(true);
             LinearLayoutManager layoutNowPlayingMovies = new LinearLayoutManager(getContext());
             rvNowPlayingMovies.setLayoutManager(layoutNowPlayingMovies);
             rvNowPlayingMovies.setAdapter(listAdapter);
+
         }
 
         Service apiService = Client.getClient().create(Service.class);
-        Call<MovieResponse> call = apiService.getNowPlayingMovies(BuildConfig.API_KEY);
+        Call<MovieResponse> call = apiService.getDiscoverMovies(BuildConfig.API_KEY);
         call.enqueue(new Callback<MovieResponse>() {
             @Override
             public void onResponse(@NonNull Call<MovieResponse> call, @NonNull Response<MovieResponse> response) {

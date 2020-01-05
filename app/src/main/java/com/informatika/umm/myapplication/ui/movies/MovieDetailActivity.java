@@ -15,6 +15,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.borjabravo.readmoretextview.ReadMoreTextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.informatika.umm.myapplication.BuildConfig;
@@ -26,7 +27,7 @@ import com.informatika.umm.myapplication.api.Service;
 import com.informatika.umm.myapplication.model.Genre;
 import com.informatika.umm.myapplication.model.Movie;
 import com.informatika.umm.myapplication.model.MovieResponse;
-import com.informatika.umm.myapplication.util.StringUtils;
+import com.informatika.umm.myapplication.util.Utils;
 
 import java.util.ArrayList;
 
@@ -37,9 +38,12 @@ import retrofit2.Response;
 public class MovieDetailActivity extends AppCompatActivity {
 
     public static final String EXTRA_MOVIE = "extra_movie";
-    TextView txtMovieTitle, txtMovieRelease, txtMovieScore, txtMovieRuntime, txtMovieOverview, txtMovieSimilar;
+    TextView txtMovieTitle, txtMovieRelease, txtMovieScore, txtMovieRuntime, txtMovieSimilar;
+    ReadMoreTextView txtMovieOverview;
     ImageView imgMovieBackdrop, imgMoviePoster;
     RatingBar ratingBar;
+    Movie movie;
+    boolean isChecked = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +66,27 @@ public class MovieDetailActivity extends AppCompatActivity {
             getSupportActionBar().setTitle("");
         }
 
+        movie = getIntent().getParcelableExtra(EXTRA_MOVIE);
+        if (movie != null) {
+            String urlPoster = BuildConfig.IMAGE_URL + movie.getMoviePoster();
+            String urlBackdrop = BuildConfig.IMAGE_URL + movie.getMovieBackdrop();
+
+            Glide.with(MovieDetailActivity.this)
+                    .load(urlPoster)
+                    .override(350, 550)
+                    .transform(new RoundedCorners(32))
+                    .placeholder(R.color.colorClouds)
+                    .into(imgMoviePoster);
+
+            Glide.with(MovieDetailActivity.this)
+                    .load(urlBackdrop)
+                    .override(1366, 768)
+                    .placeholder(R.drawable.ic_movie_roll_logo)
+                    .centerCrop()
+                    .error(R.color.colorClouds)
+                    .into(imgMovieBackdrop);
+        }
+
         loadDetailsMovie();
         loadSimilarMovie();
     }
@@ -76,7 +101,7 @@ public class MovieDetailActivity extends AppCompatActivity {
         rvGenre.setLayoutManager(layoutManager);
         rvGenre.setAdapter(genreAdapter);
 
-        final Movie movie = getIntent().getParcelableExtra(EXTRA_MOVIE);
+        movie = getIntent().getParcelableExtra(EXTRA_MOVIE);
         if (movie != null) {
             Service apiService = Client.getClient().create(Service.class);
             Call<Movie> call = apiService.getMovieDetails(movie.getMovieId(), BuildConfig.API_KEY, BuildConfig.LANGUAGE);
@@ -90,31 +115,13 @@ public class MovieDetailActivity extends AppCompatActivity {
                     if (response.isSuccessful()) {
                         Movie movies = response.body();
                         if (movies != null) {
-                            String urlPoster = BuildConfig.IMAGE_URL + movies.getMoviePoster();
-                            String urlBackdrop = BuildConfig.IMAGE_URL + movies.getMovieBackdrop();
-
-                            Glide.with(MovieDetailActivity.this)
-                                    .load(urlPoster)
-                                    .override(350, 550)
-                                    .transform(new RoundedCorners(32))
-                                    .placeholder(R.color.colorClouds)
-                                    .into(imgMoviePoster);
-
-                            Glide.with(MovieDetailActivity.this)
-                                    .load(urlBackdrop)
-                                    .override(1366, 768)
-                                    .placeholder(R.drawable.ic_movie_roll_logo)
-                                    .error(R.color.colorClouds)
-                                    .into(imgMovieBackdrop);
-
                             ratingBar.setRating(movies.getRating());
-
                             String txtMoviesScore = Double.toString(movies.getMovieScore());
                             txtMovieScore.setText(txtMoviesScore);
                             txtMovieTitle.setText(movies.getMovieTitle());
                             txtMovieRelease.setText(movies.getMovieRelease());
                             txtMovieOverview.setText(movies.getMovieOverview());
-                            txtMovieRuntime.setText(StringUtils.getRuntime(MovieDetailActivity.this, movies.getMovieRuntime()));
+                            txtMovieRuntime.setText(Utils.getRuntime(MovieDetailActivity.this, movies.getMovieRuntime()));
                             txtMovieSimilar.setText(movies.getMovieTitle());
                             genreAdapter.setGenre(genres);
                         }
@@ -128,7 +135,6 @@ public class MovieDetailActivity extends AppCompatActivity {
             });
         }
     }
-
     private void loadSimilarMovie() {
         ArrayList<Movie> movieList = new ArrayList<>();
         final MovieCardAdapter cardAdapter = new MovieCardAdapter(getApplicationContext(), movieList);
@@ -138,7 +144,7 @@ public class MovieDetailActivity extends AppCompatActivity {
         rvSimilarMovies.setLayoutManager(layoutManager);
         rvSimilarMovies.setAdapter(cardAdapter);
 
-        Movie movie = getIntent().getParcelableExtra(EXTRA_MOVIE);
+        movie = getIntent().getParcelableExtra(EXTRA_MOVIE);
         if (movie != null) {
             Service apiService = Client.getClient().create(Service.class);
             final Call<MovieResponse> call = apiService.getSimilarMovies(movie.getMovieId(), BuildConfig.API_KEY, BuildConfig.LANGUAGE);
@@ -161,6 +167,12 @@ public class MovieDetailActivity extends AppCompatActivity {
             });
         }
     }
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        MenuItem checkable = menu.findItem(R.id.btn_favorite);
+        checkable.setChecked(isChecked);
+        return true;
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -171,10 +183,22 @@ public class MovieDetailActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {
-            finish();
-        } else if (item.getItemId() == R.id.btn_favorite) {
-            Toast.makeText(getApplicationContext(), "Add to Favorite", Toast.LENGTH_SHORT).show();
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                break;
+            case R.id.btn_favorite:
+                isChecked = !item.isChecked();
+                if (item.isChecked()) {
+                    item.setChecked(isChecked);
+                    item.setIcon(R.drawable.ic_favorite_black_24dp);
+                    Toast.makeText(getApplicationContext(), R.string.str_add_to_favorite, Toast.LENGTH_SHORT).show();
+                } else {
+                    item.setChecked(isChecked);
+                    item.setIcon(R.drawable.ic_favorite_border_black_24dp);
+                    Toast.makeText(getApplicationContext(), R.string.str_remove_from_favorite, Toast.LENGTH_SHORT).show();
+                }
+                break;
         }
         return super.onOptionsItemSelected(item);
     }

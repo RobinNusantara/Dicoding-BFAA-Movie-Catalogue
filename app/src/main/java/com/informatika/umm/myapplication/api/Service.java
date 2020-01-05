@@ -14,11 +14,9 @@ import retrofit2.http.Query;
  * 10:52 Sat
  **/
 public interface Service {
-    @GET("movie/popular")
-    Call<MovieResponse> getPopularMovies(@Query("api_key") String apiKey);
 
-    @GET("movie/now_playing")
-    Call<MovieResponse> getNowPlayingMovies(@Query("api_key") String apiKey);
+    @GET("discover/movie")
+    Call<MovieResponse> getDiscoverMovies(@Query("api_key") String apiKey);
 
     @GET("movie/{movie_id}/similar")
     Call<MovieResponse> getSimilarMovies(

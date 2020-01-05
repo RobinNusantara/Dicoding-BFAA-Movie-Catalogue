@@ -12,7 +12,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  **/
 public class Client {
 
-    private static final String url = BuildConfig.MOVIE_URL;
+    private static final String url = BuildConfig.TMDB_URL;
     private static Retrofit retrofit = null;
 
     public static Retrofit getClient() {

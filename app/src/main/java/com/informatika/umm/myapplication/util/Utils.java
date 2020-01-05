@@ -9,7 +9,7 @@ import com.informatika.umm.myapplication.R;
  * created by : Robin Nusantara on 12/31/2019 12 2019
  * 13:40 Tue
  **/
-public class StringUtils {
+public class Utils {
 
     public static String getRuntime(Context context, int time) {
         String hours = String.valueOf(time / 60);

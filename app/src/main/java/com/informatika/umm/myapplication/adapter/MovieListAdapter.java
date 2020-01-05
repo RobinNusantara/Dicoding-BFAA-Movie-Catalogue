@@ -35,6 +35,7 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
     public MovieListAdapter(Context context, ArrayList<Movie> movieList) {
         this.context = context;
         this.movieList = movieList;
+
     }
 
     public void setMovie(ArrayList<Movie> movieList) {
@@ -64,9 +65,7 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
 
         holder.txtMovieTitle.setText(movie.getMovieTitle());
         holder.txtMovieRelease.setText(movie.getMovieRelease());
-
         holder.ratingBar.setRating(movie.getRating());
-
         String moviesScore = Double.toString(movie.getMovieScore());
         holder.txtMovieScore.setText(moviesScore);
 
