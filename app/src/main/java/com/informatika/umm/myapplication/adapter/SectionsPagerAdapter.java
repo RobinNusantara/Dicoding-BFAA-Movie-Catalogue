@@ -10,7 +10,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.informatika.umm.myapplication.R;
-import com.informatika.umm.myapplication.ui.favorite.FavMovieFragment;
+import com.informatika.umm.myapplication.ui.favorite.FavoriteFragmentMovie;
 import com.informatika.umm.myapplication.ui.favorite.FavTvShowFragment;
 
 /**
@@ -39,7 +39,7 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
         Fragment fragment = null;
         switch (position) {
             case 0:
-                fragment = new FavMovieFragment();
+                fragment = new FavoriteFragmentMovie();
                 break;
             case 1:
                 fragment = new FavTvShowFragment();

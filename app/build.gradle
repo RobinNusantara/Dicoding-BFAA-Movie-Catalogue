@@ -52,5 +52,7 @@ dependencies {
     implementation 'com.loopj.android:android-async-http:1.4.10'
     implementation 'com.facebook.shimmer:shimmer:0.4.0@aar'
     implementation 'com.google.code.gson:gson:2.8.5'
+    implementation 'androidx.room:room-runtime:2.2.3'
+    annotationProcessor 'androidx.room:room-compiler:2.2.3'
 
 }

@@ -15,7 +15,7 @@ import com.informatika.umm.myapplication.BuildConfig;
 import com.informatika.umm.myapplication.R;
 import com.informatika.umm.myapplication.model.Movie;
 
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * MADE_Submission_2
@@ -25,14 +25,14 @@ import java.util.ArrayList;
 public class MovieCardAdapter extends RecyclerView.Adapter<MovieCardAdapter.CardViewHolder> {
 
     private Context context;
-    private ArrayList<Movie> movieList;
+    private List<Movie> movieList;
 
-    public MovieCardAdapter(Context context, ArrayList<Movie> movieList) {
+    public MovieCardAdapter(Context context,List<Movie> movieList) {
         this.context = context;
         this.movieList = movieList;
     }
 
-    public void setMovie(ArrayList<Movie> movieList){
+    public void setMovie(List<Movie> movieList) {
         this.movieList.clear();
         this.movieList.addAll(movieList);
         notifyDataSetChanged();
@@ -53,6 +53,8 @@ public class MovieCardAdapter extends RecyclerView.Adapter<MovieCardAdapter.Card
         Glide.with(holder.itemView.getContext())
                 .load(urlPoster)
                 .apply(new RequestOptions().override(350, 550))
+                .placeholder(R.drawable.glide_placeholder)
+                .error(R.drawable.glide_error)
                 .into(holder.imgMoviePoster);
 
         holder.getAdapterPosition();

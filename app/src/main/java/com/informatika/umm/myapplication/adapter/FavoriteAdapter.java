@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -20,43 +19,46 @@ import com.informatika.umm.myapplication.R;
 import com.informatika.umm.myapplication.model.Movie;
 import com.informatika.umm.myapplication.ui.movies.MovieDetailActivity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * MADE_Submission_2
- * created by : Robin Nusantara on 11/29/2019 11 2019
- * 22:21 Fri
+ * created by : Robin Nusantara on 1/11/2020 01 2020
+ * 13:14 Sat
  **/
-public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.MoviesViewHolder> {
+public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.ViewHolder> {
 
     private Context context;
-    private List<Movie> movieList;
+    private List<Movie> movieList = new ArrayList<>();
 
-    public MovieListAdapter(Context context, List<Movie> movieList) {
+    public FavoriteAdapter(Context context) {
         this.context = context;
-        this.movieList = movieList;
     }
 
-    public void setMovie(List<Movie> movieList) {
-        this.movieList.clear();
+    public void setFavorite(List<Movie> movieList) {
+        this.movieList = new ArrayList<>();
         this.movieList.addAll(movieList);
         notifyDataSetChanged();
     }
 
+    public ArrayList<Movie> getFavorite() {
+        return (ArrayList<Movie>) movieList;
+    }
+
     @NonNull
     @Override
-    public MoviesViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_row_movies, viewGroup, false);
-        return new MoviesViewHolder(view);
+    public FavoriteAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_row_favorite, viewGroup, false);
+        return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final MoviesViewHolder holder, int position) {
-
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         final Movie movie = movieList.get(position);
-        String urlPoster = BuildConfig.IMAGE_URL + movie.getMoviePoster();
+        String url = BuildConfig.IMAGE_URL + movie.getMoviePoster();
         Glide.with(holder.itemView.getContext())
-                .load(urlPoster)
+                .load(url)
                 .apply(new RequestOptions().override(350, 550))
                 .placeholder(R.drawable.glide_placeholder)
                 .error(R.drawable.glide_error)
@@ -65,9 +67,8 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
 
         holder.txtMovieTitle.setText(movie.getMovieTitle());
         holder.txtMovieRelease.setText(movie.getMovieRelease());
-        holder.ratingBar.setRating(movie.getRating());
-        String moviesScore = Double.toString(movie.getMovieScore());
-        holder.txtMovieScore.setText(moviesScore);
+        holder.txtMovieScore.setText(String.valueOf(movie.getMovieScore()));
+        holder.txtMovieOverview.setText(movie.getMovieOverview());
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,19 +88,17 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
         return movieList.size();
     }
 
-    class MoviesViewHolder extends RecyclerView.ViewHolder {
-
+    class ViewHolder extends RecyclerView.ViewHolder {
         ImageView imgMoviePoster;
-        TextView txtMovieTitle, txtMovieScore, txtMovieRelease;
-        RatingBar ratingBar;
+        TextView txtMovieTitle, txtMovieRelease, txtMovieScore, txtMovieOverview;
 
-        MoviesViewHolder(@NonNull View itemView) {
+        ViewHolder(@NonNull View itemView) {
             super(itemView);
-            ratingBar = itemView.findViewById(R.id.rate_movie);
             imgMoviePoster = itemView.findViewById(R.id.img_movie_poster);
             txtMovieTitle = itemView.findViewById(R.id.txt_movie_title);
             txtMovieRelease = itemView.findViewById(R.id.txt_movie_release_date);
             txtMovieScore = itemView.findViewById(R.id.txt_movie_score);
+            txtMovieOverview = itemView.findViewById(R.id.txt_movie_overview);
         }
     }
 }

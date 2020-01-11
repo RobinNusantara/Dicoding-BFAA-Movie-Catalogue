@@ -11,10 +11,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+
         <activity
             android:name=".ui.tvshows.TvShowsDetailActivity"
             android:label="@string/title_activity_detail_tv_shows"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".ui.profile.ProfileActivity" />
         <activity
             android:name=".SplashScreenActivity"

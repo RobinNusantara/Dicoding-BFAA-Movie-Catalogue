@@ -1,36 +1,30 @@
 package com.informatika.umm.myapplication.ui.movies;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.facebook.shimmer.ShimmerFrameLayout;
-import com.informatika.umm.myapplication.BuildConfig;
 import com.informatika.umm.myapplication.R;
 import com.informatika.umm.myapplication.adapter.MovieListAdapter;
-import com.informatika.umm.myapplication.api.Client;
-import com.informatika.umm.myapplication.api.Service;
 import com.informatika.umm.myapplication.model.Movie;
-import com.informatika.umm.myapplication.model.MovieResponse;
 
 import java.util.ArrayList;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import java.util.List;
 
 public class MovieFragment extends Fragment {
 
     private ShimmerFrameLayout shimmerFrameLayout;
+    private MovieListAdapter listAdapter;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -42,45 +36,28 @@ public class MovieFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         shimmerFrameLayout = view.findViewById(R.id.shimmer_container);
         shimmerFrameLayout.startShimmer();
-        loadDiscoverMovies();
-    }
 
-    private void loadDiscoverMovies() {
-
-        ArrayList<Movie> movieList = new ArrayList<>();
-        final MovieListAdapter listAdapter = new MovieListAdapter(getContext(), movieList);
+        List<Movie> movieList = new ArrayList<>();
+        listAdapter = new MovieListAdapter(getContext(), movieList);
         if (getActivity() != null) {
             RecyclerView rvNowPlayingMovies = getActivity().findViewById(R.id.rv_movies_now_playing);
             rvNowPlayingMovies.setHasFixedSize(true);
             LinearLayoutManager layoutNowPlayingMovies = new LinearLayoutManager(getContext());
             rvNowPlayingMovies.setLayoutManager(layoutNowPlayingMovies);
             rvNowPlayingMovies.setAdapter(listAdapter);
-
         }
 
-        Service apiService = Client.getClient().create(Service.class);
-        Call<MovieResponse> call = apiService.getDiscoverMovies(BuildConfig.API_KEY);
-        call.enqueue(new Callback<MovieResponse>() {
-            @Override
-            public void onResponse(@NonNull Call<MovieResponse> call, @NonNull Response<MovieResponse> response) {
-                ArrayList<Movie> movies = null;
-                if (response.body() != null) {
-                    movies = response.body().getResults();
-                }
-                if (response.isSuccessful()) {
-                    if (getActivity() != null) {
-                        shimmerFrameLayout.stopShimmer();
-                        shimmerFrameLayout.setVisibility(View.GONE);
-                        listAdapter.setMovie(movies);
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(@NonNull Call<MovieResponse> call, @NonNull Throwable t) {
-                Log.d(t.getMessage(), "Error");
-                Toast.makeText(getContext(), "Error While Load Data Please Check Your Internet Connection", Toast.LENGTH_SHORT).show();
-            }
-        });
+        MovieViewModel viewModel = new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory()).get(MovieViewModel.class);
+        viewModel.loadDiscoverMovie();
+        viewModel.getMovie().observe(getViewLifecycleOwner(), getMovie);
     }
+
+    private Observer<List<Movie>> getMovie = new Observer<List<Movie>>() {
+        @Override
+        public void onChanged(List<Movie> movie) {
+            shimmerFrameLayout.stopShimmer();
+            shimmerFrameLayout.setVisibility(View.GONE);
+            listAdapter.setMovie(movie);
+        }
+    };
 }

@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.informatika.umm.myapplication.R;
 import com.informatika.umm.myapplication.model.Genre;
 
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * MADE_Submission_2
@@ -22,14 +22,14 @@ import java.util.ArrayList;
 public class GenreAdapter extends RecyclerView.Adapter<GenreAdapter.GenresViewHolder> {
 
     private Context context;
-    private ArrayList<Genre> genres;
+    private List<Genre> genres;
 
-    public GenreAdapter(Context context, ArrayList<Genre> genres) {
+    public GenreAdapter(Context context, List<Genre> genres) {
         this.context = context;
         this.genres = genres;
     }
 
-    public void setGenre(ArrayList<Genre> genres) {
+    public void setGenre(List<Genre> genres) {
         this.genres.clear();
         this.genres.addAll(genres);
         notifyDataSetChanged();

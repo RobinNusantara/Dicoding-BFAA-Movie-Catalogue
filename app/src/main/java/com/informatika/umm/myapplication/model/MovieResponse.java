@@ -14,13 +14,13 @@ import java.util.ArrayList;
  **/
 public class MovieResponse implements Parcelable {
 
-   @SerializedName("page")
+    @SerializedName("page")
     private int page;
-   @SerializedName("results")
+    @SerializedName("results")
     private ArrayList<Movie> results;
-   @SerializedName("total_results")
+    @SerializedName("total_results")
     private int totalResult;
-   @SerializedName("total_pages")
+    @SerializedName("total_pages")
     private int totalPages;
 
     public ArrayList<Movie> getResults() {

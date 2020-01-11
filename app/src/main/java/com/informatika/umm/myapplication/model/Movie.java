@@ -6,6 +6,7 @@ import android.os.Parcelable;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * MADE_Submission_2
@@ -23,23 +24,26 @@ public class Movie implements Parcelable {
     @SerializedName("poster_path")
     private String moviePoster;
 
-    @SerializedName("title")
+    @SerializedName(value = "title", alternate = "name")
     private String movieTitle;
 
     @SerializedName("vote_average")
     private Double movieScore;
 
-    @SerializedName("release_date")
+    @SerializedName(value = "release_date", alternate = "first_air_date")
     private String movieRelease;
 
     @SerializedName("overview")
     private String movieOverview;
 
     @SerializedName("genres")
-    private ArrayList<Genre> movieGenre;
+    private List<Genre> movieGenre;
 
     @SerializedName("runtime")
     private int movieRuntime;
+
+    @SerializedName("status")
+    private String movieStatus;
 
     public int getMovieId() {
         return movieId;
@@ -69,12 +73,56 @@ public class Movie implements Parcelable {
         return movieOverview;
     }
 
-    public ArrayList<Genre> getMovieGenre() {
+    public List<Genre> getMovieGenre() {
         return movieGenre;
     }
 
     public int getMovieRuntime() {
         return movieRuntime;
+    }
+
+    public String getMovieStatus() {
+        return movieStatus;
+    }
+
+    public void setMovieId(int movieId) {
+        this.movieId = movieId;
+    }
+
+    public void setMovieBackdrop(String movieBackdrop) {
+        this.movieBackdrop = movieBackdrop;
+    }
+
+    public void setMoviePoster(String moviePoster) {
+        this.moviePoster = moviePoster;
+    }
+
+    public void setMovieTitle(String movieTitle) {
+        this.movieTitle = movieTitle;
+    }
+
+    public void setMovieScore(Double movieScore) {
+        this.movieScore = movieScore;
+    }
+
+    public void setMovieRelease(String movieRelease) {
+        this.movieRelease = movieRelease;
+    }
+
+    public void setMovieOverview(String movieOverview) {
+        this.movieOverview = movieOverview;
+    }
+
+    public void setMovieGenre(List<Genre> movieGenre) {
+        this.movieGenre = movieGenre;
+    }
+
+    public void setMovieRuntime(int movieRuntime) {
+        this.movieRuntime = movieRuntime;
+    }
+
+    public void setMovieStatus(String movieStatus) {
+        this.movieStatus = movieStatus;
     }
 
     public Float getRating() {
@@ -86,10 +134,6 @@ public class Movie implements Parcelable {
             divideRating = 0;
         }
         return divideRating;
-    }
-
-    public Movie() {
-
     }
 
     @Override
@@ -108,19 +152,25 @@ public class Movie implements Parcelable {
         dest.writeString(this.movieOverview);
         dest.writeList(this.movieGenre);
         dest.writeInt(this.movieRuntime);
+        dest.writeString(this.movieStatus);
+    }
+
+    public Movie(){
+
     }
 
     protected Movie(Parcel in) {
-        this.movieId = in.readInt();
-        this.movieBackdrop = in.readString();
-        this.moviePoster = in.readString();
-        this.movieTitle = in.readString();
-        this.movieScore = (Double) in.readValue(Double.class.getClassLoader());
-        this.movieRelease = in.readString();
-        this.movieOverview = in.readString();
-        this.movieGenre = new ArrayList<>();
+        this.setMovieId(in.readInt());
+        this.setMovieBackdrop(in.readString());
+        this.setMoviePoster(in.readString());
+        this.setMovieTitle(in.readString());
+        this.setMovieScore((Double) in.readValue(Double.class.getClassLoader()));
+        this.setMovieRelease(in.readString());
+        this.setMovieOverview(in.readString());
+        this.setMovieGenre(new ArrayList<Genre>());
         in.readList(this.movieGenre, Genre.class.getClassLoader());
-        this.movieRuntime = in.readInt();
+        this.setMovieRuntime(in.readInt());
+        this.setMovieStatus(in.readString());
     }
 
     public static final Creator<Movie> CREATOR = new Creator<Movie>() {
