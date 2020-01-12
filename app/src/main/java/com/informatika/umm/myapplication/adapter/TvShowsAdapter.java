@@ -16,11 +16,13 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.informatika.umm.myapplication.BuildConfig;
-import com.informatika.umm.myapplication.ui.tvshows.TvShowsDetailActivity;
+import com.informatika.umm.myapplication.model.Movie;
+import com.informatika.umm.myapplication.ui.activity.detail.MovieDetailActivity;
 import com.informatika.umm.myapplication.R;
-import com.informatika.umm.myapplication.model.TvShows;
+import com.informatika.umm.myapplication.ui.activity.detail.TvShowsDetailActivity;
+import com.informatika.umm.myapplication.util.FormatDate;
 
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * MADE_Submission_2
@@ -30,70 +32,51 @@ import java.util.ArrayList;
 public class TvShowsAdapter extends RecyclerView.Adapter<TvShowsAdapter.TvShowsViewHolder> {
 
     private Context context;
-    private ArrayList<TvShows> listTvShows = new ArrayList<>();
+    private List<Movie> movieList;
 
-    public TvShowsAdapter(Context context) {
+    public TvShowsAdapter(Context context, List<Movie> movieList) {
         this.context = context;
+        this.movieList = movieList;
     }
 
-    public void setTvShows(ArrayList<TvShows> listTvShows) {
-        this.listTvShows.clear();
-        this.listTvShows.addAll(listTvShows);
+    public void setMovie(List<Movie> movieList) {
+        this.movieList.clear();
+        this.movieList.addAll(movieList);
         notifyDataSetChanged();
     }
 
     @NonNull
     @Override
     public TvShowsViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_row_tvshows, viewGroup, false);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_row_movies, viewGroup, false);
         return new TvShowsViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull final TvShowsViewHolder holder, int position) {
 
-        final TvShows tvShows = listTvShows.get(position);
-        String urlPoster = BuildConfig.IMAGE_URL + tvShows.getTvShowsPoster();
+        final Movie movie = movieList.get(position);
+        String urlPoster = BuildConfig.IMAGE_URL + movie.getMoviePoster();
         Glide.with(holder.itemView.getContext())
                 .load(urlPoster)
                 .apply(new RequestOptions().override(350, 550))
+                .placeholder(R.drawable.glide_placeholder)
+                .error(R.drawable.glide_error)
                 .transform(new RoundedCorners(32))
-                .placeholder(R.drawable.ic_image_placeholder)
-                .error(R.drawable.ic_image_error)
-                .into(holder.imgTvShowsPoster);
+                .into(holder.imgMoviePoster);
 
-        holder.txtTvShowsTitle.setText(tvShows.getTvShowsTitles());
-        holder.txtTvShowsRelease.setText(tvShows.getTvShowsRelease());
-
-        if (tvShows.getTvShowsScore() >= 1.0 && tvShows.getTvShowsScore() < 2.0) {
-            holder.ratingBar.setRating(1.0f);
-        } else if (tvShows.getTvShowsScore() >= 2.0 && tvShows.getTvShowsScore() < 5.0) {
-            holder.ratingBar.setRating(2.0f);
-        } else if (tvShows.getTvShowsScore() >= 5.0 && tvShows.getTvShowsScore() < 6.0) {
-            holder.ratingBar.setRating(2.5f);
-        } else if (tvShows.getTvShowsScore() >= 6.0 && tvShows.getTvShowsScore() < 7.0) {
-            holder.ratingBar.setRating(3.0f);
-        } else if (tvShows.getTvShowsScore() >= 7.0 && tvShows.getTvShowsScore() < 8.0) {
-            holder.ratingBar.setRating(3.5f);
-        } else if (tvShows.getTvShowsScore() >= 8.0 && tvShows.getTvShowsScore() < 9.0) {
-            holder.ratingBar.setRating(4.0f);
-        } else if (tvShows.getTvShowsScore() >= 9.0) {
-            holder.ratingBar.setRating(4.5f);
-        } else if (tvShows.getTvShowsScore() >= 9.5) {
-            holder.ratingBar.setRating(5.0f);
-        } else {
-            holder.ratingBar.setRating(0);
-        }
-
-        String tvShowsScore = Double.toString(tvShows.getTvShowsScore());
-        holder.txtTvShowsScore.setText(tvShowsScore);
+        holder.txtMovieTitle.setText(movie.getMovieTitle());
+        holder.txtMovieRelease.setText(FormatDate.getFormatReleaseDate(movie.getMovieRelease()));
+        holder.ratingBar.setRating(movie.getRating());
+        String moviesScore = Double.toString(movie.getMovieScore());
+        holder.txtMovieScore.setText(moviesScore);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent;
                 intent = new Intent(context, TvShowsDetailActivity.class);
-                intent.putExtra(TvShowsDetailActivity.EXTRA_TVSHOWS, tvShows);
+                intent.putExtra(TvShowsDetailActivity.EXTRA_MOVIE, movie);
                 context.startActivity(intent);
             }
         });
@@ -103,22 +86,22 @@ public class TvShowsAdapter extends RecyclerView.Adapter<TvShowsAdapter.TvShowsV
 
     @Override
     public int getItemCount() {
-        return listTvShows.size();
+        return movieList.size();
     }
 
     class TvShowsViewHolder extends RecyclerView.ViewHolder {
 
-        ImageView imgTvShowsPoster;
-        TextView txtTvShowsTitle, txtTvShowsScore, txtTvShowsRelease;
+        ImageView imgMoviePoster;
+        TextView txtMovieTitle, txtMovieScore, txtMovieRelease;
         RatingBar ratingBar;
 
         TvShowsViewHolder(@NonNull View itemView) {
             super(itemView);
-            ratingBar = itemView.findViewById(R.id.rate_tvshows);
-            imgTvShowsPoster = itemView.findViewById(R.id.img_tv_shows_poster);
-            txtTvShowsTitle = itemView.findViewById(R.id.txt_tv_shows_title);
-            txtTvShowsRelease = itemView.findViewById(R.id.txt_tv_shows_release_date);
-            txtTvShowsScore = itemView.findViewById(R.id.txt_tv_shows_score);
+            ratingBar = itemView.findViewById(R.id.rate_movie);
+            imgMoviePoster = itemView.findViewById(R.id.img_movie_poster);
+            txtMovieTitle = itemView.findViewById(R.id.txt_movie_title);
+            txtMovieRelease = itemView.findViewById(R.id.txt_movie_release_date);
+            txtMovieScore = itemView.findViewById(R.id.txt_movie_score);
         }
     }
 }

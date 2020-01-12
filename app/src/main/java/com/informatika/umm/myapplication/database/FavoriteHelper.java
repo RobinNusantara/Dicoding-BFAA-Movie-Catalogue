@@ -31,7 +31,7 @@ public class FavoriteHelper {
     private static FavoriteHelper INSTANCE;
     private static SQLiteDatabase database;
 
-    public FavoriteHelper(Context context) {
+    private FavoriteHelper(Context context) {
         databaseHelper = new DatabaseHelper(context);
     }
 

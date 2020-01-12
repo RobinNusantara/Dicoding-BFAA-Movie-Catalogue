@@ -1,4 +1,4 @@
-package com.informatika.umm.myapplication.ui.movies;
+package com.informatika.umm.myapplication.ui.activity.detail;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -28,7 +28,9 @@ import com.informatika.umm.myapplication.api.Service;
 import com.informatika.umm.myapplication.database.FavoriteHelper;
 import com.informatika.umm.myapplication.model.Genre;
 import com.informatika.umm.myapplication.model.Movie;
-import com.informatika.umm.myapplication.util.Utils;
+import com.informatika.umm.myapplication.ui.fragment.tvshows.TvShowsViewModel;
+import com.informatika.umm.myapplication.util.FormatDate;
+import com.informatika.umm.myapplication.util.FormatRuntime;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,44 +39,26 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MovieDetailActivity extends AppCompatActivity {
+public class TvShowsDetailActivity extends AppCompatActivity {
 
     public static final String EXTRA_MOVIE = "extra_movie";
     TextView txtMovieTitle, txtMovieRelease, txtMovieScore, txtMovieRuntime, txtMovieStatus, txtMovieOverview, txtMovieSimilar;
     ImageView imgMovieBackdrop, imgMoviePoster;
     RatingBar ratingBar;
+    GenreAdapter genreAdapter;
+    RecyclerView rvGenreMovies, rvSimilarMovies;
     Movie movies;
     MovieCardAdapter cardAdapter;
-    GenreAdapter genreAdapter;
     FavoriteHelper helper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_movies);
-        ratingBar = findViewById(R.id.rate_movie);
-        imgMoviePoster = findViewById(R.id.img_movie_poster);
-        imgMovieBackdrop = findViewById(R.id.img_movie_backdrop);
-        txtMovieTitle = findViewById(R.id.txt_movie_title);
-        txtMovieRelease = findViewById(R.id.txt_movie_release_date);
-        txtMovieScore = findViewById(R.id.txt_movie_score);
-        txtMovieRuntime = findViewById(R.id.txt_movie_runtime);
-        txtMovieOverview = findViewById(R.id.txt_movie_overview);
-        txtMovieSimilar = findViewById(R.id.txt_movie_similar);
-        txtMovieStatus = findViewById(R.id.txt_movie_status);
-        RecyclerView rvSimilarMovies = findViewById(R.id.rv_movies_similar);
-        RecyclerView rvGenreMovies = findViewById(R.id.rv_genre);
+        bindView();
+        setupToolbar();
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setTitle("");
-        }
-
-        List<Movie> movieList = new ArrayList<>();
         movies = getIntent().getParcelableExtra(EXTRA_MOVIE);
-
         if (movies != null) {
             loadMovieDetail(movies.getMovieId());
         }
@@ -82,6 +66,7 @@ public class MovieDetailActivity extends AppCompatActivity {
         helper = FavoriteHelper.getInstance(getApplicationContext());
         helper.open();
 
+        List<Movie> movieList = new ArrayList<>();
         cardAdapter = new MovieCardAdapter(getApplicationContext(), movieList);
         rvSimilarMovies.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false);
@@ -95,10 +80,9 @@ public class MovieDetailActivity extends AppCompatActivity {
         rvGenreMovies.setLayoutManager(manager);
         rvGenreMovies.setAdapter(genreAdapter);
 
-        MovieViewModel viewModel = new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory()).get(MovieViewModel.class);
+        TvShowsViewModel viewModel = new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory()).get(TvShowsViewModel.class);
         viewModel.loadSimilarMovie(movies.getMovieId());
         viewModel.getMovie().observe(this, getMovie);
-
     }
 
     private Observer<List<Movie>> getMovie = new Observer<List<Movie>>() {
@@ -108,9 +92,33 @@ public class MovieDetailActivity extends AppCompatActivity {
         }
     };
 
+    private void bindView() {
+        ratingBar = findViewById(R.id.rate_movie);
+        imgMoviePoster = findViewById(R.id.img_movie_poster);
+        imgMovieBackdrop = findViewById(R.id.img_movie_backdrop);
+        txtMovieTitle = findViewById(R.id.txt_movie_title);
+        txtMovieRelease = findViewById(R.id.txt_movie_release_date);
+        txtMovieScore = findViewById(R.id.txt_movie_score);
+        txtMovieRuntime = findViewById(R.id.txt_movie_runtime);
+        txtMovieOverview = findViewById(R.id.txt_movie_overview);
+        txtMovieSimilar = findViewById(R.id.txt_movie_similar);
+        txtMovieStatus = findViewById(R.id.txt_movie_status);
+        rvSimilarMovies = findViewById(R.id.rv_movies_similar);
+        rvGenreMovies = findViewById(R.id.rv_genre);
+    }
+
+    private void setupToolbar() {
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setTitle("");
+        }
+    }
+
     private void loadMovieDetail(int id) {
         Service apiService = Client.getClient().create(Service.class);
-        Call<Movie> call = apiService.getMovieDetails(id, BuildConfig.API_KEY, BuildConfig.LANGUAGE);
+        Call<Movie> call = apiService.getMovieDetails("tv", id, BuildConfig.API_KEY, BuildConfig.LANGUAGE);
         call.enqueue(new Callback<Movie>() {
             @Override
             public void onResponse(@NonNull Call<Movie> call, @NonNull Response<Movie> response) {
@@ -124,7 +132,7 @@ public class MovieDetailActivity extends AppCompatActivity {
                         String urlPoster = BuildConfig.IMAGE_URL + movies.getMoviePoster();
                         String urlBackdrop = BuildConfig.IMAGE_URL + movies.getMovieBackdrop();
 
-                        Glide.with(MovieDetailActivity.this)
+                        Glide.with(TvShowsDetailActivity.this)
                                 .load(urlPoster)
                                 .override(350, 550)
                                 .transform(new RoundedCorners(32))
@@ -132,7 +140,7 @@ public class MovieDetailActivity extends AppCompatActivity {
                                 .error(R.drawable.glide_error)
                                 .into(imgMoviePoster);
 
-                        Glide.with(MovieDetailActivity.this)
+                        Glide.with(TvShowsDetailActivity.this)
                                 .load(urlBackdrop)
                                 .override(1366, 768)
                                 .placeholder(R.drawable.glide_placeholder)
@@ -140,12 +148,12 @@ public class MovieDetailActivity extends AppCompatActivity {
                                 .into(imgMovieBackdrop);
 
                         ratingBar.setRating(movies.getRating());
-                        String txtMoviesScore = Double.toString(movies.getMovieScore());
-                        txtMovieScore.setText(txtMoviesScore);
+                        txtMovieScore.setText(String.valueOf(movies.getMovieScore()));
                         txtMovieTitle.setText(movies.getMovieTitle());
-                        txtMovieRelease.setText(movies.getMovieRelease());
+                        txtMovieRelease.setText(FormatDate.getFormatReleaseDate(movies.getMovieRelease()));
                         txtMovieOverview.setText(movies.getMovieOverview());
-                        txtMovieRuntime.setText(Utils.getRuntime(MovieDetailActivity.this, movies.getMovieRuntime()));
+                        int episdeRunTime = (!movies.getEpisodeRunTime().isEmpty()) ? movies.getEpisodeRunTime().get(0) : 0;
+                        txtMovieRuntime.setText(FormatRuntime.getFormatRuntimeTv(TvShowsDetailActivity.this, episdeRunTime));
                         txtMovieSimilar.setText(movies.getMovieTitle());
                         txtMovieStatus.setText(movies.getMovieStatus());
                         genreAdapter.setGenre(genres);

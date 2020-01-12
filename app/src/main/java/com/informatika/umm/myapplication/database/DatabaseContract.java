@@ -7,11 +7,11 @@ import android.provider.BaseColumns;
  * created by : Robin Nusantara on 1/9/2020 01 2020
  * 15:35 Thu
  **/
-public class DatabaseContract {
+class DatabaseContract {
 
-    public static String TABLE_MOVIE = "movie";
+    static String TABLE_MOVIE = "movie_table";
 
-    public static final class MovieColumns implements BaseColumns {
+    static final class MovieColumns implements BaseColumns {
         static String TITLE = "title";
         static String RELEASE = "release";
         static String RATING = "rating";

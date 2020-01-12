@@ -15,17 +15,19 @@ import retrofit2.http.Query;
  **/
 public interface Service {
 
-    @GET("discover/movie")
-    Call<MovieResponse> getDiscoverMovies(@Query("api_key") String apiKey);
+    @GET("discover/{type}")
+    Call<MovieResponse> getDiscoverMovies(@Path("type") String type, @Query("api_key") String apiKey);
 
-    @GET("movie/{movie_id}/similar")
+    @GET("{type}/{movie_id}/similar")
     Call<MovieResponse> getSimilarMovies(
+            @Path("type") String type,
             @Path("movie_id") int id,
             @Query("api_key") String apiKey,
             @Query("language") String language);
 
-    @GET("movie/{movie_id}")
+    @GET("{type}/{movie_id}")
     Call<Movie> getMovieDetails(
+            @Path("type") String type,
             @Path("movie_id") int id,
             @Query("api_key") String apiKey,
             @Query("language") String language);

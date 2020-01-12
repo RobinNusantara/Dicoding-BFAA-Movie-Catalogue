@@ -1,4 +1,4 @@
-package com.informatika.umm.myapplication.ui.movies;
+package com.informatika.umm.myapplication.ui.fragment.tvshows;
 
 import android.util.Log;
 
@@ -22,16 +22,16 @@ import retrofit2.Response;
 
 /**
  * MADE_Submission_2
- * created by : Robin Nusantara on 1/9/2020 01 2020
- * 16:15 Thu
+ * created by : Robin Nusantara on 12/5/2019 12 2019
+ * 13:57 Thu
  **/
-public class MovieViewModel extends ViewModel {
+public class TvShowsViewModel extends ViewModel {
 
     private MutableLiveData<List<Movie>> listMovie = new MutableLiveData<>();
 
     void loadDiscoverMovie() {
-        Service apiService = Client.getClient().create(Service.class);
-        Call<MovieResponse> call = apiService.getDiscoverMovies(BuildConfig.API_KEY);
+        Service apiServie = Client.getClient().create(Service.class);
+        Call<MovieResponse> call = apiServie.getDiscoverMovies("tv", BuildConfig.API_KEY);
         call.enqueue(new Callback<MovieResponse>() {
             @Override
             public void onResponse(@NonNull Call<MovieResponse> call, @NonNull Response<MovieResponse> response) {
@@ -49,9 +49,9 @@ public class MovieViewModel extends ViewModel {
         });
     }
 
-    void loadSimilarMovie(int id) {
+    public void loadSimilarMovie(int id) {
         Service apiService = Client.getClient().create(Service.class);
-        Call<MovieResponse> call = apiService.getSimilarMovies(id, BuildConfig.API_KEY, BuildConfig.LANGUAGE);
+        Call<MovieResponse> call = apiService.getSimilarMovies("tv",id, BuildConfig.API_KEY, BuildConfig.LANGUAGE);
         call.enqueue(new Callback<MovieResponse>() {
             @Override
             public void onResponse(@NonNull Call<MovieResponse> call, @NonNull Response<MovieResponse> response) {

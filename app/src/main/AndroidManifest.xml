@@ -13,24 +13,22 @@
         tools:ignore="GoogleAppIndexingWarning">
 
         <activity
-            android:name=".ui.tvshows.TvShowsDetailActivity"
+            android:name=".ui.activity.detail.TvShowsDetailActivity"
             android:label="@string/title_activity_detail_tv_shows"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".ui.profile.ProfileActivity" />
         <activity
-            android:name=".SplashScreenActivity"
+            android:name=".ui.activity.splash.SplashActivity"
             android:theme="@style/SplashScreenStyle">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.movies.MovieDetailActivity"
+            android:name=".ui.activity.detail.MovieDetailActivity"
             android:label="@string/title_activity_movie_detail"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".MainActivity" />
+        <activity android:name=".ui.activity.main.MainActivity" />
     </application>
 
 </manifest>

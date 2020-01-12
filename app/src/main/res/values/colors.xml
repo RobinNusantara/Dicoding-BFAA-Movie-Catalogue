@@ -5,7 +5,6 @@
     <color name="colorAccent">#273c75</color>
     <color name="colorDarkTransparency">#6F000000</color>
     <color name="colorCityLight">#f1f2f6</color>
-    <color name="colorClouds">#ecf0f1</color>
     <color name="colorSilver">#bdc3c7</color>
     <color name="colorNanohanachaGold">#e1b12c</color>
 </resources>

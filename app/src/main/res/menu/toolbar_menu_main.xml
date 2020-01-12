@@ -3,16 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/btn_account"
-        android:icon="@drawable/ic_account_circle_black_24dp"
-        android:title="@string/str_account"
-        app:showAsAction="ifRoom" />
-
-    <item
         android:id="@+id/btn_language"
         android:icon="@drawable/ic_language_black_24dp"
         android:title="@string/str_button_language"
         app:showAsAction="ifRoom" />
-
 
 </menu>

@@ -42,6 +42,9 @@ public class Movie implements Parcelable {
     @SerializedName("runtime")
     private int movieRuntime;
 
+    @SerializedName("episode_run_time")
+    private List<Integer> episodeRunTime;
+
     @SerializedName("status")
     private String movieStatus;
 
@@ -136,6 +139,14 @@ public class Movie implements Parcelable {
         return divideRating;
     }
 
+    public Movie() {
+
+    }
+
+    public List<Integer> getEpisodeRunTime() {
+        return episodeRunTime;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -152,25 +163,24 @@ public class Movie implements Parcelable {
         dest.writeString(this.movieOverview);
         dest.writeList(this.movieGenre);
         dest.writeInt(this.movieRuntime);
+        dest.writeList(this.episodeRunTime);
         dest.writeString(this.movieStatus);
     }
 
-    public Movie(){
-
-    }
-
     protected Movie(Parcel in) {
-        this.setMovieId(in.readInt());
-        this.setMovieBackdrop(in.readString());
-        this.setMoviePoster(in.readString());
-        this.setMovieTitle(in.readString());
-        this.setMovieScore((Double) in.readValue(Double.class.getClassLoader()));
-        this.setMovieRelease(in.readString());
-        this.setMovieOverview(in.readString());
-        this.setMovieGenre(new ArrayList<Genre>());
+        this.movieId = in.readInt();
+        this.movieBackdrop = in.readString();
+        this.moviePoster = in.readString();
+        this.movieTitle = in.readString();
+        this.movieScore = (Double) in.readValue(Double.class.getClassLoader());
+        this.movieRelease = in.readString();
+        this.movieOverview = in.readString();
+        this.movieGenre = new ArrayList<Genre>();
         in.readList(this.movieGenre, Genre.class.getClassLoader());
-        this.setMovieRuntime(in.readInt());
-        this.setMovieStatus(in.readString());
+        this.movieRuntime = in.readInt();
+        this.episodeRunTime = new ArrayList<Integer>();
+        in.readList(this.episodeRunTime, Integer.class.getClassLoader());
+        this.movieStatus = in.readString();
     }
 
     public static final Creator<Movie> CREATOR = new Creator<Movie>() {

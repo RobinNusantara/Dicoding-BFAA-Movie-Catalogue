@@ -17,7 +17,8 @@ import com.bumptech.glide.request.RequestOptions;
 import com.informatika.umm.myapplication.BuildConfig;
 import com.informatika.umm.myapplication.R;
 import com.informatika.umm.myapplication.model.Movie;
-import com.informatika.umm.myapplication.ui.movies.MovieDetailActivity;
+import com.informatika.umm.myapplication.ui.activity.detail.MovieDetailActivity;
+import com.informatika.umm.myapplication.util.FormatDate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -66,7 +67,7 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.ViewHo
                 .into(holder.imgMoviePoster);
 
         holder.txtMovieTitle.setText(movie.getMovieTitle());
-        holder.txtMovieRelease.setText(movie.getMovieRelease());
+        holder.txtMovieRelease.setText(FormatDate.getFormatReleaseDate(movie.getMovieRelease()));
         holder.txtMovieScore.setText(String.valueOf(movie.getMovieScore()));
         holder.txtMovieOverview.setText(movie.getMovieOverview());
 

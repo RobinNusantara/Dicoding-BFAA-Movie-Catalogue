@@ -1,4 +1,4 @@
-package com.informatika.umm.myapplication.ui.movies;
+package com.informatika.umm.myapplication.ui.fragment.movies;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -40,7 +40,7 @@ public class MovieFragment extends Fragment {
         List<Movie> movieList = new ArrayList<>();
         listAdapter = new MovieListAdapter(getContext(), movieList);
         if (getActivity() != null) {
-            RecyclerView rvNowPlayingMovies = getActivity().findViewById(R.id.rv_movies_now_playing);
+            RecyclerView rvNowPlayingMovies = view.findViewById(R.id.rv_movies_now_playing);
             rvNowPlayingMovies.setHasFixedSize(true);
             LinearLayoutManager layoutNowPlayingMovies = new LinearLayoutManager(getContext());
             rvNowPlayingMovies.setLayoutManager(layoutNowPlayingMovies);

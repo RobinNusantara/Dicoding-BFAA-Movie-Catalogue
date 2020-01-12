@@ -10,8 +10,8 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.informatika.umm.myapplication.R;
-import com.informatika.umm.myapplication.ui.favorite.FavoriteFragmentMovie;
-import com.informatika.umm.myapplication.ui.favorite.FavTvShowFragment;
+import com.informatika.umm.myapplication.ui.fragment.favorites.FavoriteFragmentMovie;
+import com.informatika.umm.myapplication.ui.fragment.favorites.FavTvShowFragment;
 
 /**
  * MADE_Submission_2
