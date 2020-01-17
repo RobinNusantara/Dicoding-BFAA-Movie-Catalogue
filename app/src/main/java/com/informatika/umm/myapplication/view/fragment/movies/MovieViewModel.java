@@ -29,7 +29,6 @@ public class MovieViewModel extends ViewModel {
 
     private MutableLiveData<List<Movie>> listMovie = new MutableLiveData<>();
 
-
     void loadDiscoverMovie() {
         Service apiService = Client.getClient().create(Service.class);
         Call<MovieResponse> call = apiService.getDiscoverMovies("movie", BuildConfig.API_KEY);
@@ -50,10 +49,7 @@ public class MovieViewModel extends ViewModel {
         });
     }
 
-
-
-
-    public LiveData<List<Movie>> getMovie() {
+    LiveData<List<Movie>> getMovie() {
         return listMovie;
     }
 }

@@ -28,6 +28,7 @@ import com.informatika.umm.myapplication.model.Movie;
 import com.informatika.umm.myapplication.util.FormatDate;
 import com.informatika.umm.myapplication.util.FormatRuntime;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class DetailMovieActivity extends AppCompatActivity {
@@ -36,7 +37,11 @@ public class DetailMovieActivity extends AppCompatActivity {
     private TextView txtMovieTitle, txtMovieRelease, txtMovieScore, txtMovieRuntime, txtMovieStatus, txtMovieOverview, txtMovieReview;
     private RecyclerView rvSimilarMovies, rvGenreMovies;
     private ImageView imgMovieBackdrop, imgMoviePoster;
+    private List<Movie> movieList = new ArrayList<>();
+    private List<Genre> genreList = new ArrayList<>();
     private DetailMovieViewModel viewModel;
+    private MovieCardAdapter cardAdapter;
+    private GenreAdapter genreAdapter;
     private FavoriteHelper helper;
     private RatingBar ratingBar;
     private Toolbar toolbar;
@@ -54,7 +59,8 @@ public class DetailMovieActivity extends AppCompatActivity {
         viewModel.loadDetailMovie(movies);
         viewModel.loadGenreMovie(movies);
         viewModel.loadSimilarMovie(movies);
-
+        showGenreMovie();
+        showSimilarMovie();
         helper = FavoriteHelper.getInstance(getApplicationContext());
         helper.open();
     }
@@ -71,14 +77,14 @@ public class DetailMovieActivity extends AppCompatActivity {
         viewModel.getGenreMovie().observe(this, new Observer<List<Genre>>() {
             @Override
             public void onChanged(List<Genre> genreList) {
-                showGenreMovie(genreList);
+                genreAdapter.setGenre(genreList);
             }
         });
 
         viewModel.getSimilarMovie().observe(this, new Observer<List<Movie>>() {
             @Override
             public void onChanged(List<Movie> movieList) {
-                showSimilarMovie(movieList);
+                cardAdapter.setMovie(movieList);
             }
         });
     }
@@ -107,7 +113,7 @@ public class DetailMovieActivity extends AppCompatActivity {
         }
     }
 
-    private void getDetailMovie(Movie movie){
+    private void getDetailMovie(Movie movie) {
         String urlPoster = BuildConfig.IMAGE_URL + movie.getMoviePoster();
         String urlBackdrop = BuildConfig.IMAGE_URL + movie.getMovieBackdrop();
 
@@ -139,16 +145,16 @@ public class DetailMovieActivity extends AppCompatActivity {
         txtMovieStatus.setText(movie.getMovieStatus());
     }
 
-    private void showSimilarMovie(List<Movie> movieList) {
-        MovieCardAdapter cardAdapter = new MovieCardAdapter(movieList);
+    private void showSimilarMovie() {
+        cardAdapter = new MovieCardAdapter(movieList);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false);
         rvSimilarMovies.setHasFixedSize(true);
         rvSimilarMovies.setLayoutManager(layoutManager);
         rvSimilarMovies.setAdapter(cardAdapter);
     }
 
-    private void showGenreMovie(List<Genre> genreList) {
-        GenreAdapter genreAdapter = new GenreAdapter(getApplicationContext(), genreList);
+    private void showGenreMovie() {
+        genreAdapter = new GenreAdapter(genreList);
         LinearLayoutManager manager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false);
         rvGenreMovies.setHasFixedSize(true);
         rvGenreMovies.setLayoutManager(manager);

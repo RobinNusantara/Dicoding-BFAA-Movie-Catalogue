@@ -29,29 +29,9 @@ public class TvShowsViewModel extends ViewModel {
 
     private MutableLiveData<List<Movie>> listMovie = new MutableLiveData<>();
 
-    void loadDiscoverMovie() {
-        Service apiServie = Client.getClient().create(Service.class);
-        Call<MovieResponse> call = apiServie.getDiscoverMovies("tv", BuildConfig.API_KEY);
-        call.enqueue(new Callback<MovieResponse>() {
-            @Override
-            public void onResponse(@NonNull Call<MovieResponse> call, @NonNull Response<MovieResponse> response) {
-                ArrayList<Movie> movies = null;
-                if (response.body() != null) {
-                    movies = response.body().getResults();
-                }
-                listMovie.postValue(movies);
-            }
-
-            @Override
-            public void onFailure(@NonNull Call<MovieResponse> call, @NonNull Throwable t) {
-                Log.d(t.getMessage(), "onFailure");
-            }
-        });
-    }
-
-    public void loadSimilarMovie(Movie movie) {
+    void loadDiscoverTvShow() {
         Service apiService = Client.getClient().create(Service.class);
-        Call<MovieResponse> call = apiService.getSimilarMovies("tv",movie.getMovieId(), BuildConfig.API_KEY, BuildConfig.LANGUAGE);
+        Call<MovieResponse> call = apiService.getDiscoverMovies("tv", BuildConfig.API_KEY);
         call.enqueue(new Callback<MovieResponse>() {
             @Override
             public void onResponse(@NonNull Call<MovieResponse> call, @NonNull Response<MovieResponse> response) {
@@ -69,7 +49,7 @@ public class TvShowsViewModel extends ViewModel {
         });
     }
 
-    public LiveData<List<Movie>> getMovie() {
+    LiveData<List<Movie>> getTvShow() {
         return listMovie;
     }
 }

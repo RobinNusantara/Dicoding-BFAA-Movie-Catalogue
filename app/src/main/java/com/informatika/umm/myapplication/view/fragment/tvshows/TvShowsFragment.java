@@ -25,6 +25,9 @@ public class TvShowsFragment extends Fragment {
 
     private ShimmerFrameLayout shimmerFrameLayout;
     private TvShowsAdapter listAdapter;
+    private TvShowsViewModel viewModel;
+    private List<Movie> movieList = new ArrayList<>();
+    private RecyclerView rvDiscover;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -34,30 +37,35 @@ public class TvShowsFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        shimmerFrameLayout = view.findViewById(R.id.shimmer_container);
+        bindView(view);
+        setupViewModel();
+        showDiscoverTvShow();
+        viewModel.loadDiscoverTvShow();
         shimmerFrameLayout.startShimmer();
-
-        List<Movie> movieList = new ArrayList<>();
-        listAdapter = new TvShowsAdapter(getContext(), movieList);
-        if (getActivity() != null) {
-            RecyclerView rvNowPlayingMovies = view.findViewById(R.id.rv_movies_now_playing);
-            rvNowPlayingMovies.setHasFixedSize(true);
-            LinearLayoutManager layoutNowPlayingMovies = new LinearLayoutManager(getContext());
-            rvNowPlayingMovies.setLayoutManager(layoutNowPlayingMovies);
-            rvNowPlayingMovies.setAdapter(listAdapter);
-        }
-
-        TvShowsViewModel viewModel = new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory()).get(TvShowsViewModel.class);
-        viewModel.loadDiscoverMovie();
-        viewModel.getMovie().observe(getViewLifecycleOwner(), getMovie);
     }
 
-    private Observer<List<Movie>> getMovie = new Observer<List<Movie>>() {
-        @Override
-        public void onChanged(List<Movie> movie) {
-            shimmerFrameLayout.stopShimmer();
-            shimmerFrameLayout.setVisibility(View.GONE);
-            listAdapter.setMovie(movie);
-        }
-    };
+    private void setupViewModel() {
+        viewModel = new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory()).get(TvShowsViewModel.class);
+        viewModel.getTvShow().observe(getViewLifecycleOwner(), new Observer<List<Movie>>() {
+            @Override
+            public void onChanged(List<Movie> movieList) {
+                listAdapter.setMovie(movieList);
+                shimmerFrameLayout.stopShimmer();
+                shimmerFrameLayout.setVisibility(View.GONE);
+            }
+        });
+    }
+
+    private void showDiscoverTvShow() {
+        LinearLayoutManager layoutNowPlayingMovies = new LinearLayoutManager(getContext());
+        listAdapter = new TvShowsAdapter(getContext(), movieList);
+        rvDiscover.setHasFixedSize(true);
+        rvDiscover.setLayoutManager(layoutNowPlayingMovies);
+        rvDiscover.setAdapter(listAdapter);
+    }
+
+    private void bindView(View view) {
+        shimmerFrameLayout = view.findViewById(R.id.shimmer_container);
+        rvDiscover = view.findViewById(R.id.rv_movies_now_playing);
+    }
 }

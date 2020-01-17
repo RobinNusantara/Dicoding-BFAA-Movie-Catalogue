@@ -1,6 +1,5 @@
 package com.informatika.umm.myapplication.adapter;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,11 +20,9 @@ import java.util.List;
  **/
 public class GenreAdapter extends RecyclerView.Adapter<GenreAdapter.GenresViewHolder> {
 
-    private Context context;
     private List<Genre> genres;
 
-    public GenreAdapter(Context context, List<Genre> genres) {
-        this.context = context;
+    public GenreAdapter( List<Genre> genres) {
         this.genres = genres;
     }
 
