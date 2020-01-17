@@ -1,4 +1,4 @@
-package com.informatika.umm.myapplication.ui.fragment.movies;
+package com.informatika.umm.myapplication.view.fragment.movies;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

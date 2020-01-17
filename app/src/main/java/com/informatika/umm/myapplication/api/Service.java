@@ -16,7 +16,9 @@ import retrofit2.http.Query;
 public interface Service {
 
     @GET("discover/{type}")
-    Call<MovieResponse> getDiscoverMovies(@Path("type") String type, @Query("api_key") String apiKey);
+    Call<MovieResponse> getDiscoverMovies(
+            @Path("type") String type,
+            @Query("api_key") String apiKey);
 
     @GET("{type}/{movie_id}/similar")
     Call<MovieResponse> getSimilarMovies(

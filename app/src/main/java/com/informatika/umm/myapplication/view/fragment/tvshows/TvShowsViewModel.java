@@ -1,4 +1,4 @@
-package com.informatika.umm.myapplication.ui.fragment.tvshows;
+package com.informatika.umm.myapplication.view.fragment.tvshows;
 
 import android.util.Log;
 
@@ -49,9 +49,9 @@ public class TvShowsViewModel extends ViewModel {
         });
     }
 
-    public void loadSimilarMovie(int id) {
+    public void loadSimilarMovie(Movie movie) {
         Service apiService = Client.getClient().create(Service.class);
-        Call<MovieResponse> call = apiService.getSimilarMovies("tv",id, BuildConfig.API_KEY, BuildConfig.LANGUAGE);
+        Call<MovieResponse> call = apiService.getSimilarMovies("tv",movie.getMovieId(), BuildConfig.API_KEY, BuildConfig.LANGUAGE);
         call.enqueue(new Callback<MovieResponse>() {
             @Override
             public void onResponse(@NonNull Call<MovieResponse> call, @NonNull Response<MovieResponse> response) {

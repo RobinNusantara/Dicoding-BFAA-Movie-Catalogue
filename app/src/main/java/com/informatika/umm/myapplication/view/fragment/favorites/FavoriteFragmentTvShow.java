@@ -1,5 +1,4 @@
-package com.informatika.umm.myapplication.ui.fragment.favorites;
-
+package com.informatika.umm.myapplication.view.fragment.favorites;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,7 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.informatika.umm.myapplication.R;
-import com.informatika.umm.myapplication.adapter.FavoriteAdapter;
+import com.informatika.umm.myapplication.adapter.FavoriteAdapterTvShow;
 import com.informatika.umm.myapplication.database.FavoriteHelper;
 import com.informatika.umm.myapplication.model.Movie;
 
@@ -24,11 +23,11 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FavoriteFragmentMovie extends Fragment {
+public class FavoriteFragmentTvShow extends Fragment {
 
-    private static final String KEY = "movies";
+    private static final String KEY = "movie";
     private RecyclerView recyclerView;
-    private FavoriteAdapter adapter;
+    private FavoriteAdapterTvShow adapter;
     private List<Movie> movieList = new ArrayList<>();
     private FavoriteHelper helper;
     private Bundle bundle;
@@ -36,7 +35,7 @@ public class FavoriteFragmentMovie extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_fav_movie, container, false);
+        return inflater.inflate(R.layout.fragment_fav_tv_show, container, false);
     }
 
     @Override
@@ -61,12 +60,12 @@ public class FavoriteFragmentMovie extends Fragment {
         helper = FavoriteHelper.getInstance(getContext());
         helper.open();
 
-        adapter = new FavoriteAdapter(getContext());
+        adapter = new FavoriteAdapterTvShow(getContext());
         recyclerView.setAdapter(adapter);
 
         if (bundle == null) {
             movieList.clear();
-            movieList.addAll(helper.movie());
+            movieList.addAll(helper.queryAllTvShow());
             if (movieList != null) {
                 adapter.setFavorite(movieList);
             } else {

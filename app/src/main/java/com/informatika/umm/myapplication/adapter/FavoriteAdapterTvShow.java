@@ -17,7 +17,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.informatika.umm.myapplication.BuildConfig;
 import com.informatika.umm.myapplication.R;
 import com.informatika.umm.myapplication.model.Movie;
-import com.informatika.umm.myapplication.ui.activity.detail.MovieDetailActivity;
+import com.informatika.umm.myapplication.view.activity.detail.tvshows.DetailTvShowActivity;
 import com.informatika.umm.myapplication.util.FormatDate;
 
 import java.util.ArrayList;
@@ -25,15 +25,15 @@ import java.util.List;
 
 /**
  * MADE_Submission_2
- * created by : Robin Nusantara on 1/11/2020 01 2020
- * 13:14 Sat
+ * created by : Robin Nusantara on 1/13/2020 01 2020
+ * 13:31 Mon
  **/
-public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.ViewHolder> {
+public class FavoriteAdapterTvShow extends RecyclerView.Adapter<FavoriteAdapterTvShow.FavoriteTvShowViewHolder> {
 
     private Context context;
     private List<Movie> movieList = new ArrayList<>();
 
-    public FavoriteAdapter(Context context) {
+    public FavoriteAdapterTvShow(Context context) {
         this.context = context;
     }
 
@@ -49,20 +49,20 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.ViewHo
 
     @NonNull
     @Override
-    public FavoriteAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
+    public FavoriteTvShowViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_row_favorite, viewGroup, false);
-        return new ViewHolder(view);
+        return new FavoriteTvShowViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull FavoriteTvShowViewHolder holder, int position) {
         final Movie movie = movieList.get(position);
         String url = BuildConfig.IMAGE_URL + movie.getMoviePoster();
         Glide.with(holder.itemView.getContext())
                 .load(url)
                 .apply(new RequestOptions().override(350, 550))
-                .placeholder(R.drawable.glide_placeholder)
-                .error(R.drawable.glide_error)
+                .placeholder(R.drawable.item_glide_placeholder)
+                .error(R.drawable.item_glide_error)
                 .transform(new RoundedCorners(32))
                 .into(holder.imgMoviePoster);
 
@@ -75,8 +75,8 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.ViewHo
             @Override
             public void onClick(View view) {
                 Intent intent;
-                intent = new Intent(context, MovieDetailActivity.class);
-                intent.putExtra(MovieDetailActivity.EXTRA_MOVIE, movie);
+                intent = new Intent(context, DetailTvShowActivity.class);
+                intent.putExtra(DetailTvShowActivity.EXTRA_TV, movie);
                 context.startActivity(intent);
             }
         });
@@ -89,11 +89,11 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.ViewHo
         return movieList.size();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder {
+    class FavoriteTvShowViewHolder extends RecyclerView.ViewHolder {
         ImageView imgMoviePoster;
         TextView txtMovieTitle, txtMovieRelease, txtMovieScore, txtMovieOverview;
 
-        ViewHolder(@NonNull View itemView) {
+        FavoriteTvShowViewHolder(@NonNull View itemView) {
             super(itemView);
             imgMoviePoster = itemView.findViewById(R.id.img_movie_poster);
             txtMovieTitle = itemView.findViewById(R.id.txt_movie_title);

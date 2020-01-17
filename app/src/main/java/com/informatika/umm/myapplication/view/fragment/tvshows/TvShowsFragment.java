@@ -1,4 +1,4 @@
-package com.informatika.umm.myapplication.ui.fragment.tvshows;
+package com.informatika.umm.myapplication.view.fragment.tvshows;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -15,7 +15,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.facebook.shimmer.ShimmerFrameLayout;
 import com.informatika.umm.myapplication.R;
-import com.informatika.umm.myapplication.adapter.MovieListAdapter;
 import com.informatika.umm.myapplication.adapter.TvShowsAdapter;
 import com.informatika.umm.myapplication.model.Movie;
 

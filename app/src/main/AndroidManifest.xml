@@ -13,11 +13,11 @@
         tools:ignore="GoogleAppIndexingWarning">
 
         <activity
-            android:name=".ui.activity.detail.TvShowsDetailActivity"
+            android:name=".view.activity.detail.tvshows.DetailTvShowActivity"
             android:label="@string/title_activity_detail_tv_shows"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ui.activity.splash.SplashActivity"
+            android:name=".view.activity.splash.SplashActivity"
             android:theme="@style/SplashScreenStyle">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,10 +25,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.activity.detail.MovieDetailActivity"
+            android:name=".view.activity.detail.movies.DetailMovieActivity"
             android:label="@string/title_activity_movie_detail"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".ui.activity.main.MainActivity" />
+        <activity android:name=".view.activity.main.MainActivity" />
     </application>
 
 </manifest>

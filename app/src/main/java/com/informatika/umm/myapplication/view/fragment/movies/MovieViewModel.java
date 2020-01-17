@@ -1,4 +1,4 @@
-package com.informatika.umm.myapplication.ui.fragment.movies;
+package com.informatika.umm.myapplication.view.fragment.movies;
 
 import android.util.Log;
 
@@ -29,6 +29,7 @@ public class MovieViewModel extends ViewModel {
 
     private MutableLiveData<List<Movie>> listMovie = new MutableLiveData<>();
 
+
     void loadDiscoverMovie() {
         Service apiService = Client.getClient().create(Service.class);
         Call<MovieResponse> call = apiService.getDiscoverMovies("movie", BuildConfig.API_KEY);
@@ -49,25 +50,8 @@ public class MovieViewModel extends ViewModel {
         });
     }
 
-    public void loadSimilarMovie(int id) {
-        Service apiService = Client.getClient().create(Service.class);
-        Call<MovieResponse> call = apiService.getSimilarMovies("movie",id, BuildConfig.API_KEY, BuildConfig.LANGUAGE);
-        call.enqueue(new Callback<MovieResponse>() {
-            @Override
-            public void onResponse(@NonNull Call<MovieResponse> call, @NonNull Response<MovieResponse> response) {
-                ArrayList<Movie> movies = null;
-                if (response.body() != null) {
-                    movies = response.body().getResults();
-                }
-                listMovie.postValue(movies);
-            }
 
-            @Override
-            public void onFailure(@NonNull Call<MovieResponse> call, @NonNull Throwable t) {
-                Log.d(t.getMessage(), "onFailure");
-            }
-        });
-    }
+
 
     public LiveData<List<Movie>> getMovie() {
         return listMovie;

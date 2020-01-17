@@ -17,9 +17,8 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.informatika.umm.myapplication.BuildConfig;
 import com.informatika.umm.myapplication.model.Movie;
-import com.informatika.umm.myapplication.ui.activity.detail.MovieDetailActivity;
 import com.informatika.umm.myapplication.R;
-import com.informatika.umm.myapplication.ui.activity.detail.TvShowsDetailActivity;
+import com.informatika.umm.myapplication.view.activity.detail.tvshows.DetailTvShowActivity;
 import com.informatika.umm.myapplication.util.FormatDate;
 
 import java.util.List;
@@ -60,23 +59,23 @@ public class TvShowsAdapter extends RecyclerView.Adapter<TvShowsAdapter.TvShowsV
         Glide.with(holder.itemView.getContext())
                 .load(urlPoster)
                 .apply(new RequestOptions().override(350, 550))
-                .placeholder(R.drawable.glide_placeholder)
-                .error(R.drawable.glide_error)
+                .placeholder(R.drawable.item_glide_placeholder)
+                .error(R.drawable.item_glide_error)
                 .transform(new RoundedCorners(32))
                 .into(holder.imgMoviePoster);
 
         holder.txtMovieTitle.setText(movie.getMovieTitle());
         holder.txtMovieRelease.setText(FormatDate.getFormatReleaseDate(movie.getMovieRelease()));
         holder.ratingBar.setRating(movie.getRating());
-        String moviesScore = Double.toString(movie.getMovieScore());
-        holder.txtMovieScore.setText(moviesScore);
+        holder.txtMovieScore.setText(String.valueOf(movie.getMovieScore()));
+        holder.txtMovieReview.setText(String.valueOf(movie.getMovieReview()));
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent;
-                intent = new Intent(context, TvShowsDetailActivity.class);
-                intent.putExtra(TvShowsDetailActivity.EXTRA_MOVIE, movie);
+                intent = new Intent(context, DetailTvShowActivity.class);
+                intent.putExtra(DetailTvShowActivity.EXTRA_TV, movie);
                 context.startActivity(intent);
             }
         });
@@ -92,7 +91,7 @@ public class TvShowsAdapter extends RecyclerView.Adapter<TvShowsAdapter.TvShowsV
     class TvShowsViewHolder extends RecyclerView.ViewHolder {
 
         ImageView imgMoviePoster;
-        TextView txtMovieTitle, txtMovieScore, txtMovieRelease;
+        TextView txtMovieTitle, txtMovieScore, txtMovieRelease, txtMovieReview;
         RatingBar ratingBar;
 
         TvShowsViewHolder(@NonNull View itemView) {
@@ -102,6 +101,7 @@ public class TvShowsAdapter extends RecyclerView.Adapter<TvShowsAdapter.TvShowsV
             txtMovieTitle = itemView.findViewById(R.id.txt_movie_title);
             txtMovieRelease = itemView.findViewById(R.id.txt_movie_release_date);
             txtMovieScore = itemView.findViewById(R.id.txt_movie_score);
+            txtMovieReview = itemView.findViewById(R.id.txt_movie_vote);
         }
     }
 }

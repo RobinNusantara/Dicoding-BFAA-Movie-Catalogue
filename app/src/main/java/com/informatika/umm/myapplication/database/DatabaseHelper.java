@@ -5,7 +5,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import static com.informatika.umm.myapplication.database.DatabaseContract.MovieColumns;
+import static com.informatika.umm.myapplication.database.DatabaseContract.TvShowColumns;
 import static com.informatika.umm.myapplication.database.DatabaseContract.TABLE_MOVIE;
+import static com.informatika.umm.myapplication.database.DatabaseContract.TABLE_TVSHOW;
 
 /**
  * MADE_Submission_2
@@ -14,13 +16,15 @@ import static com.informatika.umm.myapplication.database.DatabaseContract.TABLE_
  **/
 public class DatabaseHelper extends SQLiteOpenHelper {
     private static String DATABASE_NAME = "favoritedb";
-    private static final int DATABASE_VERSION = 4;
+    private static final int DATABASE_VERSION = 7;
 
     private static final String SQL_CREATE_TABLE_MOVIE = String.format("CREATE TABLE %s"
                     + " (%s INTEGER PRIMARY KEY AUTOINCREMENT," +
                     " %s TEXT NOT NULL," +
                     " %s TEXT NOT NULL," +
                     " %s DOUBLE NOT NULL," +
+                    " %s TEXT NOT NULL," +
+                    " %s INTEGER NOT NULL," +
                     " %s TEXT NOT NULL," +
                     " %s TEXT NOT NULL)",
             TABLE_MOVIE,
@@ -29,7 +33,29 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             MovieColumns.RELEASE,
             MovieColumns.RATING,
             MovieColumns.OVERVIEW,
-            MovieColumns.POSTER
+            MovieColumns.REVIEW,
+            MovieColumns.POSTER,
+            MovieColumns.BACKDROP
+    );
+
+    private static final String SQL_CREATE_TABLE_TVSHOW = String.format("CREATE TABLE %s"
+                    + " (%s INTEGER PRIMARY KEY AUTOINCREMENT," +
+                    " %s TEXT NOT NULL," +
+                    " %s TEXT NOT NULL," +
+                    " %s DOUBLE NOT NULL," +
+                    " %s TEXT NOT NULL," +
+                    " %s INTEGER NOT NULL," +
+                    " %s TEXT NOT NULL," +
+                    " %s TEXT NOT NULL)",
+            TABLE_TVSHOW,
+            TvShowColumns._ID,
+            TvShowColumns.TITLE,
+            TvShowColumns.RELEASE,
+            TvShowColumns.RATING,
+            TvShowColumns.OVERVIEW,
+            TvShowColumns.REVIEW,
+            TvShowColumns.POSTER,
+            TvShowColumns.BACKDROP
     );
 
     DatabaseHelper(Context context) {
@@ -39,10 +65,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(SQL_CREATE_TABLE_MOVIE);
+        db.execSQL(SQL_CREATE_TABLE_TVSHOW);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_MOVIE);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_TVSHOW);
     }
 }

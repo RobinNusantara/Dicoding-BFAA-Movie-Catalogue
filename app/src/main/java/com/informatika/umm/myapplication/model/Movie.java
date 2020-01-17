@@ -30,6 +30,9 @@ public class Movie implements Parcelable {
     @SerializedName("vote_average")
     private Double movieScore;
 
+    @SerializedName("vote_count")
+    private int movieReview;
+
     @SerializedName(value = "release_date", alternate = "first_air_date")
     private String movieRelease;
 
@@ -66,6 +69,10 @@ public class Movie implements Parcelable {
 
     public Double getMovieScore() {
         return movieScore;
+    }
+
+    public int getMovieReview() {
+        return movieReview;
     }
 
     public String getMovieRelease() {
@@ -116,16 +123,8 @@ public class Movie implements Parcelable {
         this.movieOverview = movieOverview;
     }
 
-    public void setMovieGenre(List<Genre> movieGenre) {
-        this.movieGenre = movieGenre;
-    }
-
-    public void setMovieRuntime(int movieRuntime) {
-        this.movieRuntime = movieRuntime;
-    }
-
-    public void setMovieStatus(String movieStatus) {
-        this.movieStatus = movieStatus;
+    public void setMovieReview(int movieReview) {
+        this.movieReview = movieReview;
     }
 
     public Float getRating() {
@@ -140,7 +139,6 @@ public class Movie implements Parcelable {
     }
 
     public Movie() {
-
     }
 
     public List<Integer> getEpisodeRunTime() {
@@ -159,6 +157,7 @@ public class Movie implements Parcelable {
         dest.writeString(this.moviePoster);
         dest.writeString(this.movieTitle);
         dest.writeValue(this.movieScore);
+        dest.writeInt(this.movieReview);
         dest.writeString(this.movieRelease);
         dest.writeString(this.movieOverview);
         dest.writeList(this.movieGenre);
@@ -173,12 +172,13 @@ public class Movie implements Parcelable {
         this.moviePoster = in.readString();
         this.movieTitle = in.readString();
         this.movieScore = (Double) in.readValue(Double.class.getClassLoader());
+        this.movieReview = in.readInt();
         this.movieRelease = in.readString();
         this.movieOverview = in.readString();
-        this.movieGenre = new ArrayList<Genre>();
+        this.movieGenre = new ArrayList<>();
         in.readList(this.movieGenre, Genre.class.getClassLoader());
         this.movieRuntime = in.readInt();
-        this.episodeRunTime = new ArrayList<Integer>();
+        this.episodeRunTime = new ArrayList<>();
         in.readList(this.episodeRunTime, Integer.class.getClassLoader());
         this.movieStatus = in.readString();
     }

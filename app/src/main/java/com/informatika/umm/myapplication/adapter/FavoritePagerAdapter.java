@@ -10,19 +10,19 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.informatika.umm.myapplication.R;
-import com.informatika.umm.myapplication.ui.fragment.favorites.FavoriteFragmentMovie;
-import com.informatika.umm.myapplication.ui.fragment.favorites.FavTvShowFragment;
+import com.informatika.umm.myapplication.view.fragment.favorites.FavoriteFragmentMovie;
+import com.informatika.umm.myapplication.view.fragment.favorites.FavoriteFragmentTvShow;
 
 /**
  * MADE_Submission_2
  * created by : Robin Nusantara on 1/1/2020 01 2020
  * 15:18 Wed
  **/
-public class SectionsPagerAdapter extends FragmentPagerAdapter {
+public class FavoritePagerAdapter extends FragmentPagerAdapter {
 
     private final Context context;
 
-    public SectionsPagerAdapter(Context context, FragmentManager fm) {
+    public FavoritePagerAdapter(Context context, FragmentManager fm) {
         super(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         this.context = context;
     }
@@ -42,7 +42,7 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
                 fragment = new FavoriteFragmentMovie();
                 break;
             case 1:
-                fragment = new FavTvShowFragment();
+                fragment = new FavoriteFragmentTvShow();
                 break;
         }
         return fragment;

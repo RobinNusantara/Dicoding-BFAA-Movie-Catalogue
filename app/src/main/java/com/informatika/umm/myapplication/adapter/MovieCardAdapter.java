@@ -5,11 +5,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RatingBar;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.informatika.umm.myapplication.BuildConfig;
 import com.informatika.umm.myapplication.R;
@@ -24,11 +27,9 @@ import java.util.List;
  **/
 public class MovieCardAdapter extends RecyclerView.Adapter<MovieCardAdapter.CardViewHolder> {
 
-    private Context context;
     private List<Movie> movieList;
 
-    public MovieCardAdapter(Context context,List<Movie> movieList) {
-        this.context = context;
+    public MovieCardAdapter(List<Movie> movieList) {
         this.movieList = movieList;
     }
 
@@ -53,9 +54,14 @@ public class MovieCardAdapter extends RecyclerView.Adapter<MovieCardAdapter.Card
         Glide.with(holder.itemView.getContext())
                 .load(urlPoster)
                 .apply(new RequestOptions().override(350, 550))
-                .placeholder(R.drawable.glide_placeholder)
-                .error(R.drawable.glide_error)
+                .transform(new RoundedCorners(32))
+                .placeholder(R.drawable.item_glide_placeholder)
+                .error(R.drawable.item_glide_error)
                 .into(holder.imgMoviePoster);
+
+        holder.txtMovieTitle.setText(movie.getMovieTitle());
+        holder.txtMovieScore.setText(String.valueOf(movie.getMovieScore()));
+        holder.ratingBar.setRating(movie.getRating());
 
         holder.getAdapterPosition();
     }
@@ -67,11 +73,16 @@ public class MovieCardAdapter extends RecyclerView.Adapter<MovieCardAdapter.Card
 
     class CardViewHolder extends RecyclerView.ViewHolder {
 
+        TextView txtMovieScore, txtMovieTitle;
         ImageView imgMoviePoster;
+        RatingBar ratingBar;
 
         CardViewHolder(@NonNull View itemView) {
             super(itemView);
             imgMoviePoster = itemView.findViewById(R.id.img_movie_poster);
+            txtMovieTitle = itemView.findViewById(R.id.txt_movie_title);
+            ratingBar = itemView.findViewById(R.id.rate_movie);
+            txtMovieScore = itemView.findViewById(R.id.txt_movie_score);
         }
     }
 }

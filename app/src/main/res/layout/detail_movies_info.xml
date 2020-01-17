@@ -8,7 +8,7 @@
     <ImageView
         android:id="@+id/img_movie_poster"
         android:layout_width="140dp"
-        android:layout_height="175dp"
+        android:layout_height="180dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:contentDescription="@string/str_movie_poster"
@@ -44,7 +44,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:progressTint="@color/colorNanohanachaGold"
+        android:progressTint="@color/colorNanohanaGold"
         app:layout_constraintStart_toStartOf="@+id/txt_movie_release_date"
         app:layout_constraintTop_toBottomOf="@+id/txt_movie_release_date" />
 
@@ -53,19 +53,38 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:textColor="@color/colorNanohanachaGold"
+        android:textColor="@color/colorNanohanaGold"
         app:layout_constraintBottom_toBottomOf="@+id/rate_movie"
         app:layout_constraintStart_toEndOf="@+id/rate_movie"
         app:layout_constraintTop_toTopOf="@+id/rate_movie"
-        tools:text="0/0" />
+        tools:text="8.0" />
+
+    <TextView
+        android:id="@+id/txt_movie_vote"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="@+id/rate_movie"
+        app:layout_constraintTop_toBottomOf="@+id/rate_movie"
+        tools:text="654" />
+
+    <TextView
+        android:id="@+id/txt_review_holder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/str_review"
+        app:layout_constraintStart_toEndOf="@+id/txt_movie_vote"
+        app:layout_constraintTop_toBottomOf="@id/rate_movie" />
 
     <TextView
         android:id="@+id/txt_movie_runtime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        app:layout_constraintStart_toStartOf="@+id/rate_movie"
-        app:layout_constraintTop_toBottomOf="@+id/rate_movie"
+        app:layout_constraintStart_toStartOf="@+id/txt_movie_vote"
+        app:layout_constraintTop_toBottomOf="@+id/txt_movie_vote"
         tools:text="1h 45m" />
 
     <TextView
@@ -83,6 +102,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp"
         app:layout_constraintTop_toBottomOf="@+id/img_movie_poster" />
 
     <TextView
@@ -97,35 +117,12 @@
         app:layout_constraintTop_toBottomOf="@+id/rv_genre"
         tools:text="@string/str_lorem" />
 
-    <TextView
-        android:id="@+id/txt_similar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="@string/str_similar_like"
-        android:textColor="@color/colorPrimary"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/txt_movie_overview"
-        app:layout_constraintTop_toBottomOf="@+id/txt_movie_overview" />
-
-    <TextView
-        android:id="@+id/txt_movie_similar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:textColor="@color/colorPrimary"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/txt_similar"
-        app:layout_constraintStart_toEndOf="@+id/txt_similar"
-        app:layout_constraintTop_toTopOf="@+id/txt_similar"
-        tools:text="@string/str_movie_title" />
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_movies_similar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
+        app:layout_constraintTop_toBottomOf="@+id/txt_movie_overview"
         android:layout_marginTop="10dp"
-        app:layout_constraintTop_toBottomOf="@+id/txt_similar" />
+        android:layout_marginStart="20dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

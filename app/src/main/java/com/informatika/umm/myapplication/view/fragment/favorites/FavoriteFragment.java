@@ -1,4 +1,4 @@
-package com.informatika.umm.myapplication.ui.fragment.favorites;
+package com.informatika.umm.myapplication.view.fragment.favorites;
 
 
 import android.os.Bundle;
@@ -14,7 +14,9 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
 import com.informatika.umm.myapplication.R;
-import com.informatika.umm.myapplication.adapter.SectionsPagerAdapter;
+import com.informatika.umm.myapplication.adapter.FavoritePagerAdapter;
+
+import java.util.Objects;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -30,13 +32,13 @@ public class FavoriteFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(getContext(), getChildFragmentManager());
+        FavoritePagerAdapter favoritePagerAdapter = new FavoritePagerAdapter(getContext(), getChildFragmentManager());
         ViewPager viewPager = view.findViewById(R.id.view_pager);
-        viewPager.setAdapter(sectionsPagerAdapter);
+        viewPager.setAdapter(favoritePagerAdapter);
         TabLayout tabLayout = view.findViewById(R.id.tab_layout);
         tabLayout.setupWithViewPager(viewPager);
         if (getActivity() != null){
-            ((AppCompatActivity) getActivity()).getSupportActionBar().setElevation(0);
+            Objects.requireNonNull(((AppCompatActivity) getActivity()).getSupportActionBar()).setElevation(0);
         }
     }
 }

@@ -1,4 +1,4 @@
-package com.informatika.umm.myapplication.ui.activity.main;
+package com.informatika.umm.myapplication.view.activity.main;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,9 +14,9 @@ import androidx.fragment.app.Fragment;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.informatika.umm.myapplication.R;
-import com.informatika.umm.myapplication.ui.fragment.favorites.FavoriteFragment;
-import com.informatika.umm.myapplication.ui.fragment.movies.MovieFragment;
-import com.informatika.umm.myapplication.ui.fragment.tvshows.TvShowsFragment;
+import com.informatika.umm.myapplication.view.fragment.favorites.FavoriteFragment;
+import com.informatika.umm.myapplication.view.fragment.movies.MovieFragment;
+import com.informatika.umm.myapplication.view.fragment.tvshows.TvShowsFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -37,7 +37,6 @@ public class MainActivity extends AppCompatActivity {
                     fragment = new FavoriteFragment();
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragment, fragment, fragment.getClass().getSimpleName()).commit();
                     return true;
-
             }
             return false;
         }
@@ -64,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.toolbar_menu_main, menu);
-        return super.onCreateOptionsMenu(menu);
+        return true;
     }
 
     @Override

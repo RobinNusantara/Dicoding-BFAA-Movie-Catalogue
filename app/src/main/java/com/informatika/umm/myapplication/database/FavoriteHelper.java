@@ -13,12 +13,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static android.provider.BaseColumns._ID;
+import static com.informatika.umm.myapplication.database.DatabaseContract.MovieColumns.BACKDROP;
 import static com.informatika.umm.myapplication.database.DatabaseContract.MovieColumns.OVERVIEW;
 import static com.informatika.umm.myapplication.database.DatabaseContract.MovieColumns.POSTER;
 import static com.informatika.umm.myapplication.database.DatabaseContract.MovieColumns.RATING;
 import static com.informatika.umm.myapplication.database.DatabaseContract.MovieColumns.RELEASE;
+import static com.informatika.umm.myapplication.database.DatabaseContract.MovieColumns.REVIEW;
 import static com.informatika.umm.myapplication.database.DatabaseContract.MovieColumns.TITLE;
 import static com.informatika.umm.myapplication.database.DatabaseContract.TABLE_MOVIE;
+import static com.informatika.umm.myapplication.database.DatabaseContract.TABLE_TVSHOW;
 
 /**
  * MADE_Submission_2
@@ -27,6 +30,7 @@ import static com.informatika.umm.myapplication.database.DatabaseContract.TABLE_
  **/
 public class FavoriteHelper {
     private static final String DATABASE_TABLE_MOVIE = TABLE_MOVIE;
+    private static final String DATABASE_TABLE_TVSHOW = TABLE_TVSHOW;
     private static DatabaseHelper databaseHelper;
     private static FavoriteHelper INSTANCE;
     private static SQLiteDatabase database;
@@ -57,7 +61,7 @@ public class FavoriteHelper {
         }
     }
 
-    public List<Movie> movie() {
+    public List<Movie> queryAllMovie() {
         List<Movie> list = new ArrayList<>();
         Cursor cursor = database.query(DATABASE_TABLE_MOVIE, null,
                 null,
@@ -76,7 +80,9 @@ public class FavoriteHelper {
                 movie.setMovieRelease(cursor.getString(cursor.getColumnIndex(RELEASE)));
                 movie.setMovieScore(cursor.getDouble(cursor.getColumnIndex(RATING)));
                 movie.setMovieOverview(cursor.getString(cursor.getColumnIndex(OVERVIEW)));
+                movie.setMovieReview(cursor.getInt(cursor.getColumnIndex(REVIEW)));
                 movie.setMoviePoster(cursor.getString(cursor.getColumnIndex(POSTER)));
+                movie.setMovieBackdrop(cursor.getString(cursor.getColumnIndex(BACKDROP)));
                 list.add(movie);
                 cursor.moveToNext();
             } while (!cursor.isAfterLast());
@@ -85,7 +91,37 @@ public class FavoriteHelper {
         return list;
     }
 
-    public boolean isExist(Movie movie) {
+    public List<Movie> queryAllTvShow() {
+        List<Movie> list = new ArrayList<>();
+        Cursor cursor = database.query(DATABASE_TABLE_TVSHOW, null,
+                null,
+                null,
+                null,
+                null,
+                _ID + " ASC",
+                null);
+        cursor.moveToFirst();
+        Movie movie;
+        if (cursor.getCount() > 0) {
+            do {
+                movie = new Movie();
+                movie.setMovieId(cursor.getInt(cursor.getColumnIndex(_ID)));
+                movie.setMovieTitle(cursor.getString(cursor.getColumnIndex(TITLE)));
+                movie.setMovieRelease(cursor.getString(cursor.getColumnIndex(RELEASE)));
+                movie.setMovieScore(cursor.getDouble(cursor.getColumnIndex(RATING)));
+                movie.setMovieOverview(cursor.getString(cursor.getColumnIndex(OVERVIEW)));
+                movie.setMovieReview(cursor.getInt(cursor.getColumnIndex(REVIEW)));
+                movie.setMoviePoster(cursor.getString(cursor.getColumnIndex(POSTER)));
+                movie.setMovieBackdrop(cursor.getString(cursor.getColumnIndex(BACKDROP)));
+                list.add(movie);
+                cursor.moveToNext();
+            } while (!cursor.isAfterLast());
+        }
+        cursor.close();
+        return list;
+    }
+
+    public boolean isMovieExist(Movie movie) {
         database = databaseHelper.getWritableDatabase();
         String QUERY = "SELECT * FROM " + TABLE_MOVIE + " WHERE " + _ID + "=" + movie.getMovieId();
 
@@ -98,18 +134,51 @@ public class FavoriteHelper {
         return true;
     }
 
-    public long insert(Movie movie) {
+    public boolean isTvShowExist(Movie movie) {
+        database = databaseHelper.getWritableDatabase();
+        String QUERY = "SELECT * FROM " + TABLE_TVSHOW + " WHERE " + _ID + "=" + movie.getMovieId();
+
+        Cursor cursor = database.rawQuery(QUERY, null);
+        if (cursor.getCount() <= 0) {
+            cursor.close();
+            return false;
+        }
+        cursor.close();
+        return true;
+    }
+
+    public long insertMovie(Movie movie) {
         ContentValues values = new ContentValues();
         values.put(_ID, movie.getMovieId());
         values.put(TITLE, movie.getMovieTitle());
         values.put(RELEASE, movie.getMovieRelease());
         values.put(RATING, movie.getMovieScore());
         values.put(OVERVIEW, movie.getMovieOverview());
+        values.put(REVIEW,movie.getMovieReview());
         values.put(POSTER, movie.getMoviePoster());
+        values.put(BACKDROP, movie.getMovieBackdrop());
         return database.insert(DATABASE_TABLE_MOVIE, null, values);
     }
 
-    public int delete(int id) {
+    public long insertTvShow(Movie movie) {
+        ContentValues values = new ContentValues();
+        values.put(_ID, movie.getMovieId());
+        values.put(TITLE, movie.getMovieTitle());
+        values.put(RELEASE, movie.getMovieRelease());
+        values.put(RATING, movie.getMovieScore());
+        values.put(OVERVIEW, movie.getMovieOverview());
+        values.put(REVIEW,movie.getMovieReview());
+        values.put(POSTER, movie.getMoviePoster());
+        values.put(BACKDROP, movie.getMovieBackdrop());
+        return database.insert(DATABASE_TABLE_TVSHOW, null, values);
+    }
+
+    public int deleteMovie(int id) {
         return database.delete(DATABASE_TABLE_MOVIE, _ID + " = '" + id + "'", null);
     }
+
+    public int deleteTvShow(int id) {
+        return database.delete(DATABASE_TABLE_TVSHOW, _ID + " = '" + id + "'", null);
+    }
+
 }

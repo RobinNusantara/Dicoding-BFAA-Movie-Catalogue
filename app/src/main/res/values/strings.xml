@@ -13,22 +13,13 @@
     <string name="str_movie_catalogue_logo">Movie Catalogue Logo</string>
     <string name="str_movie_runtime">%1$sh %2$sm</string>
     <string name="str_tv_runtime">%sm</string>
-    <string name="str_add_to_favorite">Successfully added this item to Favorite</string>
-    <string name="str_add_to_favorite_fail">Failed added this item to Favorite</string>
-    <string name="str_have_already">You Have Already Added this to Favorite</string>
-    <string name="str_remove_from_favorite">Successfully removed this item from Favorite</string>
-    <string name="str_remove_from_favorite_fail">You Have Already Remove this item from Favorite</string>
-
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="str_similar_like">Similar to</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="str_add_to_favorite">Successfully Added This item to Favorite</string>
+    <string name="str_add_to_favorite_fail">Failed Added This item to Favorite</string>
+    <string name="str_have_already">You Have Already Added This to Favorite</string>
+    <string name="str_remove_from_favorite">Successfully Removed This item from Favorite</string>
+    <string name="str_remove_from_favorite_fail">You Have Already Remove This item from Favorite</string>
     <string name="str_favorite">Favorites</string>
+    <string name="str_review">Review</string>
 
-    <!-- TODO MOVIE ITEM -->
-
-    <!-- TODO TV SHOWS ITEM -->
-
+    <!-- TODO: Remove or change this placeholder text -->
 </resources>
