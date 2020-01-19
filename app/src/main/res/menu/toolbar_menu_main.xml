@@ -3,9 +3,24 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/btn_language"
-        android:icon="@drawable/ic_language_black_24dp"
-        android:title="@string/str_button_language"
-        app:showAsAction="ifRoom" />
+        android:id="@+id/btn_search"
+        android:icon="@drawable/ic_search_black_24dp"
+        android:title="@string/str_search"
+        app:actionViewClass="android.widget.SearchView"
+        app:showAsAction="collapseActionView|ifRoom" />
+
+    <group android:menuCategory="container">
+        <item
+            android:id="@+id/btn_notification_setting"
+            android:title="@string/str_notification_settings"
+            app:showAsAction="never" />
+        <item
+            android:id="@+id/btn_language_setting"
+            android:title="@string/str_language_settings"
+            app:showAsAction="never" />
+        <item
+            android:title="@string/str_about"
+            app:showAsAction="never" />
+    </group>
 
 </menu>

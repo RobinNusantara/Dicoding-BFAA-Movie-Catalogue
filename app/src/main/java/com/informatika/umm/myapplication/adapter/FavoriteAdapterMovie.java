@@ -17,7 +17,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.informatika.umm.myapplication.BuildConfig;
 import com.informatika.umm.myapplication.R;
 import com.informatika.umm.myapplication.model.Movie;
-import com.informatika.umm.myapplication.view.activity.detail.movies.DetailMovieActivity;
+import com.informatika.umm.myapplication.ui.activity.detail.movies.DetailMovieActivity;
 import com.informatika.umm.myapplication.util.FormatDate;
 
 import java.util.ArrayList;

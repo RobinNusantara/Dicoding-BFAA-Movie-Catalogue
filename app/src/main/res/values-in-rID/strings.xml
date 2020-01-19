@@ -9,7 +9,6 @@
     <string name="title_activity_detail_tv_shows">DetailTvShowsActivity</string>
     <string name="str_movie_backdrop">Movie Backdrop</string>
     <string name="str_lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
-    <string name="str_button_language">Button Language</string>
     <string name="str_movie_catalogue_logo">Movie Catalogue Logo</string>
     <string name="str_movie_runtime">%1$sh %2$sm</string>
     <string name="str_tv_runtime">%sm</string>
@@ -19,4 +18,9 @@
     <string name="str_remove_from_favorite">Berhasil Dihapus dari Favorit</string>
     <string name="str_remove_from_favorite_fail">Anda Sudah Pernah Menghapus Item dari Favorit</string>
     <string name="str_favorite">Favorit</string>
+    <string name="str_review">Review</string>
+    <string name="str_search">Cari</string>
+    <string name="str_about">Tentang</string>
+    <string name="str_notification_settings">Pengaturan Notifikasi</string>
+    <string name="str_language_settings">Pengaturan Bahasa</string>
 </resources>

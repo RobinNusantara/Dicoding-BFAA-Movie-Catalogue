@@ -1,4 +1,4 @@
-package com.informatika.umm.myapplication.view.activity.detail.movies;
+package com.informatika.umm.myapplication.ui.activity.detail.movies;
 
 import android.os.Bundle;
 import android.view.Menu;

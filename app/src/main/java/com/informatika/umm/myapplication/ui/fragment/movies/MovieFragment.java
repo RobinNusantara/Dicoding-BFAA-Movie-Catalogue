@@ -1,9 +1,14 @@
-package com.informatika.umm.myapplication.view.fragment.movies;
+package com.informatika.umm.myapplication.ui.fragment.movies;
 
+import android.app.SearchManager;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.SearchView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -67,5 +72,30 @@ public class MovieFragment extends Fragment {
     private void bindView(View view) {
         shimmerFrameLayout = view.findViewById(R.id.shimmer_container);
         rvDiscover = view.findViewById(R.id.rv_movies_now_playing);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+
+        if (getContext() != null){
+            SearchManager searchManager = (SearchManager) getContext().getSystemService(Context.SEARCH_SERVICE);
+            if (searchManager != null){
+                SearchView searchView = (SearchView) (menu.findItem(R.id.btn_search)).getActionView();
+                searchView.setQueryHint(getResources().getString(R.string.str_search));
+                searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+                    @Override
+                    public boolean onQueryTextSubmit(String s) {
+                        return true;
+                    }
+
+                    @Override
+                    public boolean onQueryTextChange(String s) {
+                        return false;
+                    }
+                });
+            }
+        }
+
+        super.onCreateOptionsMenu(menu, inflater);
     }
 }

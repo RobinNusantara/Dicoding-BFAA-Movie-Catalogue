@@ -1,4 +1,4 @@
-package com.informatika.umm.myapplication.view.activity.detail.movies;
+package com.informatika.umm.myapplication.ui.activity.detail.tvshows;
 
 import android.util.Log;
 
@@ -23,17 +23,17 @@ import retrofit2.Response;
 /**
  * MADE_Submission_2
  * created by : Robin Nusantara on 1/17/2020 01 2020
- * 16:50 Fri
+ * 19:10 Fri
  **/
-public class DetailMovieViewModel extends ViewModel {
+public class DetailTvShowViewModel extends ViewModel {
 
     private MutableLiveData<Movie> movies = new MutableLiveData<>();
     private MutableLiveData<List<Movie>> listMovie = new MutableLiveData<>();
     private MutableLiveData<List<Genre>> listGenre = new MutableLiveData<>();
 
-    public void loadDetailMovie(Movie movie) {
+    public void loadDetailTvShow(Movie movie) {
         Service apiService = Client.getClient().create(Service.class);
-        Call<Movie> call = apiService.getMovieDetails("movie", movie.getMovieId(), BuildConfig.API_KEY, BuildConfig.LANGUAGE);
+        Call<Movie> call = apiService.getMovieDetails("tv", movie.getMovieId(), BuildConfig.API_KEY, BuildConfig.LANGUAGE);
         call.enqueue(new Callback<Movie>() {
             @Override
             public void onResponse(@NonNull Call<Movie> call, @NonNull Response<Movie> response) {
@@ -49,9 +49,9 @@ public class DetailMovieViewModel extends ViewModel {
         });
     }
 
-    public void loadSimilarMovie(Movie movie) {
+    public void loadSimilarTvShow(Movie movie) {
         Service apiService = Client.getClient().create(Service.class);
-        Call<MovieResponse> call = apiService.getSimilarMovies("movie", movie.getMovieId(), BuildConfig.API_KEY, BuildConfig.LANGUAGE);
+        Call<MovieResponse> call = apiService.getSimilarMovies("tv", movie.getMovieId(), BuildConfig.API_KEY, BuildConfig.LANGUAGE);
         call.enqueue(new Callback<MovieResponse>() {
             @Override
             public void onResponse(@NonNull Call<MovieResponse> call, @NonNull Response<MovieResponse> response) {
@@ -69,9 +69,9 @@ public class DetailMovieViewModel extends ViewModel {
         });
     }
 
-    public void loadGenreMovie(Movie movie) {
+    public void loadGenreTvShow(Movie movie) {
         Service apiService = Client.getClient().create(Service.class);
-        Call<Movie> call = apiService.getMovieDetails("movie", movie.getMovieId(), BuildConfig.API_KEY, BuildConfig.LANGUAGE);
+        Call<Movie> call = apiService.getMovieDetails("tv", movie.getMovieId(), BuildConfig.API_KEY, BuildConfig.LANGUAGE);
         call.enqueue(new Callback<Movie>() {
             @Override
             public void onResponse(@NonNull Call<Movie> call, @NonNull Response<Movie> response) {
@@ -89,15 +89,15 @@ public class DetailMovieViewModel extends ViewModel {
         });
     }
 
-    LiveData<Movie> getDetailMovie() {
+    LiveData<Movie> getDetailTvShow() {
         return movies;
     }
 
-    LiveData<List<Movie>> getSimilarMovie() {
+    LiveData<List<Movie>> getSimilarTvShow() {
         return listMovie;
     }
 
-    LiveData<List<Genre>> getGenreMovie() {
+    LiveData<List<Genre>> getGenreTvShow() {
         return listGenre;
     }
 }

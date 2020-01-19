@@ -1,4 +1,4 @@
-package com.informatika.umm.myapplication.view.activity.splash;
+package com.informatika.umm.myapplication.ui.activity.splash;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.os.Handler;
 
 import com.informatika.umm.myapplication.R;
-import com.informatika.umm.myapplication.view.activity.main.MainActivity;
+import com.informatika.umm.myapplication.ui.activity.main.MainActivity;
 
 public class SplashActivity extends AppCompatActivity {
 

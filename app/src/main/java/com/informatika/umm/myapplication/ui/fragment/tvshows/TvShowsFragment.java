@@ -1,4 +1,4 @@
-package com.informatika.umm.myapplication.view.fragment.tvshows;
+package com.informatika.umm.myapplication.ui.fragment.tvshows;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

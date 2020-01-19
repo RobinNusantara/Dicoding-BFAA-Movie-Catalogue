@@ -1,4 +1,4 @@
-package com.informatika.umm.myapplication.view.fragment.favorites;
+package com.informatika.umm.myapplication.ui.fragment.favorites;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

@@ -1,4 +1,4 @@
-package com.informatika.umm.myapplication.view.fragment.movies;
+package com.informatika.umm.myapplication.ui.fragment.movies;
 
 import android.util.Log;
 

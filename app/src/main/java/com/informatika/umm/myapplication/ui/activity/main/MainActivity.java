@@ -1,4 +1,4 @@
-package com.informatika.umm.myapplication.view.activity.main;
+package com.informatika.umm.myapplication.ui.activity.main;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,9 +14,10 @@ import androidx.fragment.app.Fragment;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.informatika.umm.myapplication.R;
-import com.informatika.umm.myapplication.view.fragment.favorites.FavoriteFragment;
-import com.informatika.umm.myapplication.view.fragment.movies.MovieFragment;
-import com.informatika.umm.myapplication.view.fragment.tvshows.TvShowsFragment;
+import com.informatika.umm.myapplication.ui.activity.notification.NotificationActivity;
+import com.informatika.umm.myapplication.ui.fragment.favorites.FavoriteFragment;
+import com.informatika.umm.myapplication.ui.fragment.movies.MovieFragment;
+import com.informatika.umm.myapplication.ui.fragment.tvshows.TvShowsFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -68,8 +69,12 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == R.id.btn_language) {
-            Intent intent = new Intent(Settings.ACTION_LOCALE_SETTINGS);
+        Intent intent;
+        if (item.getItemId() == R.id.btn_notification_setting) {
+            intent = new Intent(MainActivity.this, NotificationActivity.class);
+            startActivity(intent);
+        } else if (item.getItemId() == R.id.btn_language_setting) {
+            intent = new Intent(Settings.ACTION_LOCALE_SETTINGS);
             startActivity(intent);
         }
         return super.onOptionsItemSelected(item);

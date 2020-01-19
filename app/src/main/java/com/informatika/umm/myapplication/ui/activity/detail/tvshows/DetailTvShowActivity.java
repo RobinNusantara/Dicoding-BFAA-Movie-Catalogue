@@ -1,4 +1,4 @@
-package com.informatika.umm.myapplication.view.activity.detail.tvshows;
+package com.informatika.umm.myapplication.ui.activity.detail.tvshows;
 
 import android.os.Bundle;
 import android.view.Menu;

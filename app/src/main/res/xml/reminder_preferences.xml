@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <SwitchPreferenceCompat
+        android:summary="Receive notifications about the movie that released today"
+        android:title="Release Reminder"
+        app:key="reminder_release" />
+
+    <SwitchPreferenceCompat
+        android:key="reminder_daily"
+        android:summary="Receive notification to see what's the most popular movie today"
+        android:title="Daily Reminder" />
+
+</PreferenceScreen>

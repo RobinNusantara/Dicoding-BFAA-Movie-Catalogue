@@ -33,4 +33,18 @@ public interface Service {
             @Path("movie_id") int id,
             @Query("api_key") String apiKey,
             @Query("language") String language);
+
+    @GET("search/{type}")
+    Call<MovieResponse> getSearchMovie(
+            @Path("type") String type,
+            @Query("api_key") String apiKey,
+            @Query("language") String language,
+            @Query("query") String query);
+
+    @GET("discover/movie")
+    Call<MovieResponse> getReleaseMovie(
+            @Query("api_key") String apiKey,
+            @Query("primary_release_date.gte") String gte,
+            @Query("primary_release_date.lte") String lte);
+
 }
