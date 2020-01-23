@@ -3,7 +3,7 @@
     <string name="str_movie_title">Movie Title</string>
     <string name="str_movie_background">Movie Background</string>
     <string name="str_movie_poster">Movie Poster</string>
-    <string name="str_tv_shows">Serial Tv</string>
+    <string name="str_tv_shows">Serial</string>
     <string name="str_movies">Film</string>
     <string name="title_activity_movie_detail">MovieDetailActivity</string>
     <string name="title_activity_detail_tv_shows">DetailTvShowsActivity</string>

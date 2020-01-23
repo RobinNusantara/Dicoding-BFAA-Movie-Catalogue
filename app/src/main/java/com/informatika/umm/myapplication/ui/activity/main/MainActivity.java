@@ -62,20 +62,22 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.toolbar_menu_main, menu);
-        return true;
+        getMenuInflater().inflate(R.menu.toolbar_menu_main, menu);
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         Intent intent;
-        if (item.getItemId() == R.id.btn_notification_setting) {
-            intent = new Intent(MainActivity.this, NotificationActivity.class);
-            startActivity(intent);
-        } else if (item.getItemId() == R.id.btn_language_setting) {
-            intent = new Intent(Settings.ACTION_LOCALE_SETTINGS);
-            startActivity(intent);
+        switch (item.getItemId()) {
+            case R.id.btn_notification_setting:
+                intent = new Intent(MainActivity.this, NotificationActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.btn_language_setting:
+                intent = new Intent(Settings.ACTION_LOCALE_SETTINGS);
+                startActivity(intent);
+                break;
         }
         return super.onOptionsItemSelected(item);
     }

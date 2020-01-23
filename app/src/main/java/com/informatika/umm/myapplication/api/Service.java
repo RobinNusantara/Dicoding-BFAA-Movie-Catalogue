@@ -35,14 +35,14 @@ public interface Service {
             @Query("language") String language);
 
     @GET("search/{type}")
-    Call<MovieResponse> getSearchMovie(
+    Call<MovieResponse> getSearchMovies(
             @Path("type") String type,
             @Query("api_key") String apiKey,
             @Query("language") String language,
             @Query("query") String query);
 
     @GET("discover/movie")
-    Call<MovieResponse> getReleaseMovie(
+    Call<MovieResponse> getReleaseMovies(
             @Query("api_key") String apiKey,
             @Query("primary_release_date.gte") String gte,
             @Query("primary_release_date.lte") String lte);

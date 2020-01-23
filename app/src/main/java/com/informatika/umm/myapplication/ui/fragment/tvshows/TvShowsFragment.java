@@ -1,7 +1,11 @@
 package com.informatika.umm.myapplication.ui.fragment.tvshows;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -17,6 +21,7 @@ import com.facebook.shimmer.ShimmerFrameLayout;
 import com.informatika.umm.myapplication.R;
 import com.informatika.umm.myapplication.adapter.TvShowsAdapter;
 import com.informatika.umm.myapplication.model.Movie;
+import com.informatika.umm.myapplication.ui.activity.search.tvshows.SearchTvShowsActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,9 +42,10 @@ public class TvShowsFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        setHasOptionsMenu(true);
         bindView(view);
         setupViewModel();
-        showDiscoverTvShow();
+        showRecyclerView();
         viewModel.loadDiscoverTvShow();
         shimmerFrameLayout.startShimmer();
     }
@@ -56,16 +62,31 @@ public class TvShowsFragment extends Fragment {
         });
     }
 
-    private void showDiscoverTvShow() {
-        LinearLayoutManager layoutNowPlayingMovies = new LinearLayoutManager(getContext());
+    private void showRecyclerView() {
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         listAdapter = new TvShowsAdapter(getContext(), movieList);
         rvDiscover.setHasFixedSize(true);
-        rvDiscover.setLayoutManager(layoutNowPlayingMovies);
+        rvDiscover.setLayoutManager(layoutManager);
         rvDiscover.setAdapter(listAdapter);
     }
 
     private void bindView(View view) {
         shimmerFrameLayout = view.findViewById(R.id.shimmer_container);
         rvDiscover = view.findViewById(R.id.rv_movies_now_playing);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        inflater.inflate(R.menu.toolbar_menu_search, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.btn_search) {
+            Intent intent = new Intent(getContext(), SearchTvShowsActivity.class);
+            startActivity(intent);
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

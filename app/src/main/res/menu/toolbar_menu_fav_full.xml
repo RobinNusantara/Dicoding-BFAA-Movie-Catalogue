@@ -5,7 +5,7 @@
     <item
         android:id="@+id/btn_remove_from_favorite"
         android:icon="@drawable/ic_favorite_white_24dp"
-        android:title="Remove from Favorite"
+        android:title="@string/str_remove_from_favorite"
         app:showAsAction="always" />
 
 </menu>

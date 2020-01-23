@@ -1,14 +1,13 @@
 package com.informatika.umm.myapplication.ui.fragment.movies;
 
-import android.app.SearchManager;
-import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.SearchView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -22,6 +21,7 @@ import com.facebook.shimmer.ShimmerFrameLayout;
 import com.informatika.umm.myapplication.R;
 import com.informatika.umm.myapplication.adapter.MovieListAdapter;
 import com.informatika.umm.myapplication.model.Movie;
+import com.informatika.umm.myapplication.ui.activity.search.movies.SearchMovieActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,9 +42,10 @@ public class MovieFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        setHasOptionsMenu(true);
         bindView(view);
         setupViewModel();
-        showDiscoverMovie();
+        setupRecyclerView();
         viewModel.loadDiscoverMovie();
         shimmerFrameLayout.startShimmer();
     }
@@ -61,11 +62,11 @@ public class MovieFragment extends Fragment {
         });
     }
 
-    private void showDiscoverMovie() {
-        LinearLayoutManager layoutNowPlayingMovies = new LinearLayoutManager(getContext());
+    private void setupRecyclerView() {
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         listAdapter = new MovieListAdapter(getContext(), movieList);
         rvDiscover.setHasFixedSize(true);
-        rvDiscover.setLayoutManager(layoutNowPlayingMovies);
+        rvDiscover.setLayoutManager(layoutManager);
         rvDiscover.setAdapter(listAdapter);
     }
 
@@ -76,26 +77,16 @@ public class MovieFragment extends Fragment {
 
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-
-        if (getContext() != null){
-            SearchManager searchManager = (SearchManager) getContext().getSystemService(Context.SEARCH_SERVICE);
-            if (searchManager != null){
-                SearchView searchView = (SearchView) (menu.findItem(R.id.btn_search)).getActionView();
-                searchView.setQueryHint(getResources().getString(R.string.str_search));
-                searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-                    @Override
-                    public boolean onQueryTextSubmit(String s) {
-                        return true;
-                    }
-
-                    @Override
-                    public boolean onQueryTextChange(String s) {
-                        return false;
-                    }
-                });
-            }
-        }
-
+        inflater.inflate(R.menu.toolbar_menu_search, menu);
         super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.btn_search) {
+            Intent intent = new Intent(getContext(), SearchMovieActivity.class);
+            startActivity(intent);
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

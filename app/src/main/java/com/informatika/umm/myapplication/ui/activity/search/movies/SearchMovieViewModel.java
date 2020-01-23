@@ -1,4 +1,4 @@
-package com.informatika.umm.myapplication.ui.activity.notification;
+package com.informatika.umm.myapplication.ui.activity.search.movies;
 
 import android.util.Log;
 
@@ -13,10 +13,7 @@ import com.informatika.umm.myapplication.api.Service;
 import com.informatika.umm.myapplication.model.Movie;
 import com.informatika.umm.myapplication.model.MovieResponse;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -24,30 +21,21 @@ import retrofit2.Response;
 
 /**
  * MADE_Submission_2
- * created by : Robin Nusantara on 1/20/2020 01 2020
- * 00:39 Mon
+ * created by : Robin Nusantara on 1/21/2020 01 2020
+ * 12:07 Tue
  **/
-public class NotificationViewModel extends ViewModel {
+public class SearchMovieViewModel extends ViewModel {
 
-    private MutableLiveData<List<Movie>> listMovie = new MutableLiveData<>();
+    private MutableLiveData<List<Movie>> movieList = new MutableLiveData<>();
 
-    public void loadReleaseMovie() {
-
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
-        Date date = new Date();
-        final String today = dateFormat.format(date);
-
+    public void loadSearchMovie(String input) {
         Service apiService = Client.getClient().create(Service.class);
-        Call<MovieResponse> call = apiService.getReleaseMovies(BuildConfig.API_KEY, today, today);
+        Call<MovieResponse> call = apiService.getSearchMovies("movie", BuildConfig.API_KEY, BuildConfig.LANGUAGE, input);
         call.enqueue(new Callback<MovieResponse>() {
             @Override
             public void onResponse(@NonNull Call<MovieResponse> call, @NonNull Response<MovieResponse> response) {
                 if (response.body() != null) {
-                    for (Movie movie : response.body().getResults()) {
-                        if (movie.getMovieRelease().equals(today)) {
-                            listMovie.postValue(response.body().getResults());
-                        }
-                    }
+                    movieList.postValue(response.body().getResults());
                 }
             }
 
@@ -58,7 +46,7 @@ public class NotificationViewModel extends ViewModel {
         });
     }
 
-    LiveData<List<Movie>> getReleaseMovie() {
-        return listMovie;
+    LiveData<List<Movie>> getSearchMovie() {
+        return movieList;
     }
 }

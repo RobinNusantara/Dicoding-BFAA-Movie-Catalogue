@@ -76,6 +76,7 @@ public class TvShowsAdapter extends RecyclerView.Adapter<TvShowsAdapter.TvShowsV
                 Intent intent;
                 intent = new Intent(context, DetailTvShowActivity.class);
                 intent.putExtra(DetailTvShowActivity.EXTRA_TV, movie);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intent);
             }
         });

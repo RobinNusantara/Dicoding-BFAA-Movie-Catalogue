@@ -76,6 +76,7 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
                 Intent intent;
                 intent = new Intent(context, DetailMovieActivity.class);
                 intent.putExtra(DetailMovieActivity.EXTRA_MOVIE, movie);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intent);
             }
         });
