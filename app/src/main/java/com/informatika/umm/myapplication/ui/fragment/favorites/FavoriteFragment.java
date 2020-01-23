@@ -37,7 +37,7 @@ public class FavoriteFragment extends Fragment {
         viewPager.setAdapter(favoritePagerAdapter);
         TabLayout tabLayout = view.findViewById(R.id.tab_layout);
         tabLayout.setupWithViewPager(viewPager);
-        if (getActivity() != null){
+        if (getActivity() != null) {
             Objects.requireNonNull(((AppCompatActivity) getActivity()).getSupportActionBar()).setElevation(0);
         }
     }
