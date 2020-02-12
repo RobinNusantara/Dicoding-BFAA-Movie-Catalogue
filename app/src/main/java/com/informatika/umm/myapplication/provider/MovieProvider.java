@@ -1,0 +1,62 @@
+package com.informatika.umm.myapplication.provider;
+
+import android.content.ContentProvider;
+import android.content.ContentValues;
+import android.content.UriMatcher;
+import android.database.Cursor;
+import android.net.Uri;
+
+import androidx.annotation.NonNull;
+
+import com.informatika.umm.myapplication.database.RoomClient;
+
+public class MovieProvider extends ContentProvider {
+
+    private static final int KEY_CODE_MOVIE = 1;
+    private static final String AUTHORITY = "com.informatika.umm.myapplication.provider";
+    private static final String TABLE_NAME = "movie";
+    private static final UriMatcher URI_MATCHER = new UriMatcher(UriMatcher.NO_MATCH);
+
+    static {
+        URI_MATCHER.addURI(AUTHORITY, TABLE_NAME, KEY_CODE_MOVIE);
+    }
+
+    public MovieProvider() {
+    }
+
+    @Override
+    public boolean onCreate() {
+        return true;
+    }
+
+    @Override
+    public Cursor query(@NonNull Uri uri, String[] projection, String selection,
+                        String[] selectionArgs, String sortOrder) {
+        return RoomClient
+                .getInstance(getContext())
+                .getMovieDatabase()
+                .getMovieDao()
+                .getMovieCursor();
+    }
+
+    @Override
+    public String getType(@NonNull Uri uri) {
+        return null;
+    }
+
+    @Override
+    public Uri insert(@NonNull Uri uri, ContentValues values) {
+        return uri;
+    }
+
+    @Override
+    public int update(@NonNull Uri uri, ContentValues values, String selection,
+                      String[] selectionArgs) {
+        return 0;
+    }
+
+    @Override
+    public int delete(Uri uri, String selection, String[] selectionArgs) {
+        return 0;
+    }
+}

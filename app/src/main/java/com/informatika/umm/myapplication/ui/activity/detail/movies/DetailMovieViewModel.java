@@ -89,6 +89,14 @@ public class DetailMovieViewModel extends ViewModel {
         });
     }
 
+    public void setIsFavorite(Boolean isFavorite) {
+        if (movies.getValue() != null) {
+            Movie movie = movies.getValue();
+            movie.setIsFavorite(isFavorite);
+            movies.postValue(movie);
+        }
+    }
+
     LiveData<Movie> getDetailMovie() {
         return movies;
     }

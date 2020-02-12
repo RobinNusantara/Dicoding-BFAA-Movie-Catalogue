@@ -27,5 +27,4 @@ public class FormatDate {
         }
         return newPattern.format(calendar.getTime());
     }
-
 }

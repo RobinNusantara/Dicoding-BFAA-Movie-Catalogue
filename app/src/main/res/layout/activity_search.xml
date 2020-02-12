@@ -22,8 +22,8 @@
             <androidx.appcompat.widget.SearchView
                 android:id="@+id/search_bar"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:imeOptions="actionSearch|flagNoExtractUi" />
+
+                android:layout_height="match_parent"/>
 
         </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>

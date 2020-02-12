@@ -20,7 +20,6 @@ import com.informatika.umm.myapplication.model.Movie;
 import com.informatika.umm.myapplication.ui.activity.detail.movies.DetailMovieActivity;
 import com.informatika.umm.myapplication.util.FormatDate;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -31,20 +30,17 @@ import java.util.List;
 public class FavoriteAdapterMovie extends RecyclerView.Adapter<FavoriteAdapterMovie.FavoriteMovieViewHolder> {
 
     private Context context;
-    private List<Movie> movieList = new ArrayList<>();
+    private List<Movie> movieList;
 
-    public FavoriteAdapterMovie(Context context) {
+    public FavoriteAdapterMovie(Context context, List<Movie> movieList) {
+        this.movieList = movieList;
         this.context = context;
     }
 
     public void setFavorite(List<Movie> movieList) {
-        this.movieList = new ArrayList<>();
+        this.movieList.clear();
         this.movieList.addAll(movieList);
         notifyDataSetChanged();
-    }
-
-    public ArrayList<Movie> getFavorite() {
-        return (ArrayList<Movie>) movieList;
     }
 
     @NonNull
@@ -55,7 +51,7 @@ public class FavoriteAdapterMovie extends RecyclerView.Adapter<FavoriteAdapterMo
     }
 
     @Override
-    public void onBindViewHolder(@NonNull FavoriteMovieViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final FavoriteMovieViewHolder holder, int position) {
         final Movie movie = movieList.get(position);
         String url = BuildConfig.IMAGE_URL + movie.getMoviePoster();
         Glide.with(holder.itemView.getContext())
@@ -74,8 +70,7 @@ public class FavoriteAdapterMovie extends RecyclerView.Adapter<FavoriteAdapterMo
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent;
-                intent = new Intent(context, DetailMovieActivity.class);
+                Intent intent = new Intent(context, DetailMovieActivity.class);
                 intent.putExtra(DetailMovieActivity.EXTRA_MOVIE, movie);
                 context.startActivity(intent);
             }

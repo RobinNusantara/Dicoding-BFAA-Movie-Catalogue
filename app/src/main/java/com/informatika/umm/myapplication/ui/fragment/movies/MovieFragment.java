@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -21,6 +22,8 @@ import com.facebook.shimmer.ShimmerFrameLayout;
 import com.informatika.umm.myapplication.R;
 import com.informatika.umm.myapplication.adapter.MovieListAdapter;
 import com.informatika.umm.myapplication.model.Movie;
+import com.informatika.umm.myapplication.settings.SettingsActivity;
+import com.informatika.umm.myapplication.ui.activity.main.MainActivity;
 import com.informatika.umm.myapplication.ui.activity.search.movies.SearchMovieActivity;
 
 import java.util.ArrayList;
@@ -77,14 +80,18 @@ public class MovieFragment extends Fragment {
 
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-        inflater.inflate(R.menu.toolbar_menu_search, menu);
         super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.toolbar_menu_main, menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == R.id.btn_search) {
-            Intent intent = new Intent(getContext(), SearchMovieActivity.class);
+        Intent intent;
+        if (item.getItemId() == R.id.btn_settings) {
+            intent = new Intent(getActivity(), SettingsActivity.class);
+            startActivity(intent);
+        } else if (item.getItemId() == R.id.btn_search) {
+            intent = new Intent(getActivity(), SearchMovieActivity.class);
             startActivity(intent);
         }
         return super.onOptionsItemSelected(item);

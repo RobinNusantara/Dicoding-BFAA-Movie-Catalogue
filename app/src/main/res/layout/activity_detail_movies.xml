@@ -8,6 +8,7 @@
     tools:context=".ui.activity.detail.movies.DetailMovieActivity">
 
     <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar"
         android:layout_width="match_parent"
         android:layout_height="230dp"
         android:fitsSystemWindows="true"
@@ -39,6 +40,15 @@
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btn_check_favorite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        app:layout_anchor="@id/app_bar"
+        app:layout_anchorGravity="bottom|end"
+        tools:srcCompat="@drawable/ic_favorite_border_white_24dp" />
 
     <include layout="@layout/content_detail_movies" />
 

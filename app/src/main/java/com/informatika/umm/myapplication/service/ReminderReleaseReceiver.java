@@ -17,7 +17,6 @@ import androidx.core.app.NotificationCompat;
 
 import com.informatika.umm.myapplication.R;
 import com.informatika.umm.myapplication.model.Movie;
-import com.informatika.umm.myapplication.ui.activity.detail.movies.DetailMovieActivity;
 
 import java.util.Calendar;
 import java.util.List;
@@ -29,13 +28,13 @@ import java.util.List;
  **/
 public class ReminderReleaseReceiver extends BroadcastReceiver {
 
-    private static final int NOTIFICATION_ID = 110;
+    private static final int NOTIFICATION_ID = 2;
     private static final String CHANNEL_ID = "channel_02";
     private static final CharSequence CHANNEL_NAME = "release_channel";
     private static final String EXTRA_MOVIE = "extra_movie";
     private static final String KEY_MESSAGE_ID = "key_message_id";
     private static final String KEY_NOTIF_ID = "key_notify_id";
-    private int messageId = 1100;
+    private static int messageId = 1100;
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -67,7 +66,7 @@ public class ReminderReleaseReceiver extends BroadcastReceiver {
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         Uri ringtone = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
 
-        Intent intent = new Intent(context, DetailMovieActivity.class);
+        Intent intent = new Intent();
         intent.putExtra(EXTRA_MOVIE, id);
         PendingIntent pendingIntent = PendingIntent.getActivity(
                 context,
@@ -112,6 +111,7 @@ public class ReminderReleaseReceiver extends BroadcastReceiver {
     }
 
     public void setTimeReleaseReminder(Context context, List<Movie> movieList) {
+        int delay = 0;
         for (Movie movie : movieList) {
             AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
             Intent intent = new Intent(context, ReminderReleaseReceiver.class);
@@ -129,11 +129,13 @@ public class ReminderReleaseReceiver extends BroadcastReceiver {
             if (alarmManager != null) {
                 alarmManager.setInexactRepeating(
                         AlarmManager.RTC_WAKEUP,
-                        setReminderTime().getTimeInMillis(),
+                        setReminderTime().getTimeInMillis() + delay,
                         AlarmManager.INTERVAL_DAY,
                         pendingIntent
                 );
             }
+            messageId += 2;
+            delay += 6000;
         }
     }
 

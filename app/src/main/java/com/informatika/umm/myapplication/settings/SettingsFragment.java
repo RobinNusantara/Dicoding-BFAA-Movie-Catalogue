@@ -1,4 +1,4 @@
-package com.informatika.umm.myapplication.ui.activity.notification;
+package com.informatika.umm.myapplication.settings;
 
 
 import android.os.Bundle;
@@ -23,7 +23,7 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class NotificationFragment extends PreferenceFragmentCompat implements Preference.OnPreferenceChangeListener {
+public class SettingsFragment extends PreferenceFragmentCompat implements Preference.OnPreferenceChangeListener {
 
     private static final String KEY_DAILY = "reminder_daily";
     private static final String KEY_RELEASE = "reminder_release";
@@ -42,7 +42,6 @@ public class NotificationFragment extends PreferenceFragmentCompat implements Pr
 
         SwitchPreferenceCompat switchDaily = findPreference(KEY_DAILY);
         SwitchPreferenceCompat switchRelease = findPreference(KEY_RELEASE);
-
         if (switchDaily != null) {
             switchDaily.setOnPreferenceChangeListener(this);
         }

@@ -1,4 +1,4 @@
-package com.informatika.umm.myapplication.ui.activity.notification;
+package com.informatika.umm.myapplication.settings;
 
 import android.util.Log;
 
@@ -34,8 +34,7 @@ public class NotificationViewModel extends ViewModel {
     public void loadReleaseMovie() {
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
-        Date date = new Date();
-        final String today = dateFormat.format(date);
+        final String today = dateFormat.format(new Date());
 
         Service apiService = Client.getClient().create(Service.class);
         Call<MovieResponse> call = apiService.getReleaseMovies(BuildConfig.API_KEY, today, today);

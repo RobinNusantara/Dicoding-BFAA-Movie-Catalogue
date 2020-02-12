@@ -1,4 +1,4 @@
-package com.informatika.umm.myapplication.ui.activity.notification;
+package com.informatika.umm.myapplication.settings;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,7 +8,7 @@ import android.view.MenuItem;
 
 import com.informatika.umm.myapplication.R;
 
-public class NotificationActivity extends AppCompatActivity {
+public class SettingsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,7 +16,7 @@ public class NotificationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_notification);
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.notification_frame, new NotificationFragment())
+                .replace(R.id.notification_frame, new SettingsFragment())
                 .commit();
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);

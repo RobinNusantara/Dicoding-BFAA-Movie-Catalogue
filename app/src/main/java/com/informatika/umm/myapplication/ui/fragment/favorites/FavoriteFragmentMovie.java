@@ -1,37 +1,43 @@
 package com.informatika.umm.myapplication.ui.fragment.favorites;
 
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.informatika.umm.myapplication.R;
 import com.informatika.umm.myapplication.adapter.FavoriteAdapterMovie;
-import com.informatika.umm.myapplication.database.FavoriteHelper;
+import com.informatika.umm.myapplication.database.RoomClient;
 import com.informatika.umm.myapplication.model.Movie;
 
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class FavoriteFragmentMovie extends Fragment {
 
-    private static final String KEY = "movies";
-    private RecyclerView recyclerView;
-    private FavoriteAdapterMovie adapter;
     private List<Movie> movieList = new ArrayList<>();
-    private FavoriteHelper helper;
-    private Bundle bundle;
+    private SwipeRefreshLayout swipeRefreshLayout;
+    private GetMovieFavoriteTask favoriteTask;
+    private FavoriteAdapterMovie adapter;
+    private FavoriteViewModel viewModel;
+    private RecyclerView recyclerView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -42,48 +48,79 @@ public class FavoriteFragmentMovie extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        bindView(view);
+        initFavoriteTask();
+        setupViewModel();
+        setupRecyclerView();
+        setupRefreshLayout();
+        favoriteTask.execute();
+    }
+
+    private void bindView(View view) {
         recyclerView = view.findViewById(R.id.rv_favorite);
-        if (savedInstanceState != null) {
-            bundle = savedInstanceState;
-        }
+        swipeRefreshLayout = view.findViewById(R.id.swipe_refresh_layout);
     }
 
-    @Override
-    public void onSaveInstanceState(@NonNull Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putParcelableArrayList(KEY, adapter.getFavorite());
-    }
-
-    @Override
-    public void onStart() {
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerView.setHasFixedSize(true);
-        helper = FavoriteHelper.getInstance(getContext());
-        helper.open();
-
-        adapter = new FavoriteAdapterMovie(getContext());
-        recyclerView.setAdapter(adapter);
-
-        if (bundle == null) {
-            movieList.clear();
-            movieList.addAll(helper.queryAllMovie());
-            if (movieList != null) {
+    private void setupViewModel() {
+        viewModel = new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory()).get(FavoriteViewModel.class);
+        viewModel.getMovieList().observe(getViewLifecycleOwner(), new Observer<List<Movie>>() {
+            @Override
+            public void onChanged(List<Movie> movieList) {
                 adapter.setFavorite(movieList);
-            } else {
-                Toast.makeText(getContext(), "Empty Data", Toast.LENGTH_SHORT).show();
             }
-        } else {
-            List<Movie> list = bundle.getParcelableArrayList(KEY);
-            if (list != null) {
-                adapter.setFavorite(list);
-            }
-        }
-        super.onStart();
+        });
     }
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        helper.close();
+    private void initFavoriteTask() {
+        favoriteTask = new GetMovieFavoriteTask(this);
+    }
+
+    private void setupRecyclerView() {
+        adapter = new FavoriteAdapterMovie(getActivity(), movieList);
+        LinearLayoutManager manager = new LinearLayoutManager(getContext());
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(manager);
+    }
+
+    private void setupRefreshLayout() {
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                refreshFavoriteMovie();
+            }
+        });
+    }
+
+    private void refreshFavoriteMovie() {
+        favoriteTask = null;
+        initFavoriteTask();
+        favoriteTask.execute();
+    }
+
+    private static class GetMovieFavoriteTask extends AsyncTask<Void, Void, List<Movie>> {
+
+        private WeakReference<FavoriteFragmentMovie> fragment;
+
+        GetMovieFavoriteTask(FavoriteFragmentMovie fragment) {
+            this.fragment = new WeakReference<>(fragment);
+        }
+
+        @Override
+        protected List<Movie> doInBackground(Void... voids) {
+            String KEY = Objects.requireNonNull(fragment.get().getContext()).getString(R.string.str_key_movies);
+            return RoomClient
+                    .getInstance(fragment.get().getContext())
+                    .getMovieDatabase()
+                    .getMovieDao()
+                    .getMovieList(KEY);
+        }
+
+        @Override
+        protected void onPostExecute(List<Movie> movies) {
+            super.onPostExecute(movies);
+            fragment.get().viewModel.setMovieList(movies);
+            fragment.get().swipeRefreshLayout.setRefreshing(false);
+        }
     }
 }

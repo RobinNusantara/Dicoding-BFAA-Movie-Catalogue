@@ -121,6 +121,28 @@ public class FavoriteHelper {
         return list;
     }
 
+    public Cursor queryProvider() {
+        return database.query(DATABASE_TABLE_MOVIE,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                TITLE + " ASC");
+    }
+
+    public Cursor queryByIdProvider(String id) {
+        return database.query(DATABASE_TABLE_MOVIE,
+                null,
+                _ID + " = ?",
+                new String[]{id},
+                null,
+                null,
+                null,
+                null);
+    }
+
     public boolean isMovieExist(Movie movie) {
         database = databaseHelper.getWritableDatabase();
         String QUERY = "SELECT * FROM " + TABLE_MOVIE + " WHERE " + _ID + "=" + movie.getMovieId();
@@ -154,7 +176,7 @@ public class FavoriteHelper {
         values.put(RELEASE, movie.getMovieRelease());
         values.put(RATING, movie.getMovieScore());
         values.put(OVERVIEW, movie.getMovieOverview());
-        values.put(REVIEW,movie.getMovieReview());
+        values.put(REVIEW, movie.getMovieReview());
         values.put(POSTER, movie.getMoviePoster());
         values.put(BACKDROP, movie.getMovieBackdrop());
         return database.insert(DATABASE_TABLE_MOVIE, null, values);
@@ -167,10 +189,14 @@ public class FavoriteHelper {
         values.put(RELEASE, movie.getMovieRelease());
         values.put(RATING, movie.getMovieScore());
         values.put(OVERVIEW, movie.getMovieOverview());
-        values.put(REVIEW,movie.getMovieReview());
+        values.put(REVIEW, movie.getMovieReview());
         values.put(POSTER, movie.getMoviePoster());
         values.put(BACKDROP, movie.getMovieBackdrop());
         return database.insert(DATABASE_TABLE_TVSHOW, null, values);
+    }
+
+    public long insertProvider(ContentValues values) {
+        return database.insert(DATABASE_TABLE_MOVIE, null, values);
     }
 
     public int deleteMovie(int id) {
@@ -180,5 +206,4 @@ public class FavoriteHelper {
     public int deleteTvShow(int id) {
         return database.delete(DATABASE_TABLE_TVSHOW, _ID + " = '" + id + "'", null);
     }
-
 }

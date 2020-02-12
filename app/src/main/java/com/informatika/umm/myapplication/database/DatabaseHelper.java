@@ -16,7 +16,7 @@ import static com.informatika.umm.myapplication.database.DatabaseContract.TABLE_
  **/
 public class DatabaseHelper extends SQLiteOpenHelper {
     private static String DATABASE_NAME = "favoritedb";
-    private static final int DATABASE_VERSION = 7;
+    private static final int DATABASE_VERSION = 8;
 
     private static final String SQL_CREATE_TABLE_MOVIE = String.format("CREATE TABLE %s"
                     + " (%s INTEGER PRIMARY KEY AUTOINCREMENT," +

@@ -21,6 +21,8 @@ import com.facebook.shimmer.ShimmerFrameLayout;
 import com.informatika.umm.myapplication.R;
 import com.informatika.umm.myapplication.adapter.TvShowsAdapter;
 import com.informatika.umm.myapplication.model.Movie;
+import com.informatika.umm.myapplication.settings.SettingsActivity;
+import com.informatika.umm.myapplication.ui.activity.search.movies.SearchMovieActivity;
 import com.informatika.umm.myapplication.ui.activity.search.tvshows.SearchTvShowsActivity;
 
 import java.util.ArrayList;
@@ -75,16 +77,21 @@ public class TvShowsFragment extends Fragment {
         rvDiscover = view.findViewById(R.id.rv_movies_now_playing);
     }
 
+
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-        inflater.inflate(R.menu.toolbar_menu_search, menu);
         super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.toolbar_menu_main, menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == R.id.btn_search) {
-            Intent intent = new Intent(getContext(), SearchTvShowsActivity.class);
+        Intent intent;
+        if (item.getItemId() == R.id.btn_settings) {
+            intent = new Intent(getActivity(), SettingsActivity.class);
+            startActivity(intent);
+        } else if (item.getItemId() == R.id.btn_search) {
+            intent = new Intent(getActivity(), SearchTvShowsActivity.class);
             startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
