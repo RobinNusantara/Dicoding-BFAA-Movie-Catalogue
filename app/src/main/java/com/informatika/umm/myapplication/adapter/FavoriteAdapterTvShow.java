@@ -31,9 +31,10 @@ import java.util.List;
 public class FavoriteAdapterTvShow extends RecyclerView.Adapter<FavoriteAdapterTvShow.FavoriteTvShowViewHolder> {
 
     private Context context;
-    private List<Movie> movieList = new ArrayList<>();
+    private List<Movie> movieList;
 
-    public FavoriteAdapterTvShow(Context context) {
+    public FavoriteAdapterTvShow(Context context, List<Movie> movieList) {
+        this.movieList = movieList;
         this.context = context;
     }
 
@@ -41,10 +42,6 @@ public class FavoriteAdapterTvShow extends RecyclerView.Adapter<FavoriteAdapterT
         this.movieList = new ArrayList<>();
         this.movieList.addAll(movieList);
         notifyDataSetChanged();
-    }
-
-    public ArrayList<Movie> getFavorite() {
-        return (ArrayList<Movie>) movieList;
     }
 
     @NonNull
