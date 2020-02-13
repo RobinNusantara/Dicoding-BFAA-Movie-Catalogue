@@ -1,8 +1,6 @@
 package com.informatika.umm.myapplication.ui.activity.main;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
@@ -12,8 +10,6 @@ import androidx.fragment.app.Fragment;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.informatika.umm.myapplication.R;
-import com.informatika.umm.myapplication.settings.SettingsActivity;
-import com.informatika.umm.myapplication.ui.activity.search.movies.SearchMovieActivity;
 import com.informatika.umm.myapplication.ui.fragment.favorites.FavoriteFragment;
 import com.informatika.umm.myapplication.ui.fragment.movies.MovieFragment;
 import com.informatika.umm.myapplication.ui.fragment.tvshows.TvShowsFragment;

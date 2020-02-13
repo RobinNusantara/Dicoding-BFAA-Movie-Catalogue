@@ -7,6 +7,7 @@ import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
 
 import com.bumptech.glide.Glide;
+import com.informatika.umm.myapplication.BuildConfig;
 import com.informatika.umm.myapplication.R;
 import com.informatika.umm.myapplication.database.RoomClient;
 import com.informatika.umm.myapplication.model.Movie;
@@ -36,11 +37,11 @@ public class WidgetRemoteViewsFactory implements RemoteViewsService.RemoteViewsF
 
     @Override
     public void onDataSetChanged() {
-        String KEY = "movies";
-        movieList = RoomClient.getInstance(context)
+        movieList = RoomClient
+                .getInstance(context)
                 .getMovieDatabase()
                 .getMovieDao()
-                .getMovieList(KEY);
+                .getMovieList("movies");
     }
 
     @Override
@@ -58,10 +59,11 @@ public class WidgetRemoteViewsFactory implements RemoteViewsService.RemoteViewsF
         RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.item_row_widget);
         if (!movieList.isEmpty()) {
             Movie movie = movieList.get(position);
+            String url = BuildConfig.IMAGE_URL + movie.getMoviePoster();
             try {
                 Bitmap bitmap = Glide.with(context)
                         .asBitmap()
-                        .load(movie.getMoviePoster())
+                        .load(url)
                         .fitCenter()
                         .submit()
                         .get();
@@ -69,7 +71,6 @@ public class WidgetRemoteViewsFactory implements RemoteViewsService.RemoteViewsF
             } catch (ExecutionException | InterruptedException e) {
                 e.printStackTrace();
             }
-
             Intent intent = new Intent();
             intent.putExtra(ImageBannerWidget.EXTRA_MOVIE, movie);
             remoteViews.setOnClickFillInIntent(R.id.container_view_widget, intent);

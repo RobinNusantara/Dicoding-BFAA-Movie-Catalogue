@@ -4,6 +4,9 @@
     package="com.informatika.umm.myapplication">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <permission
+        android:name="com.informatika.umm.myapplication.provider.READ_WRITE"
+        android:protectionLevel="normal" />
 
     <application
         android:allowBackup="true"

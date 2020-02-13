@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="colorCityLight">#f1f2f6</color>
+    <color name="colorSilver">#bdc3c7</color>
+    <color name="colorNanohanaGold">#e1b12c</color>
+</resources>
