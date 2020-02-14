@@ -4,8 +4,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.os.AsyncTask;
 
-import com.informatika.umm.consumerapp.helper.DatabaseContract;
-import com.informatika.umm.consumerapp.helper.MappingHelper;
+import com.informatika.umm.consumerapp.database.DatabaseContract;
+import com.informatika.umm.consumerapp.database.MappingHelper;
 import com.informatika.umm.consumerapp.model.Movie;
 import com.informatika.umm.consumerapp.util.FavoriteListener;
 
@@ -20,11 +20,17 @@ import java.util.List;
 public class GetFavoriteTask extends AsyncTask<Void, Void, List<Movie>> {
 
     private WeakReference<Context> contextWeakReference;
-    private FavoriteListener favoriteListener;
+    private WeakReference<FavoriteListener> favoriteListener;
 
     public GetFavoriteTask(Context contextWeakReference, FavoriteListener favoriteListener) {
         this.contextWeakReference = new WeakReference<>(contextWeakReference);
-        this.favoriteListener = favoriteListener;
+        this.favoriteListener = new WeakReference<>(favoriteListener);
+    }
+
+    @Override
+    protected void onPreExecute() {
+        super.onPreExecute();
+        favoriteListener.get().preExecute();
     }
 
     @Override
@@ -43,6 +49,6 @@ public class GetFavoriteTask extends AsyncTask<Void, Void, List<Movie>> {
     @Override
     protected void onPostExecute(List<Movie> movies) {
         super.onPostExecute(movies);
-        favoriteListener.onFavoriteLoad(movies);
+        favoriteListener.get().onPostExecute(movies);
     }
 }

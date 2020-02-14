@@ -21,13 +21,13 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <include layout="@layout/shimmer_row_layout" />
+            <include layout="@layout/item_row_shimmer" />
 
-            <include layout="@layout/shimmer_row_layout" />
+            <include layout="@layout/item_row_shimmer" />
 
-            <include layout="@layout/shimmer_row_layout" />
+            <include layout="@layout/item_row_shimmer" />
 
-            <include layout="@layout/shimmer_row_layout" />
+            <include layout="@layout/item_row_shimmer" />
 
         </LinearLayout>
     </com.facebook.shimmer.ShimmerFrameLayout>

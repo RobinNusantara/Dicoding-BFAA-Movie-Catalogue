@@ -11,54 +11,39 @@ public class Movie {
     private String moviePoster;
     private String movieRelease;
     private Double movieScore;
+    private String movieOverview;
+    private String movieType;
 
-    public Movie(String movieTitle, String moviePoster, String movieRelease, Double movieScore) {
+    public Movie(String movieTitle, String moviePoster, String movieRelease, Double movieScore, String movieOverview,String movieType) {
         this.movieTitle = movieTitle;
         this.moviePoster = moviePoster;
         this.movieRelease = movieRelease;
         this.movieScore = movieScore;
-    }
-
-    public Float getRating() {
-        float divideRating;
-        if (movieScore != null) {
-            divideRating = movieScore.floatValue();
-            divideRating = divideRating / 2;
-        } else {
-            divideRating = 0;
-        }
-        return divideRating;
+        this.movieOverview = movieOverview;
+        this.movieType = movieType;
     }
 
     public String getMovieTitle() {
         return movieTitle;
     }
 
-    public void setMovieTitle(String movieTitle) {
-        this.movieTitle = movieTitle;
-    }
-
     public String getMoviePoster() {
         return moviePoster;
-    }
-
-    public void setMoviePoster(String moviePoster) {
-        this.moviePoster = moviePoster;
     }
 
     public String getMovieRelease() {
         return movieRelease;
     }
 
-    public void setMovieRelease(String movieRelease) {
-        this.movieRelease = movieRelease;
-    }
-
     public Double getMovieScore() {
         return movieScore;
     }
 
-    public void setMovieScore(Double movieScore) {
-        this.movieScore = movieScore;
+    public String getMovieOverview() {
+        return movieOverview;
+    }
+
+    public String getMovieType() {
+        return movieType;
     }
 }

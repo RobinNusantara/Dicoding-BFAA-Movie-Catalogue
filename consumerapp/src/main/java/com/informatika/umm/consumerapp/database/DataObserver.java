@@ -1,4 +1,4 @@
-package com.informatika.umm.consumerapp.helper;
+package com.informatika.umm.consumerapp.database;
 
 import android.content.Context;
 import android.database.ContentObserver;

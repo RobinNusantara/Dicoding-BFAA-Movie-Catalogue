@@ -4,7 +4,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -26,7 +25,7 @@ import java.util.List;
  * created by : Robin Nusantara on 11/29/2019 11 2019
  * 22:21 Fri
  **/
-public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.MoviesViewHolder> {
+public class ListAdapter extends RecyclerView.Adapter<ListAdapter.MoviesViewHolder> {
 
     private List<Movie> movieList = new ArrayList<>();
 
@@ -57,8 +56,8 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
 
         holder.txtMovieTitle.setText(movie.getMovieTitle());
         holder.txtMovieRelease.setText(FormatDate.getFormatReleaseDate(movie.getMovieRelease()));
-        holder.ratingBar.setRating(movie.getRating());
         holder.txtMovieScore.setText(String.valueOf(movie.getMovieScore()));
+        holder.txtMovieOverview.setText(movie.getMovieOverview());
 
         holder.getAdapterPosition();
     }
@@ -71,16 +70,15 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
     class MoviesViewHolder extends RecyclerView.ViewHolder {
 
         ImageView imgMoviePoster;
-        TextView txtMovieTitle, txtMovieScore, txtMovieRelease;
-        RatingBar ratingBar;
+        TextView txtMovieTitle, txtMovieScore, txtMovieRelease, txtMovieOverview;
 
         MoviesViewHolder(@NonNull View itemView) {
             super(itemView);
-            ratingBar = itemView.findViewById(R.id.rate_movie);
             imgMoviePoster = itemView.findViewById(R.id.img_movie_poster);
             txtMovieTitle = itemView.findViewById(R.id.txt_movie_title);
             txtMovieRelease = itemView.findViewById(R.id.txt_movie_release_date);
             txtMovieScore = itemView.findViewById(R.id.txt_movie_score);
+            txtMovieOverview = itemView.findViewById(R.id.txt_movie_overview);
         }
     }
 }

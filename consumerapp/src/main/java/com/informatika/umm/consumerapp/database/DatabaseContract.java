@@ -1,4 +1,4 @@
-package com.informatika.umm.consumerapp.helper;
+package com.informatika.umm.consumerapp.database;
 
 import android.net.Uri;
 
@@ -18,6 +18,8 @@ public class DatabaseContract {
         static final String MOVIE_RELEASE = "release";
         static final String MOVIE_POSTER = "poster";
         static final String MOVIE_SCORE = "score";
+        static final String MOVIE_OVERVIEW = "description";
+        static final String MOVIE_TYPE = "type";
 
         public static final Uri CONTENT_URI = new Uri.Builder()
                 .scheme(SCHEME)

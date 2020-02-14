@@ -10,5 +10,6 @@ import java.util.List;
  * 17:52 Thu
  **/
 public interface FavoriteListener {
-    void onFavoriteLoad(List<Movie> movies);
+    void preExecute();
+    void onPostExecute(List<Movie> movies);
 }
