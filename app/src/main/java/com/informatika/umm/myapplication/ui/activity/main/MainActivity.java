@@ -1,6 +1,9 @@
 package com.informatika.umm.myapplication.ui.activity.main;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.provider.Settings;
+import android.view.Menu;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
@@ -10,6 +13,7 @@ import androidx.fragment.app.Fragment;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.informatika.umm.myapplication.R;
+import com.informatika.umm.myapplication.settings.SettingsActivity;
 import com.informatika.umm.myapplication.ui.fragment.favorites.FavoriteFragment;
 import com.informatika.umm.myapplication.ui.fragment.movies.MovieFragment;
 import com.informatika.umm.myapplication.ui.fragment.tvshows.TvShowsFragment;
@@ -53,5 +57,27 @@ public class MainActivity extends AppCompatActivity {
         if (savedInstanceState == null) {
             bottomNavigationView.setSelectedItemId(R.id.navigation_movies);
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.toolbar_menu_main, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        Intent intent;
+        switch (item.getItemId()) {
+            case R.id.btn_notification:
+                intent = new Intent(MainActivity.this, SettingsActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.btn_language:
+                intent = new Intent(Settings.ACTION_LOCALE_SETTINGS);
+                startActivity(intent);
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

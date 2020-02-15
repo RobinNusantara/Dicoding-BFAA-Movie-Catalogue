@@ -107,6 +107,7 @@ public class MovieFragment extends Fragment implements FavoriteListener {
             swipeRefreshLayout.setRefreshing(false);
         } else {
             adapter.setMovie(new ArrayList<Movie>());
+            swipeRefreshLayout.setRefreshing(false);
         }
     }
 }

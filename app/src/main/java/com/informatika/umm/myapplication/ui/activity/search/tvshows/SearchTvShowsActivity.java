@@ -58,7 +58,7 @@ public class SearchTvShowsActivity extends AppCompatActivity {
         if (searchManager != null) {
             searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
             searchView.setIconified(false);
-            searchView.setQueryHint("Search Shows");
+            searchView.setQueryHint(getString(R.string.str_search_show));
             SearchView.OnQueryTextListener queryTextListener = new SearchView.OnQueryTextListener() {
                 @Override
                 public boolean onQueryTextChange(String newText) {

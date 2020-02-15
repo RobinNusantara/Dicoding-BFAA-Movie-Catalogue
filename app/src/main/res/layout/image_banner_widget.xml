@@ -8,14 +8,21 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
+        android:background="@drawable/item_rectangle_silver"
+        android:backgroundTint="@color/colorDarkTransparency"
+        android:gravity="center"
         android:text="@string/str_no_data"
         android:textAlignment="center"
+        android:textColor="@android:color/white"
         android:textSize="16sp"
+        android:textStyle="bold"
         android:visibility="gone" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/item_rectangle_silver"
+        android:backgroundTint="@color/colorDarkTransparency"
         android:orientation="vertical"
         android:weightSum="10">
 
@@ -25,6 +32,5 @@
             android:layout_height="0dp"
             android:layout_weight="9"
             android:loopViews="true" />
-
     </LinearLayout>
 </FrameLayout>

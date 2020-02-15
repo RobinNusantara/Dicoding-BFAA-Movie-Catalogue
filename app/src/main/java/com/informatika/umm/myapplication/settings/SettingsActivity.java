@@ -1,10 +1,10 @@
 package com.informatika.umm.myapplication.settings;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.view.MenuItem;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.informatika.umm.myapplication.R;
 
@@ -20,7 +20,7 @@ public class SettingsActivity extends AppCompatActivity {
                 .commit();
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setTitle("Settings");
+            getSupportActionBar().setTitle(getString(R.string.str_notification_settings));
         }
     }
 

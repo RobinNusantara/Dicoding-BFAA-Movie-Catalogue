@@ -2,7 +2,6 @@ package com.informatika.umm.myapplication.ui.activity.detail.tvshows;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -211,11 +210,6 @@ public class DetailTvShowActivity extends AppCompatActivity {
 
     private void showMessage(String message) {
         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        return super.onCreateOptionsMenu(menu);
     }
 
     @Override

@@ -58,7 +58,7 @@ public class SearchMovieActivity extends AppCompatActivity {
         if (searchManager != null) {
             searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
             searchView.setIconified(false);
-            searchView.setQueryHint("Search Movie");
+            searchView.setQueryHint(getString(R.string.str_search_movie));
             SearchView.OnQueryTextListener queryTextListener = new SearchView.OnQueryTextListener() {
                 @Override
                 public boolean onQueryTextChange(String newText) {

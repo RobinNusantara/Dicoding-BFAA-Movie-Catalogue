@@ -77,7 +77,7 @@ public class ReminderReleaseReceiver extends BroadcastReceiver {
         final NotificationCompat.Builder builder = new NotificationCompat.Builder(context, CHANNEL_ID)
                 .setSmallIcon(R.drawable.ic_movie_black_24dp)
                 .setContentTitle(title)
-                .setContentText(title + " has released today")
+                .setContentText(title + context.getString(R.string.str_release_message))
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .setContentIntent(pendingIntent)
                 .setVibrate(new long[]{1000, 1000, 1000, 1000, 1000})

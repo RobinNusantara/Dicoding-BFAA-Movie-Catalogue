@@ -13,14 +13,19 @@
     <string name="str_movie_runtime">%1$sh %2$sm</string>
     <string name="str_tv_runtime">%sm</string>
     <string name="str_add_to_favorite">Berhasil Ditambahkan ke Favorit</string>
-    <string name="str_add_to_favorite_fail">Gagal Menambahkan ke Favorit</string>
-    <string name="str_have_already">Anda Sudah Pernah Menambahkan Item ke Favorit</string>
     <string name="str_remove_from_favorite">Berhasil Dihapus dari Favorit</string>
-    <string name="str_remove_from_favorite_fail">Anda Sudah Pernah Menghapus Item dari Favorit</string>
     <string name="str_favorite">Favorit</string>
     <string name="str_review">Review</string>
     <string name="str_search">Cari</string>
-    <string name="str_about">Tentang</string>
-    <string name="str_notification_settings">Pengaturan Notifikasi</string>
-    <string name="str_language_settings">Pengaturan Bahasa</string>
+    <string name="str_notification_settings">Notifikasi</string>
+    <string name="str_language_settings">Bahasa</string>
+    <string name="str_no_data">Data Kosong</string>
+    <string name="str_search_movie">Cari Film</string>
+    <string name="str_search_show">Cari Serial</string>
+    <string name="str_release_reminder">Pengigat Rilis</string>
+    <string name="str_daily_reminder">Pengingat Harian</string>
+    <string name="str_release_summary">Menerima notifikasi tentang film yang rilis hari ini</string>
+    <string name="str_daily_summary">Menerima notifikasi untuk melihat film apa yang populer hari ini</string>
+    <string name="str_release_message">telah rilis hari ini</string>
+    <string name="str_daily_message">Hey! lihat film apa yang populer hari ini?</string>
 </resources>
