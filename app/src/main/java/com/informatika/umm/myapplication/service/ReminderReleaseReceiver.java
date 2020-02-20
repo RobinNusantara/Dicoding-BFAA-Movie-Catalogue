@@ -46,7 +46,7 @@ public class ReminderReleaseReceiver extends BroadcastReceiver {
     private static final int NOTIFICATION_REQUEST_CODE = 200;
     private static final String EXTRA_NOTIF_ID = "extra_notif_id";
     private static final String EXTRA_MOVIE = "extra_movie";
-    private static final String CHANNEL_ID = "channel_01";
+    private static final String CHANNEL_ID = "channel_02";
     private static final CharSequence CHANNEL_NAME = "release_channel";
 
     @Override
