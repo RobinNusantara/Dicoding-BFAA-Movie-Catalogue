@@ -6,19 +6,13 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.SwitchPreferenceCompat;
 
 import com.informatika.umm.myapplication.R;
-import com.informatika.umm.myapplication.model.Movie;
 import com.informatika.umm.myapplication.service.ReminderDailyReceiver;
 import com.informatika.umm.myapplication.service.ReminderReleaseReceiver;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -29,14 +23,10 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Prefer
     private static final String KEY_RELEASE = "reminder_release";
     private ReminderDailyReceiver dailyReceiver;
     private ReminderReleaseReceiver releaseReceiver;
-    private NotificationViewModel viewModel;
-    private List<Movie> movieList = new ArrayList<>();
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setupViewModel();
-        viewModel.loadReleaseMovie();
         dailyReceiver = new ReminderDailyReceiver();
         releaseReceiver = new ReminderReleaseReceiver();
 
@@ -78,7 +68,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Prefer
             case KEY_RELEASE:
                 if (isActive) {
                     if (getActivity() != null) {
-                        releaseReceiver.setTimeReleaseReminder(getActivity(), movieList);
+                        releaseReceiver.setTimeReleaseReminder(getActivity());
                         Toast.makeText(getContext(), "Enable Release Reminder", Toast.LENGTH_SHORT).show();
                     }
                 } else {
@@ -90,16 +80,5 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Prefer
                 return true;
         }
         return false;
-    }
-
-    private void setupViewModel() {
-        viewModel = new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory()).get(NotificationViewModel.class);
-        viewModel.getReleaseMovie().observe(this, new Observer<List<Movie>>() {
-            @Override
-            public void onChanged(List<Movie> movie) {
-                movieList.clear();
-                movieList.addAll(movie);
-            }
-        });
     }
 }
