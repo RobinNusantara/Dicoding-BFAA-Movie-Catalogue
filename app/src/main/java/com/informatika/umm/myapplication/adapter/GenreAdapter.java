@@ -53,7 +53,7 @@ public class GenreAdapter extends RecyclerView.Adapter<GenreAdapter.GenresViewHo
         return genres.size();
     }
 
-    class GenresViewHolder extends RecyclerView.ViewHolder {
+    static class GenresViewHolder extends RecyclerView.ViewHolder {
 
         TextView txtMovieGenre;
 

@@ -89,7 +89,7 @@ public class TvShowsAdapter extends RecyclerView.Adapter<TvShowsAdapter.TvShowsV
         return movieList.size();
     }
 
-    class TvShowsViewHolder extends RecyclerView.ViewHolder {
+    static class TvShowsViewHolder extends RecyclerView.ViewHolder {
 
         ImageView imgMoviePoster;
         TextView txtMovieTitle, txtMovieScore, txtMovieRelease, txtMovieReview;

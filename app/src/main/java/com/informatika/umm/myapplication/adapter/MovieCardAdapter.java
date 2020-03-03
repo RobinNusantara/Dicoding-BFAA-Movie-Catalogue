@@ -70,7 +70,7 @@ public class MovieCardAdapter extends RecyclerView.Adapter<MovieCardAdapter.Card
         return movieList.size();
     }
 
-    class CardViewHolder extends RecyclerView.ViewHolder {
+    static class CardViewHolder extends RecyclerView.ViewHolder {
 
         TextView txtMovieScore, txtMovieTitle;
         ImageView imgMoviePoster;

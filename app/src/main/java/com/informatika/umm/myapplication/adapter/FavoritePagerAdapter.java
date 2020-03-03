@@ -13,6 +13,8 @@ import com.informatika.umm.myapplication.R;
 import com.informatika.umm.myapplication.ui.fragment.favorites.FavoriteFragmentMovie;
 import com.informatika.umm.myapplication.ui.fragment.favorites.FavoriteFragmentTvShow;
 
+import java.util.Objects;
+
 /**
  * MADE_Submission_2
  * created by : Robin Nusantara on 1/1/2020 01 2020
@@ -45,7 +47,7 @@ public class FavoritePagerAdapter extends FragmentPagerAdapter {
                 fragment = new FavoriteFragmentTvShow();
                 break;
         }
-        return fragment;
+        return Objects.requireNonNull(fragment);
     }
 
     @Nullable

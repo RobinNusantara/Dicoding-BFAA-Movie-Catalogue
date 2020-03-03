@@ -2,6 +2,7 @@ package com.informatika.umm.consumerapp.adapter;
 
 import android.content.Context;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
@@ -9,6 +10,8 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import com.informatika.umm.consumerapp.R;
 import com.informatika.umm.consumerapp.ui.fragment.movie.MovieFragment;
 import com.informatika.umm.consumerapp.ui.fragment.tvshow.TvShowFragment;
+
+import java.util.Objects;
 
 /**
  * MADE_Submission_2
@@ -20,7 +23,7 @@ public class PagerAdapter extends FragmentPagerAdapter {
     private final Context context;
 
     public PagerAdapter(Context context, FragmentManager fragmentManager) {
-        super(fragmentManager);
+        super(fragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         this.context = context;
     }
 
@@ -29,10 +32,11 @@ public class PagerAdapter extends FragmentPagerAdapter {
             R.string.str_show
     };
 
+    @NonNull
     @Override
     public Fragment getItem(int position) {
         Fragment fragment = null;
-        switch (position){
+        switch (position) {
             case 0:
                 fragment = new MovieFragment();
                 break;
@@ -40,10 +44,10 @@ public class PagerAdapter extends FragmentPagerAdapter {
                 fragment = new TvShowFragment();
                 break;
         }
-        return fragment;
+        return Objects.requireNonNull(fragment);
     }
 
-    public CharSequence getPageTitle(int position){
+    public CharSequence getPageTitle(int position) {
         return context.getResources().getString(TAB_TITLE[position]);
     }
 
