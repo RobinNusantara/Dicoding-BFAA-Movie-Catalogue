@@ -31,4 +31,7 @@
     <string name="str_daily_summary">Receive notification to see what\'s the most popular movie today</string>
     <string name="str_release_message">has released today</string>
     <string name="str_daily_message">Hey! see what\'s the most popular movie today</string>
+    <string name="str_introduction">Introduction</string>
+    <string name="str_add_favorite">Add to Favorite</string>
+    <string name="str_remove_favorite">Remove from Favorite</string>
 </resources>

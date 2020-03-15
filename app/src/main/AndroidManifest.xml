@@ -48,7 +48,9 @@
         <activity
             android:name=".ui.activity.detail.movies.DetailMovieActivity"
             android:label="@string/title_activity_movie_detail"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:screenOrientation="portrait"
+            android:theme="@style/MaterialComponents.NoActionBar.Detail"
+            tools:ignore="LockedOrientationActivity" />
         <activity android:name=".ui.activity.main.MainActivity" />
 
         <receiver

@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,7 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.button.MaterialButton;
 import com.informatika.umm.myapplication.BuildConfig;
 import com.informatika.umm.myapplication.R;
 import com.informatika.umm.myapplication.adapter.GenreAdapter;
@@ -39,24 +38,23 @@ import java.util.Objects;
 public class DetailMovieActivity extends AppCompatActivity {
 
     public static final String EXTRA_MOVIE = "extra_movie";
-    private TextView txtMovieTitle, txtMovieRelease, txtMovieScore, txtMovieRuntime, txtMovieStatus, txtMovieOverview, txtMovieReview;
+    private TextView txtMovieTitle, txtMovieRelease, txtMovieScore, txtMovieRuntime, txtMovieStatus, txtMovieOverview;
     private RecyclerView rvSimilarMovies, rvGenreMovies;
     private ImageView imgMovieBackdrop, imgMoviePoster;
     private List<Movie> movieList = new ArrayList<>();
     private List<Genre> genreList = new ArrayList<>();
-    private FloatingActionButton btnCheckFavorite;
+    private MaterialButton btnCheckFavorite;
     private InsertFavoriteTask insertFavoriteTask;
     private RemoveFavoriteTask removeFavoriteTask;
     private DetailMovieViewModel viewModel;
     private MovieCardAdapter cardAdapter;
     private GenreAdapter genreAdapter;
-    private RatingBar ratingBar;
     private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detail_movies);
+        setContentView(R.layout.activity_detail);
         Movie movies = getIntent().getParcelableExtra(EXTRA_MOVIE);
         bindView();
         setupToolbar();
@@ -73,7 +71,6 @@ public class DetailMovieActivity extends AppCompatActivity {
 
     private void bindView() {
         toolbar = findViewById(R.id.toolbar);
-        ratingBar = findViewById(R.id.rate_movie);
         imgMoviePoster = findViewById(R.id.img_movie_poster);
         imgMovieBackdrop = findViewById(R.id.img_movie_backdrop);
         txtMovieTitle = findViewById(R.id.txt_movie_title);
@@ -82,7 +79,6 @@ public class DetailMovieActivity extends AppCompatActivity {
         txtMovieRuntime = findViewById(R.id.txt_movie_runtime);
         txtMovieOverview = findViewById(R.id.txt_movie_overview);
         txtMovieStatus = findViewById(R.id.txt_movie_status);
-        txtMovieReview = findViewById(R.id.txt_movie_vote);
         rvGenreMovies = findViewById(R.id.rv_genre);
         rvSimilarMovies = findViewById(R.id.rv_movies_similar);
         btnCheckFavorite = findViewById(R.id.btn_check_favorite);
@@ -150,9 +146,7 @@ public class DetailMovieActivity extends AppCompatActivity {
 
         txtMovieTitle.setText(movie.getMovieTitle());
         txtMovieRelease.setText(FormatDate.getFormatReleaseDate(movie.getMovieRelease()));
-        ratingBar.setRating(movie.getRating());
         txtMovieScore.setText(String.valueOf(movie.getMovieScore()));
-        txtMovieReview.setText(String.valueOf(movie.getMovieReview()));
         txtMovieOverview.setText(movie.getMovieOverview());
     }
 
@@ -205,7 +199,7 @@ public class DetailMovieActivity extends AppCompatActivity {
     }
 
     private void handleFavoriteIcon(Boolean isFavorite) {
-        btnCheckFavorite.setImageResource(isFavorite ?  R.drawable.ic_favorite_white_24dp : R.drawable.ic_favorite_border_white_24dp );
+        btnCheckFavorite.setText(isFavorite ? R.string.str_remove_favorite : R.string.str_add_favorite);
     }
 
     private void showMessage(String message) {
