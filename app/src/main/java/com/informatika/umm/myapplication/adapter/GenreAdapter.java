@@ -1,8 +1,13 @@
 package com.informatika.umm.myapplication.adapter;
 
+import android.app.Activity;
+import android.content.Context;
+import android.graphics.Point;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -22,7 +27,7 @@ public class GenreAdapter extends RecyclerView.Adapter<GenreAdapter.GenresViewHo
 
     private List<Genre> genres;
 
-    public GenreAdapter( List<Genre> genres) {
+    public GenreAdapter(List<Genre> genres) {
         this.genres = genres;
     }
 
