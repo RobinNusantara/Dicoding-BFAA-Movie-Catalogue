@@ -1,6 +1,7 @@
 package com.informatika.umm.myapplication.ui.activity.search.movies;
 
 import android.app.SearchManager;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
@@ -16,18 +17,18 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.informatika.umm.myapplication.R;
 import com.informatika.umm.myapplication.adapter.MovieListAdapter;
 import com.informatika.umm.myapplication.model.Movie;
+import com.informatika.umm.myapplication.ui.activity.detail.movies.DetailMovieActivity;
+import com.informatika.umm.myapplication.util.ItemClickListener;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class SearchMovieActivity extends AppCompatActivity {
+public class SearchMovieActivity extends AppCompatActivity implements ItemClickListener {
 
     Toolbar toolbar;
     SearchView searchView;
     RecyclerView rvSearchMovie;
     MovieListAdapter adapter;
     SearchMovieViewModel viewModel;
-    List<Movie> movieList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,7 +80,7 @@ public class SearchMovieActivity extends AppCompatActivity {
     }
 
     private void setupRecyclerView() {
-        adapter = new MovieListAdapter(getApplicationContext(), movieList);
+        adapter = new MovieListAdapter(this);
         LinearLayoutManager layoutManager = new LinearLayoutManager(SearchMovieActivity.this);
         rvSearchMovie.setHasFixedSize(true);
         rvSearchMovie.setAdapter(adapter);
@@ -103,5 +104,13 @@ public class SearchMovieActivity extends AppCompatActivity {
             finish();
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onItemClicked(Movie movie) {
+        Intent intent = new Intent(getApplicationContext(), DetailMovieActivity.class);
+        intent.putExtra(DetailMovieActivity.EXTRA_MOVIE, movie);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
     }
 }

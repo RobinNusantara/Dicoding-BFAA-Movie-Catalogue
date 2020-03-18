@@ -1,6 +1,7 @@
 package com.informatika.umm.myapplication.ui.activity.search.tvshows;
 
 import android.app.SearchManager;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
@@ -14,20 +15,20 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.informatika.umm.myapplication.R;
-import com.informatika.umm.myapplication.adapter.TvShowsAdapter;
+import com.informatika.umm.myapplication.adapter.MovieListAdapter;
 import com.informatika.umm.myapplication.model.Movie;
+import com.informatika.umm.myapplication.ui.activity.detail.tvshows.DetailTvShowActivity;
+import com.informatika.umm.myapplication.util.ItemClickListener;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class SearchTvShowsActivity extends AppCompatActivity {
+public class SearchTvShowsActivity extends AppCompatActivity implements ItemClickListener {
 
     Toolbar toolbar;
     SearchView searchView;
     RecyclerView rvSearchTvShows;
-    TvShowsAdapter adapter;
+    MovieListAdapter adapter;
     SearchTvShowsViewModel viewModel;
-    List<Movie> movieList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,7 +80,7 @@ public class SearchTvShowsActivity extends AppCompatActivity {
     }
 
     private void setupRecyclerView() {
-        adapter = new TvShowsAdapter(getApplicationContext(), movieList);
+        adapter = new MovieListAdapter(this);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         rvSearchTvShows.setHasFixedSize(true);
         rvSearchTvShows.setAdapter(adapter);
@@ -103,5 +104,13 @@ public class SearchTvShowsActivity extends AppCompatActivity {
             finish();
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onItemClicked(Movie movie) {
+        Intent intent = new Intent(getApplicationContext(), DetailTvShowActivity.class);
+        intent.putExtra(DetailTvShowActivity.EXTRA_TV, movie);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        getApplicationContext().startActivity(intent);
     }
 }

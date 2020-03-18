@@ -9,7 +9,7 @@
         android:id="@+id/rv_movies_now_playing"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:listitem="@layout/item_row_movies" />
+        tools:listitem="@layout/item_row_favorite" />
 
     <com.facebook.shimmer.ShimmerFrameLayout
         android:id="@+id/shimmer_container"

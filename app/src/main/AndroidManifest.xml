@@ -35,7 +35,9 @@
         <activity
             android:name=".ui.activity.detail.tvshows.DetailTvShowActivity"
             android:label="@string/title_activity_detail_tv_shows"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:screenOrientation="portrait"
+            android:theme="@style/MaterialComponents.NoActionBar.Detail"
+            tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".ui.activity.splash.SplashActivity"
             android:theme="@style/SplashScreenStyle">

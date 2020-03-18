@@ -1,6 +1,7 @@
 package com.informatika.umm.myapplication.ui.fragment.favorites;
 
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -17,24 +18,24 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.informatika.umm.myapplication.R;
-import com.informatika.umm.myapplication.adapter.FavoriteAdapterMovie;
+import com.informatika.umm.myapplication.adapter.MovieListAdapter;
 import com.informatika.umm.myapplication.database.RoomClient;
 import com.informatika.umm.myapplication.model.Movie;
+import com.informatika.umm.myapplication.ui.activity.detail.movies.DetailMovieActivity;
+import com.informatika.umm.myapplication.util.ItemClickListener;
 
 import java.lang.ref.WeakReference;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FavoriteFragmentMovie extends Fragment {
+public class FavoriteFragmentMovie extends Fragment implements ItemClickListener {
 
-    private List<Movie> movieList = new ArrayList<>();
     private SwipeRefreshLayout swipeRefreshLayout;
     private GetMovieFavoriteTask favoriteTask;
-    private FavoriteAdapterMovie adapter;
+    private MovieListAdapter adapter;
     private FavoriteViewModel viewModel;
     private RecyclerView recyclerView;
 
@@ -65,7 +66,7 @@ public class FavoriteFragmentMovie extends Fragment {
         viewModel.getMovieList().observe(getViewLifecycleOwner(), new Observer<List<Movie>>() {
             @Override
             public void onChanged(List<Movie> movieList) {
-                adapter.setFavorite(movieList);
+                adapter.setMovie(movieList);
             }
         });
     }
@@ -75,7 +76,7 @@ public class FavoriteFragmentMovie extends Fragment {
     }
 
     private void setupRecyclerView() {
-        adapter = new FavoriteAdapterMovie(getActivity(), movieList);
+        adapter = new MovieListAdapter(this);
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(adapter);
@@ -95,6 +96,15 @@ public class FavoriteFragmentMovie extends Fragment {
         favoriteTask = null;
         initFavoriteTask();
         favoriteTask.execute();
+    }
+
+    @Override
+    public void onItemClicked(Movie movie) {
+        if (getActivity() != null) {
+            Intent intent = new Intent(getActivity(), DetailMovieActivity.class);
+            intent.putExtra(DetailMovieActivity.EXTRA_MOVIE, movie);
+            getActivity().startActivity(intent);
+        }
     }
 
     private static class GetMovieFavoriteTask extends AsyncTask<Void, Void, List<Movie>> {

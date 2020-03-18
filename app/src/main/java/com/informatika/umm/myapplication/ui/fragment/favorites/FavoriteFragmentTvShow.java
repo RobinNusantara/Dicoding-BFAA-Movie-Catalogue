@@ -1,5 +1,6 @@
 package com.informatika.umm.myapplication.ui.fragment.favorites;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -16,24 +17,24 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.informatika.umm.myapplication.R;
-import com.informatika.umm.myapplication.adapter.FavoriteAdapterTvShow;
+import com.informatika.umm.myapplication.adapter.MovieListAdapter;
 import com.informatika.umm.myapplication.database.RoomClient;
 import com.informatika.umm.myapplication.model.Movie;
+import com.informatika.umm.myapplication.ui.activity.detail.tvshows.DetailTvShowActivity;
+import com.informatika.umm.myapplication.util.ItemClickListener;
 
 import java.lang.ref.WeakReference;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FavoriteFragmentTvShow extends Fragment {
+public class FavoriteFragmentTvShow extends Fragment implements ItemClickListener {
 
-    private List<Movie> movieList = new ArrayList<>();
     private SwipeRefreshLayout swipeRefreshLayout;
     private GetTvShowFavoriteTask favoriteTask;
-    private FavoriteAdapterTvShow adapter;
+    private MovieListAdapter adapter;
     private FavoriteViewModel viewModel;
     private RecyclerView recyclerView;
 
@@ -64,7 +65,7 @@ public class FavoriteFragmentTvShow extends Fragment {
         viewModel.getMovieList().observe(getViewLifecycleOwner(), new Observer<List<Movie>>() {
             @Override
             public void onChanged(List<Movie> movieList) {
-                adapter.setFavorite(movieList);
+                adapter.setMovie(movieList);
             }
         });
     }
@@ -74,7 +75,7 @@ public class FavoriteFragmentTvShow extends Fragment {
     }
 
     private void setupRecyclerView() {
-        adapter = new FavoriteAdapterTvShow(getActivity(), movieList);
+        adapter = new MovieListAdapter(this);
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(adapter);
@@ -94,6 +95,15 @@ public class FavoriteFragmentTvShow extends Fragment {
         favoriteTask = null;
         initFavoriteTask();
         favoriteTask.execute();
+    }
+
+    @Override
+    public void onItemClicked(Movie movie) {
+        if (getActivity() != null) {
+            Intent intent = new Intent(getActivity(), DetailTvShowActivity.class);
+            intent.putExtra(DetailTvShowActivity.EXTRA_TV, movie);
+            getActivity().startActivity(intent);
+        }
     }
 
     private static class GetTvShowFavoriteTask extends AsyncTask<Void, Void, List<Movie>> {

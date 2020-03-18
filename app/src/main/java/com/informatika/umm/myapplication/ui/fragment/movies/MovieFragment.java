@@ -21,17 +21,17 @@ import com.facebook.shimmer.ShimmerFrameLayout;
 import com.informatika.umm.myapplication.R;
 import com.informatika.umm.myapplication.adapter.MovieListAdapter;
 import com.informatika.umm.myapplication.model.Movie;
+import com.informatika.umm.myapplication.ui.activity.detail.movies.DetailMovieActivity;
 import com.informatika.umm.myapplication.ui.activity.search.movies.SearchMovieActivity;
+import com.informatika.umm.myapplication.util.ItemClickListener;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class MovieFragment extends Fragment {
+public class MovieFragment extends Fragment implements ItemClickListener {
 
     private ShimmerFrameLayout shimmerFrameLayout;
     private MovieListAdapter listAdapter;
     private MovieViewModel viewModel;
-    private List<Movie> movieList = new ArrayList<>();
     private RecyclerView rvDiscover;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -64,7 +64,7 @@ public class MovieFragment extends Fragment {
 
     private void setupRecyclerView() {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
-        listAdapter = new MovieListAdapter(getContext(), movieList);
+        listAdapter = new MovieListAdapter(this);
         rvDiscover.setHasFixedSize(true);
         rvDiscover.setLayoutManager(layoutManager);
         rvDiscover.setAdapter(listAdapter);
@@ -89,5 +89,14 @@ public class MovieFragment extends Fragment {
             startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onItemClicked(Movie movie) {
+        if (getActivity() != null) {
+            Intent intent = new Intent(getActivity(), DetailMovieActivity.class);
+            intent.putExtra(DetailMovieActivity.EXTRA_MOVIE, movie);
+            getActivity().startActivity(intent);
+        }
     }
 }

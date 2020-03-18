@@ -19,19 +19,19 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.facebook.shimmer.ShimmerFrameLayout;
 import com.informatika.umm.myapplication.R;
-import com.informatika.umm.myapplication.adapter.TvShowsAdapter;
+import com.informatika.umm.myapplication.adapter.MovieListAdapter;
 import com.informatika.umm.myapplication.model.Movie;
+import com.informatika.umm.myapplication.ui.activity.detail.tvshows.DetailTvShowActivity;
 import com.informatika.umm.myapplication.ui.activity.search.tvshows.SearchTvShowsActivity;
+import com.informatika.umm.myapplication.util.ItemClickListener;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class TvShowsFragment extends Fragment {
+public class TvShowsFragment extends Fragment implements ItemClickListener {
 
     private ShimmerFrameLayout shimmerFrameLayout;
-    private TvShowsAdapter listAdapter;
+    private MovieListAdapter listAdapter;
     private TvShowsViewModel viewModel;
-    private List<Movie> movieList = new ArrayList<>();
     private RecyclerView rvDiscover;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -64,7 +64,7 @@ public class TvShowsFragment extends Fragment {
 
     private void showRecyclerView() {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
-        listAdapter = new TvShowsAdapter(getContext(), movieList);
+        listAdapter = new MovieListAdapter(this);
         rvDiscover.setHasFixedSize(true);
         rvDiscover.setLayoutManager(layoutManager);
         rvDiscover.setAdapter(listAdapter);
@@ -90,5 +90,14 @@ public class TvShowsFragment extends Fragment {
             startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onItemClicked(Movie movie) {
+        if (getActivity() != null) {
+            Intent intent = new Intent(getActivity(), DetailTvShowActivity.class);
+            intent.putExtra(DetailTvShowActivity.EXTRA_TV, movie);
+            getActivity().startActivity(intent);
+        }
     }
 }

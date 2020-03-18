@@ -1,12 +1,9 @@
 package com.informatika.umm.myapplication.adapter;
 
-import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -19,8 +16,9 @@ import com.informatika.umm.myapplication.BuildConfig;
 import com.informatika.umm.myapplication.R;
 import com.informatika.umm.myapplication.model.Movie;
 import com.informatika.umm.myapplication.util.FormatDate;
-import com.informatika.umm.myapplication.ui.activity.detail.movies.DetailMovieActivity;
+import com.informatika.umm.myapplication.util.ItemClickListener;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -30,12 +28,11 @@ import java.util.List;
  **/
 public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.MoviesViewHolder> {
 
-    private Context context;
-    private List<Movie> movieList;
+    private List<Movie> movieList = new ArrayList<>();
+    private ItemClickListener clickListener;
 
-    public MovieListAdapter(Context context, List<Movie> movieList) {
-        this.context = context;
-        this.movieList = movieList;
+    public MovieListAdapter(ItemClickListener clickListener) {
+        this.clickListener = clickListener;
     }
 
     public void setMovie(List<Movie> movieList) {
@@ -47,41 +44,13 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
     @NonNull
     @Override
     public MoviesViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_row_movies, viewGroup, false);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_row_favorite, viewGroup, false);
         return new MoviesViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull final MoviesViewHolder holder, int position) {
-
-        final Movie movie = movieList.get(position);
-        String urlPoster = BuildConfig.IMAGE_URL + movie.getMoviePoster();
-        Glide.with(holder.itemView.getContext())
-                .load(urlPoster)
-                .apply(new RequestOptions().override(350, 550))
-                .placeholder(R.drawable.item_glide_placeholder)
-                .error(R.drawable.item_glide_error)
-                .transform(new RoundedCorners(32))
-                .into(holder.imgMoviePoster);
-
-        holder.txtMovieTitle.setText(movie.getMovieTitle());
-        holder.txtMovieRelease.setText(FormatDate.getFormatReleaseDate(movie.getMovieRelease()));
-        holder.ratingBar.setRating(movie.getRating());
-        holder.txtMovieScore.setText(String.valueOf(movie.getMovieScore()));
-        holder.txtMovieReview.setText(String.valueOf(movie.getMovieReview()));
-
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent;
-                intent = new Intent(context, DetailMovieActivity.class);
-                intent.putExtra(DetailMovieActivity.EXTRA_MOVIE, movie);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                context.startActivity(intent);
-            }
-        });
-
-        holder.getAdapterPosition();
+        holder.bindItem(movieList.get(position));
     }
 
     @Override
@@ -89,20 +58,44 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
         return movieList.size();
     }
 
-    static class MoviesViewHolder extends RecyclerView.ViewHolder {
+    class MoviesViewHolder extends RecyclerView.ViewHolder {
 
         ImageView imgMoviePoster;
-        TextView txtMovieTitle, txtMovieScore, txtMovieRelease, txtMovieReview;
-        RatingBar ratingBar;
+        TextView txtMovieTitle, txtMovieScore, txtMovieRelease, txtMovieOverview;
 
         MoviesViewHolder(@NonNull View itemView) {
             super(itemView);
-            ratingBar = itemView.findViewById(R.id.rate_movie);
             imgMoviePoster = itemView.findViewById(R.id.img_movie_poster);
             txtMovieTitle = itemView.findViewById(R.id.txt_movie_title);
             txtMovieRelease = itemView.findViewById(R.id.txt_movie_release_date);
             txtMovieScore = itemView.findViewById(R.id.txt_movie_score);
-            txtMovieReview = itemView.findViewById(R.id.txt_movie_vote);
+            txtMovieOverview = itemView.findViewById(R.id.txt_movie_overview);
+        }
+
+        void bindItem(Movie movie) {
+            String urlPoster = BuildConfig.IMAGE_URL + movie.getMoviePoster();
+            Glide.with(itemView.getContext())
+                    .load(urlPoster)
+                    .apply(new RequestOptions().override(350, 550))
+                    .placeholder(R.drawable.item_glide_placeholder)
+                    .error(R.drawable.item_glide_error)
+                    .transform(new RoundedCorners(32))
+                    .into(imgMoviePoster);
+
+            txtMovieTitle.setText(movie.getMovieTitle());
+            txtMovieRelease.setText(FormatDate.getFormatReleaseDate(movie.getMovieRelease()));
+            txtMovieScore.setText(String.valueOf(movie.getMovieScore()));
+            txtMovieOverview.setText(movie.getMovieOverview());
+            itemView.setOnClickListener(getItemClickListener(movie));
+        }
+
+        private View.OnClickListener getItemClickListener(final Movie movie){
+            return new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    clickListener.onItemClicked(movie);
+                }
+            };
         }
     }
 }
