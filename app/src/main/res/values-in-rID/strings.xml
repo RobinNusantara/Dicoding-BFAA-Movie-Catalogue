@@ -1,212 +1,29 @@
 <resources>
-    <string name="app_name">Submission2</string>
+    <string name="app_name">Movie Catalogue</string>
     <string name="str_movie_title">Movie Title</string>
-    <string name="str_movie_background">Movie Background</string>
     <string name="str_movie_poster">Movie Poster</string>
-    <string name="str_tv_shows">Serial Tv</string>
+    <string name="str_tv_shows">Serial</string>
     <string name="str_movies">Film</string>
-    <string name="str_tmdb">TMDb</string>
-    <string name="str_star">Star</string>
-    <string name="str_tv_shows_poster">Tv Shows Poster</string>
-    <string name="str_tv_shows_background">Tv Shows Background</string>
     <string name="title_activity_movie_detail">MovieDetailActivity</string>
     <string name="title_activity_detail_tv_shows">DetailTvShowsActivity</string>
     <string name="str_movie_backdrop">Movie Backdrop</string>
     <string name="str_lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
-    <string name="str_button_language">Button Language</string>
-    <string name="str_account">Account</string>
-    <string name="str_profile_picture">Profile Picture</string>
-    <string name="str_profile_icon">Profile Icon</string>
-    <string name="str_profile_name">Robin Nusantara</string>
-    <string name="str_profile_email">robinnusantara127@gmail.com</string>
-    <string name="str_email_icon">Email Icon</string>
-    <string name="str_location_icon">Location Icon</string>
-    <string name="str_profile_location">Kota Batu, Jawa Timur</string>
-    <string name="str_tv_shows_backdrop">Tv Shows Backdrop</string>
     <string name="str_movie_catalogue_logo">Movie Catalogue Logo</string>
-
-    <!-- TODO MOVIE ITEM -->
-    <array name="item_movies_poster">
-        <item>@drawable/movie_poster_aquaman</item>
-        <item>@drawable/movie_poster_angelhasfallen</item>
-        <item>@drawable/movie_poster_cars</item>
-        <item>@drawable/movie_poster_frozen</item>
-        <item>@drawable/movie_poster_frozen2</item>
-        <item>@drawable/movie_poster_guardianofthegalaxy2</item>
-        <item>@drawable/movie_poster_hustlers</item>
-        <item>@drawable/movie_poster_lionking</item>
-        <item>@drawable/movie_poster_spiderman</item>
-        <item>@drawable/movie_poster_theirishman</item>
-    </array>
-
-    <array name="item_movies_backdrop">
-        <item>@drawable/movie_backdrop_aquaman</item>
-        <item>@drawable/movie_backdrop_angelhasfallen</item>
-        <item>@drawable/movie_backdrop_cars</item>
-        <item>@drawable/movie_backdrop_frozen</item>
-        <item>@drawable/movie_backdrop_frozen2</item>
-        <item>@drawable/movie_backdrop_guardianofthegalaxy2</item>
-        <item>@drawable/movie_backdrop_hustlers</item>
-        <item>@drawable/movie_backdrop_lionking</item>
-        <item>@drawable/movie_backdrop_spiderman</item>
-        <item>@drawable/movie_backdrop_theirishman</item>
-    </array>
-
-    <string-array name="item_movies_title">
-        <item>Aquaman</item>
-        <item>Angel has Fallen</item>
-        <item>Cars</item>
-        <item>Frozen</item>
-        <item>Frozen II</item>
-        <item>Guardian of the Galaxy vol.2</item>
-        <item>Hustlers</item>
-        <item>The Lion King</item>
-        <item>Spider-Man: Far From Home</item>
-        <item>The Irish Man</item>
-    </string-array>
-
-    <string-array name="item_movies_release">
-        <item>Desember 7, 2018</item>
-        <item>Agustus 21, 2019</item>
-        <item>Juni 8, 2006</item>
-        <item>November 27, 2013</item>
-        <item>November 20, 2019</item>
-        <item>April 19, 2017</item>
-        <item>September 12, 2019</item>
-        <item>Juli 12, 2019</item>
-        <item>Juni 28, 2019</item>
-        <item>November 1, 2019</item>
-    </string-array>
-
-    <string-array name="item_movies_score">
-        <item>7.0/10</item>
-        <item>6.5/10</item>
-        <item>7.1/10</item>
-        <item>7.5/10</item>
-        <item>7.3/10</item>
-        <item>7.6/10</item>
-        <item>6.5/10</item>
-        <item>7.0/10</item>
-        <item>7.6/10</item>
-        <item>8.5/10</item>
-    </string-array>
-
-    <string-array name="item_movies_runtime">
-        <item>2j 24m</item>
-        <item>2j 1m</item>
-        <item>1j 57m</item>
-        <item>1j 42m</item>
-        <item>1j 44m</item>
-        <item>2j 17m</item>
-        <item>1j 47m</item>
-        <item>1j 58m</item>
-        <item>2j 9m</item>
-        <item>3j 29m</item>
-    </string-array>
-
-    <string-array name="item_movies_overview">
-        <item>Once home to the most advanced civilization on Earth, Atlantis is now an underwater kingdom ruled by the power-hungry King Orm. With a vast army at his disposal, Orm plans to conquer the remaining oceanic people and then the surface world. Standing in his way is Arthur Curry, Orm\'s half-human, half-Atlantean brother and true heir to the throne.</item>
-        <item>After the events in the previous film, Secret Service agent Mike Banning finds himself framed for an assassination attempt on the President. Pursued by his own agency and the FBI, Banning races to clear his name and uncover the real terrorist threat which has set its sights on Air Force One.</item>
-        <item>Lightning McQueen, a hotshot rookie race car driven to succeed, discovers that life is about the journey, not the finish line, when he finds himself unexpectedly detoured in the sleepy Route 66 town of Radiator Springs. On route across the country to the big Piston Cup Championship in California to compete against two seasoned pros, McQueen gets to know the town\'s offbeat characters.</item>
-        <item>Young princess Anna of Arendelle dreams about finding true love at her sister Elsa’s coronation. Fate takes her on a dangerous journey in an attempt to end the eternal winter that has fallen over the kingdom. She\'s accompanied by ice delivery man Kristoff, his reindeer Sven, and snowman Olaf. On an adventure where she will find out what friendship, courage, family, and true love really means.</item>
-        <item>Elsa, Anna, Kristoff and Olaf head far into the forest to learn the truth about an ancient mystery of their kingdom.</item>
-        <item>The Guardians must fight to keep their newfound family together as they unravel the mysteries of Peter Quill\'s true parentage.</item>
-        <item>A crew of savvy former strip club employees band together to turn the tables on their Wall Street clients.</item>
-        <item>Simba idolizes his father, King Mufasa, and takes to heart his own royal destiny. But not everyone in the kingdom celebrates the new cub\'s arrival. Scar, Mufasa\'s brother—and former heir to the throne—has plans of his own. The battle for Pride Rock is ravaged with betrayal, tragedy and drama, ultimately resulting in Simba\'s exile. With help from a curious pair of newfound friends, Simba will have to figure out how to grow up and take back what is rightfully his.</item>
-        <item>Peter Parker and his friends go on a summer trip to Europe. However, they will hardly be able to rest - Peter will have to agree to help Nick Fury uncover the mystery of creatures that cause natural disasters and destruction throughout the continent.</item>
-        <item>Pennsylvania, 1956. Frank Sheeran, a war veteran of Irish origin who works as a truck driver, accidentally meets mobster Russell Bufalino. Once Frank becomes his trusted man, Bufalino sends him to Chicago with the task of helping Jimmy Hoffa, a powerful union leader related to organized crime, with whom Frank will maintain a close friendship for nearly twenty years.</item>
-    </string-array>
-
-    <!-- TODO TV SHOWS ITEM -->
-    <array name="item_tv_shows_poster">
-        <item>@drawable/tv_shows_poster_familyguy</item>
-        <item>@drawable/tv_shows_poster_got</item>
-        <item>@drawable/tv_shows_poster_hisdarkmaterials</item>
-        <item>@drawable/tv_shows_poster_outlander</item>
-        <item>@drawable/tv_shows_poster_rickandmorty</item>
-        <item>@drawable/tv_shows_poster_sealteam</item>
-        <item>@drawable/tv_shows_poster_sherlock</item>
-        <item>@drawable/tv_shows_poster_smallville</item>
-        <item>@drawable/tv_shows_poster_southpark</item>
-        <item>@drawable/tv_shows_poster_thewalkingdead</item>
-    </array>
-
-    <array name="item_tv_shows_backdrop">
-        <item>@drawable/tv_shows_backdrop_familyguy</item>
-        <item>@drawable/tv_shows_backdrop_got</item>
-        <item>@drawable/tv_shows_backdrop_hisdarkmaterials</item>
-        <item>@drawable/tv_shows_backdrop_outlander</item>
-        <item>@drawable/tv_shows_backdrop_rickandmorty</item>
-        <item>@drawable/tv_shows_backdrop_sealteam</item>
-        <item>@drawable/tv_shows_backdrop_sherlock</item>
-        <item>@drawable/tv_shows_backdrop_smallville</item>
-        <item>@drawable/tv_shows_backdrop_southpark</item>
-        <item>@drawable/tv_shows_backdrop_thewalkingdead</item>
-    </array>
-
-    <string-array name="item_tv_shows_title">
-        <item>Family Guy</item>
-        <item>Game of Thrones</item>
-        <item>His Dark Materials</item>
-        <item>Outlander</item>
-        <item>Rick and Morty</item>
-        <item>Seal Team</item>
-        <item>Sherlock</item>
-        <item>Smallville</item>
-        <item>South Park</item>
-        <item>Fear The Walking Dead</item>
-    </string-array>
-
-    <string-array name="item_tv_shows_release">
-        <item>Januari 31, 1999</item>
-        <item>April 17, 2011</item>
-        <item>November 3, 2019</item>
-        <item>Augustus 9, 2014</item>
-        <item>Desember 2, 2013</item>
-        <item>September 27, 2017</item>
-        <item>Juli 25, 2010</item>
-        <item>Oktober 16, 2001</item>
-        <item>Agustus 13, 1997</item>
-        <item>Agustus 23, 2015</item>
-    </string-array>
-
-    <string-array name="item_tv_shows_score">
-        <item>8.1/10</item>
-        <item>9.4/10</item>
-        <item>8.3/10</item>
-        <item>8.4/10</item>
-        <item>9.3/10</item>
-        <item>7.4/10</item>
-        <item>9.1/10</item>
-        <item>7.4/10</item>
-        <item>8.7/10</item>
-        <item>6.9/10</item>
-    </string-array>
-
-    <string-array name="item_tv_shows_runtime">
-        <item>22m</item>
-        <item>60m</item>
-        <item>59m</item>
-        <item>60m</item>
-        <item>22m</item>
-        <item>43m</item>
-        <item>90m</item>
-        <item>43m</item>
-        <item>22m</item>
-        <item>43m</item>
-    </string-array>
-
-    <string-array name="item_tv_shows_overview">
-        <item>Sick, twisted, politically incorrect and Freakin\' Sweet animated series featuring the adventures of the dysfunctional Griffin family. Bumbling Peter and long-suffering Lois have three kids. Stewie (a brilliant but sadistic baby bent on killing his mother and taking over the world), Meg (the oldest, and is the most unpopular girl in town) and Chris (the middle kid, he\'s not very bright but has a passion for movies). The final member of the family is Brian - a talking dog and much more than a pet, he keeps Stewie in check whilst sipping Martinis and sorting through his own life issues.</item>
-        <item>Seven noble families fight for control of the mythical land of Westeros. Friction between the houses leads to full-scale war. All while a very ancient evil awakens in the farthest north. Amidst the war, a neglected military order of misfits, the Night\'s Watch, is all that stands between the realms of men and icy horrors beyond.</item>
-        <item>Lyra is an orphan who lives in a parallel universe in which science, theology and magic are entwined. Lyra\'s search for a kidnapped friend uncovers a sinister plot involving stolen children, and turns into a quest to understand a mysterious phenomenon called Dust. She is later joined on her journey by Will, a boy who possesses a knife that can cut windows between worlds. As Lyra learns the truth about her parents and her prophesied destiny, the two young people are caught up in a war against celestial powers that ranges across many worlds.</item>
-        <item>The story of Claire Randall, a married combat nurse from 1945 who is mysteriously swept back in time to 1743, where she is immediately thrown into an unknown world where her life is threatened. When she is forced to marry Jamie, a chivalrous and romantic young Scottish warrior, a passionate affair is ignited that tears Claire\'s heart between two vastly different men in two irreconcilable lives.</item>
-        <item>Rick is a mentally-unbalanced but scientifically-gifted old man who has recently reconnected with his family. He spends most of his time involving his young grandson Morty in dangerous, outlandish adventures throughout space and alternate universes. Compounded with Morty\'s already unstable family life, these events cause Morty much distress at home and school.</item>
-        <item>The lives of the elite Navy Seals as they train, plan and execute the most dangerous, high-stakes missions our country can ask.</item>
-        <item>A modern update finds the famous sleuth and his doctor partner solving crime in 21st century London.</item>
-        <item>The origins of the world’s greatest hero–from Krypton refugee Kal-el’s arrival on Earth through his tumultuous teen years to Clark Kent’s final steps toward embracing his destiny as the Man of Steel.</item>
-        <item>Follows the misadventures of four irreverent grade-schoolers in the quiet, dysfunctional town of South Park, Colorado.</item>
-        <item>What did the world look like as it was transforming into the horrifying apocalypse depicted in "The Walking Dead"? This spin-off set in Los Angeles, following new characters as they face the beginning of the end of the world, will answer that question.</item>
-    </string-array>
-
+    <string name="str_movie_runtime">%1$sh %2$sm</string>
+    <string name="str_tv_runtime">%sm</string>
+    <string name="str_add_to_favorite">Berhasil Ditambahkan ke Favorit</string>
+    <string name="str_remove_from_favorite">Berhasil Dihapus dari Favorit</string>
+    <string name="str_favorite">Favorit</string>
+    <string name="str_search">Cari</string>
+    <string name="str_notification_settings">Notifikasi</string>
+    <string name="str_language_settings">Bahasa</string>
+    <string name="str_no_data">Data Kosong</string>
+    <string name="str_search_movie">Cari Film</string>
+    <string name="str_search_show">Cari Serial</string>
+    <string name="str_release_reminder">Pengigat Rilis</string>
+    <string name="str_daily_reminder">Pengingat Harian</string>
+    <string name="str_release_summary">Menerima notifikasi tentang film yang rilis hari ini</string>
+    <string name="str_daily_summary">Menerima notifikasi untuk melihat film apa yang populer hari ini</string>
+    <string name="str_release_message">telah rilis hari ini</string>
+    <string name="str_daily_message">Hey! lihat film apa yang populer hari ini?</string>
 </resources>

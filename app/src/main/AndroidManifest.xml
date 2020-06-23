@@ -3,6 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.informatika.umm.myapplication">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <permission
+        android:name="com.informatika.umm.myapplication.provider.READ_WRITE"
+        android:protectionLevel="normal" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -11,13 +16,30 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+
+        <provider
+            android:name=".provider.MovieProvider"
+            android:authorities="com.informatika.umm.myapplication.provider"
+            android:enabled="true"
+            android:exported="true"
+            android:multiprocess="true"
+            android:permission="com.informatika.umm.myapplication.provider.READ_WRITE" />
+
         <activity
-            android:name=".ui.tvshows.DetailTvShowsActivity"
+            android:name=".ui.activity.search.tvshows.SearchTvShowsActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.activity.search.movies.SearchMovieActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".settings.SettingsActivity" />
+        <activity
+            android:name=".ui.activity.detail.tvshows.DetailTvShowActivity"
             android:label="@string/title_activity_detail_tv_shows"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".ui.profile.ProfileActivity" />
+            android:screenOrientation="portrait"
+            android:theme="@style/MaterialComponents.NoActionBar.Detail"
+            tools:ignore="LockedOrientationActivity" />
         <activity
-            android:name=".SplashScreenActivity"
+            android:name=".ui.activity.splash.SplashActivity"
             android:theme="@style/SplashScreenStyle">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,10 +48,35 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.movies.DetailMoviesActivity"
+            android:name=".ui.activity.detail.movies.DetailMovieActivity"
             android:label="@string/title_activity_movie_detail"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".MainActivity" />
+            android:screenOrientation="portrait"
+            android:theme="@style/MaterialComponents.NoActionBar.Detail"
+            tools:ignore="LockedOrientationActivity" />
+        <activity android:name=".ui.activity.main.MainActivity" />
+
+        <receiver
+            android:name=".service.ReminderDailyReceiver"
+            android:enabled="true"
+            android:exported="false" />
+        <receiver
+            android:name=".service.ReminderReleaseReceiver"
+            android:enabled="true"
+            android:exported="false" />
+
+        <receiver android:name="com.informatika.umm.myapplication.widget.ImageBannerWidget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/image_banner_widget_info" />
+        </receiver>
+
+        <service
+            android:name="com.informatika.umm.myapplication.widget.WidgetRemoteViewsService"
+            android:permission="android.permission.BIND_REMOTEVIEWS" />
     </application>
 
 </manifest>

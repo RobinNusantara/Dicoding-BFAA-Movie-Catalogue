@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory android:title="@string/str_notification_settings">
+        <SwitchPreferenceCompat
+            android:summary="@string/str_release_summary"
+            android:title="@string/str_release_reminder"
+            app:key="reminder_release" />
+
+        <SwitchPreferenceCompat
+            android:key="reminder_daily"
+            android:summary="@string/str_daily_summary"
+            android:title="@string/str_daily_reminder" />
+    </PreferenceCategory>
+</PreferenceScreen>
